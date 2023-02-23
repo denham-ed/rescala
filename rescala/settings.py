@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'cloudinary_storage',
-    'auth',
-    'resources'
+    'users',
+    'resources',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.Profile'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
