@@ -10,19 +10,26 @@ class CustomUserCreationForm(UserCreationForm):
         fields = "__all__"
 
 class CustomSignupForm(SignupForm):
-    class Mega:
-        model = Profile
-        fields = ['first_name', 'last_name']
+    # class Meta:
+    #     model = Profile
+    #     fields = ['goals']
+
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["username"].label = ""
-        self.fields["password1"].label = ""
-        self.fields["password2"].label = ""
+        self.fields["username"].label = "Username"
+        self.fields["password1"].label = "Password 1"
+        self.fields["password2"].label = "Password 2"
 
-        self.fields['first_name'].required = True
-        self.fields['last_name'].required = True
+
+
+        # self.fields["goals"].widget = forms.TextInput(
+        #     attrs={'placeholder': '',
+        #            'label': '',
+        #            'class': 'input-field py-1'})
 
         self.fields["username"].widget = forms.TextInput(
             attrs={'placeholder': '',
@@ -37,3 +44,7 @@ class CustomSignupForm(SignupForm):
             attrs={'placeholder': '',
                    'label': '',
                    'class': 'input-field py-1'})
+
+    def save(self, request):
+        user = super(CustomSignupForm, self).save(request)
+        return user
