@@ -134,6 +134,8 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
 
+ACCOUNT_EMAIL_REQUIRED = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 

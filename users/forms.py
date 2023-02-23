@@ -14,9 +14,6 @@ class CustomSignupForm(SignupForm):
     #     model = Profile
     #     fields = ['goals']
 
-    first_name = forms.CharField(max_length=30, required=True)
-    last_name = forms.CharField(max_length=30, required=True)
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
