@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'cloudinary',
-    'cloudinary_storage',
-
+    # 'cloudinary_storage',
     'users',
     'resources',
 ]
