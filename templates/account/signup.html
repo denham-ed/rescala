@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row row-fill">
-        <div class="col-md-6  bg-dark-green pb-xs-5">
+        <div class="col  bg-dark-green pb-xs-5">
             <div class="row">
                 <div class="col-md-3 d-flex flex-column justify-content-center justify-content-md-start">
                     <div class="r-logo d-flex justify-content-center align-items-center mt-3">
@@ -30,12 +30,23 @@
                 <div class="d-flex col justify-content-center pb-xs-5 pb-md-0">
                     <form class="signup w-50" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
-                        {{form.as_p}}
-                        <!-- <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.first_name}}
-                            <span class='floating-label'> <i class="fa-regular fa-user"></i>Enter a username</span>
-                        </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="user-input-wrp my-2 input-icons">
+            <br />
+            {{form.last_name}}
+            <span class='floating-label'> <i class="fa-regular fa-user"></i>First Name</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="user-input-wrp my-2 input-icons">
+            <br />
+            {{form.last_name}}
+            <span class='floating-label'> <i class="fa-regular fa-user"></i>Last Name</span>
+        </div>
+    </div>
+</div>
+
                         <div class="user-input-wrp my-2 input-icons">
                             <br />
                             {{form.username}}
@@ -51,7 +62,7 @@
                             <br />
                             {{form.password2}}
                             <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your password</span>
-                        </div> -->
+                        </div>
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}

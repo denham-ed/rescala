@@ -1,0 +1,184 @@
+
+/* ------------------------------- Base HTML Elements */
+
+
+h1,h2,h3{
+	font-family: 'Fraunces', Courier, monospace;
+}
+
+
+
+body {
+	font-family: 'Work Sans', Courier, monospace;
+	background-color: #E8F1F2;
+}
+
+/* ------------------------------- Footer */
+
+footer p i {
+	color: red;
+	font-size: 140%;
+}
+/* ------------------------------- Colours */
+
+.bg-dark-green{
+	background-color: #14281D;
+	color: #E8F1F2;
+}
+
+.bg-green{
+	background-color: #355834;
+	color: #E8F1F2;
+}
+
+.bg-white{
+	color: #14281D;
+	background-color: #E8F1F2;
+}
+
+.btn-very-dark{
+	color: #E8F1F2;
+	background-color: #14281D;
+}
+
+.btn-very-dark:hover{
+	color: #14281D;
+	background-color: #E8F1F2;
+	border: 1px solid #14281D;
+}
+
+.btn-dark{
+	color: #14281D;
+	background-color: #E8F1F2;
+}
+
+.btn-dark:hover {
+	color: #E8F1F2;
+	background-color: #355834
+}
+
+.btn-light{
+	color: #355834;
+	background-color: #E8F1F2;
+}
+
+.btn-light:hover {
+	color: #E8F1F2;
+	background-color: #14281D;
+}
+
+
+
+/* ------------------------------- Text */
+.subtitle{
+    font-size: 120%;
+}
+
+.black-text {
+	color: black !important;
+}
+
+/* ------------------------------ Sizing */
+
+.row-fill {
+	min-height: calc(100vh - 6rem);
+}
+
+.fill {
+	height: 100%;
+	min-height: 100%;
+}
+
+.h-20 {
+    min-height: 20%;
+}
+
+.h-30 {
+    min-height: 30%;
+}
+
+.h-40 {
+    min-height: 40%;
+}
+
+/* ------------------------------ Spacing */
+.authentication-title-row{
+	margin-top: 5rem;
+}
+
+/* ------------------------------- Icons */
+.sign-up-icon{
+	font-size: 300%;
+	padding-bottom: 1rem;
+}
+
+.r-logo {
+    border: 0.2rem solid #E8F1F2;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.circle{
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	background-color: #14281D;
+}
+
+.circle i {
+	color: #E8F1F2;
+	font-size: 120%;
+}
+
+/* ------------------------------ All Auth Templates */
+.input-sign-up > input{
+    width: 100%;
+}
+
+.input-sign-up > button{
+    width: 75%;
+}
+
+.input-field {
+	border-radius: 5px;
+}
+
+/* https://stackoverflow.com/questions/35942247/how-to-move-placeholder-to-top-on-focus-and-while-typing */
+.user-input-wrp {
+	position: relative;
+	color: black;
+	/* width: 50%; */
+}
+.user-input-wrp .input-field{
+	width: 100%;
+	outline: none;
+	border:none;
+	border-bottom: 1px solid #777;
+ 	box-shadow: none !important;
+}
+.user-input-wrp .input-field:focus{
+	border-color: #B80C09;
+	border-width: medium medium 2px;
+}
+.user-input-wrp .floating-label {
+	position: absolute;
+	pointer-events: none;
+	left: 1rem;
+	bottom: 0.2rem;
+	transition: 0.4s ease all;
+}
+.user-input-wrp input:focus ~ .floating-label,
+.user-input-wrp input:not(:focus):valid ~ .floating-label{
+	color: #E8F1F2;
+	top: 0px;
+	left: 10px;
+	font-size: 13px;
+	opacity: 1;
+}
+/* Assist from
+https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html */
+.input-icons i {
+	padding-right: 0.5rem;
+}
+
+
