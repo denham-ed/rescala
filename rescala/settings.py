@@ -133,8 +133,8 @@ AUTH_USER_MODEL = 'users.Profile'
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
-
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

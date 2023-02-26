@@ -49,10 +49,10 @@ class CustomSignupForm(SignupForm):
                    'label': '',
                    'class': 'input-field py-1'})
 
-    def custom_signup(self, request, user):
-        # Set the user's type from the form reponse
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
+    # def custom_signup(self, request, user):
+    #     # Set the user's type from the form reponse
+    #     # user.first_name = self.cleaned_data["first_name"]
+    #     # user.last_name = self.cleaned_data["last_name"]
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
