@@ -86,6 +86,11 @@ footer p i {
 	min-height: calc(100vh - 6rem);
 }
 
+.row-fill-no-header {
+	min-height: calc(100vh - 8.5rem);
+}
+
+
 .fill {
 	height: 100%;
 	min-height: 100%;
