@@ -17,9 +17,10 @@ class CustomSignupForm(SignupForm):
         super().__init__(*args, **kwargs)
         
 
-        self.fields["username"].label = "Username"
-        self.fields["password1"].label = "Password 1"
-        self.fields["password2"].label = "Password 2"
+        # self.fields["username"].label = "Username"
+        # self.fields["password1"].label = "Password 1"
+        # self.fields["password2"].label = "Password 2"
+        #         self.fields["em"].label = "Password 2"
 
         self.fields["username"].widget = forms.TextInput(
             attrs={'placeholder': '',
@@ -34,6 +35,11 @@ class CustomSignupForm(SignupForm):
                    'label': '',
                    'class': 'input-field py-1'})
         self.fields["password1"].widget = forms.PasswordInput(
+            attrs={'placeholder': '',
+                   'label': '',
+                   'class': 'input-field py-1'})
+
+        self.fields["email"].widget = forms.EmailInput(
             attrs={'placeholder': '',
                    'label': '',
                    'class': 'input-field py-1'})

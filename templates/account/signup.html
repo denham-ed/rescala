@@ -27,14 +27,31 @@
                 </div>
             </div>
             <div class="row">
-                <div class="d-flex col justify-content-center pb-xs-5 pb-md-0">
+
+                <div class="d-flex flex-column col justify-content-center align-items-center pb-xs-5 pb-md-0">
+                    <div>
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
                     <form class="signup w-50" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="user-input-wrp my-2 input-icons">
                                     <br />
-                                    {{form.last_name}}
+                                    {{form.first_name}}
                                     <span class='floating-label'> <i class="fa-regular fa-user"></i>First Name</span>
                                 </div>
                             </div>
@@ -48,7 +65,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md-6">
                                 <div class="user-input-wrp my-2 input-icons">
                                     <br />
                                     {{form.username}}
@@ -56,21 +73,30 @@
                                         username</span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row col">
-                            <div class="user-input-wrp my-2 input-icons">
-                                <br />
-                                {{form.password1}}
-                                <span class='floating-label'><i class="fa-solid fa-key"></i></i>Enter a password</span>
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.email}}
+                                    <span class='floating-label'> <i class="fa-regular fa-user"></i>Enter your email</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="row col">
-                            <div class="user-input-wrp my-2 input-icons">
-                                <br />
-                                {{form.password2}}
-                                <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your
-                                    password</span>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.password1}}
+                                    <span class='floating-label'><i class="fa-solid fa-key"></i></i>Enter a password</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.password2}}
+                                    <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your
+                                        password</span>
+                                </div>
                             </div>
                         </div>
                         {% if redirect_field_value %}
