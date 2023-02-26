@@ -1,9 +1,35 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
+from allauth.account.forms import SignupForm
 
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = Profile
-        fields = "__all__"
+# https://dev.to/danielfeldroy/customizing-django-allauth-signup-forms-2o1m
+class CustomSignupForm(SignupForm):
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["username"].widget = forms.TextInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["first_name"].widget = forms.TextInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["last_name"].widget = forms.TextInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["password1"].widget = forms.PasswordInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["email"].widget = forms.EmailInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["password2"].widget = forms.PasswordInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+
+    def save(self, request):
+        user = super(CustomSignupForm, self).save(request)
+        return user

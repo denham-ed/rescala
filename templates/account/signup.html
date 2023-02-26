@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Rescala | Sign Up{% endblock %}
+{% block my_header %}{% endblock my_header %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row row-fill">
+        <div class="col  bg-dark-green pb-xs-5">
+            <div class="row">
+                <div class="col-md-3 d-flex flex-column justify-content-center justify-content-md-start">
+                    <div class="r-logo d-flex justify-content-center align-items-center mt-3">
+                        <h1>R</h1>
+                    </div>
+
+                </div>
+                <div class="d-flex col-md-6 justify-content-center mt-md-5 pt-md-5">
+                    <h1 class="text-center ">Register with Rescala</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex col justify-content-center">
+                    <p class="text-center">Already have an account? Then please
+                        <a href="{{ login_url }}" class='btn btn-dark btn-sm'>Sign In</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="d-flex flex-column col justify-content-center align-items-center pb-xs-5 pb-md-0">
+                    <div>
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <form class="signup w-50" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.first_name}}
+                                    <span class='floating-label'> <i class="fa-regular fa-user"></i>First Name</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.last_name}}
+                                    <span class='floating-label'> <i class="fa-regular fa-user"></i>Last Name</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.username}}
+                                    <span class='floating-label'><i class="fa-solid fa-user-secret"></i>Enter a
+                                        username</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.email}}
+                                    <span class='floating-label'><i class="fa-regular fa-envelope"></i>Enter your
+                                        email</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.password1}}
+                                    <span class='floating-label'><i class="fa-solid fa-key"></i></i>Enter a
+                                        password</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="user-input-wrp my-2 input-icons">
+                                    <br />
+                                    {{form.password2}}
+                                    <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your
+                                        password</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <div class='d-flex justify-content-center mb-5 mt-4'>
+                            <button class="btn btn-dark " type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- <div class="d-flex flex-column col-md-6 bg-green ">
+            <div class="d-flex justify-content-center mt-md-5 pt-md-5 mt-2 pt-2">
+                <h1>Rescala can help you ...</h1>
+            </div>
+            <div class="row my-md-5">
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-solid fa-bullseye sign-up-icon"></i>
+                        <span class='text-center'>Set Goals</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-regular fa-face-smile-wink sign-up-icon"></i>
+                        <span class='text-center'>Improve Confidence</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-solid fa-arrow-trend-up sign-up-icon"></i>
+                        <span class='text-center'>Build Habits</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-solid fa-bullhorn sign-up-icon"></i>
+                        <span class='text-center'>Share Progress</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-solid fa-signs-post sign-up-icon"></i>
+                        <span class='text-center'>Practice Intentionally</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex flex-column align-items-center py-2">
+                        <i class="fa-regular fa-sun sign-up-icon"></i>
+                        <span class='text-center'>Enjoy More</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
