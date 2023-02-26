@@ -30,7 +30,8 @@
                 <div class="d-flex col justify-content-center pb-xs-5 pb-md-0">
                     <form class="signup w-50" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
-                        <div class="user-input-wrp my-2 input-icons">
+                        {{form.as_p}}
+                        <!-- <div class="user-input-wrp my-2 input-icons">
                             <br />
                             {{form.first_name}}
                             <span class='floating-label'> <i class="fa-regular fa-user"></i>Enter a username</span>
@@ -50,7 +51,7 @@
                             <br />
                             {{form.password2}}
                             <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your password</span>
-                        </div>
+                        </div> -->
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
@@ -64,7 +65,7 @@
 
 
         </div>
-        <div class="d-flex flex-column col-md-6 bg-green ">
+        <!-- <div class="d-flex flex-column col-md-6 bg-green ">
             <div class="d-flex justify-content-center mt-md-5 pt-md-5 mt-2 pt-2">
                 <h1>Rescala can help you ...</h1>
             </div>
@@ -108,7 +109,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 </div>
