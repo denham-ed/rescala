@@ -131,6 +131,7 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'users.Profile'
 
 ACCOUNT_FORMS = {
+    'login': 'users.forms.CustomLoginForm',
     'signup': 'users.forms.CustomSignupForm',
 }
 ACCOUNT_EMAIL_VERIFICATION = "none"
