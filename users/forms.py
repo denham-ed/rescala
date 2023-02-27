@@ -1,6 +1,6 @@
 from django import forms
 from .models import Profile
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 
 
 # https://dev.to/danielfeldroy/customizing-django-allauth-signup-forms-2o1m
@@ -33,3 +33,23 @@ class CustomSignupForm(SignupForm):
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         return user
+
+
+class CustomLoginForm(LoginForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["login"].widget = forms.TextInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+        self.fields["password"].widget = forms.PasswordInput(
+            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        )
+    
+        def login(self, *args, **kwargs):
+
+            # Add your own processing here.
+
+            # You must return the original result.
+            return super(MyCustomLoginForm, self).login(*args, **kwargs)
