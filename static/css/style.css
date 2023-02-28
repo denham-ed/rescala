@@ -38,6 +38,13 @@ footer p i {
 	background-color: #E8F1F2;
 }
 
+/* ------------------------------- Colours */
+
+
+.btn-logout{
+	height: 3rem;
+}
+
 .btn-very-dark{
 	color: #E8F1F2;
 	background-color: #14281D;
