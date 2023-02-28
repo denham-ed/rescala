@@ -7,9 +7,17 @@ class Dashboard(View):
     template_name = "dashboard.html"
     from django.views import View
 
-    # @login_required
     def get(self, request):
         return render(
-            request, 'dashboard.html',
-            {"title": "Dashboard"}
+            request, 'dashboard.html'
         ) 
+
+
+class CreateLog(View):
+    template_name = "createlog.html"
+    from django.views import View
+
+    def get(self, request):
+        return render(
+            request, 'createlog.html'
+        )
