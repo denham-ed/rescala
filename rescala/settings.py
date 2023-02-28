@@ -50,13 +50,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'cloudinary',
     # 'cloudinary_storage',
-    'users',
+    'practicelog',
     'resources',
+    'users',
 ]
 
 SITE_ID = 2
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/practice'
 LOGOUT = '/'
 LOGOUT_REDIRECT_URL = '/'
 
