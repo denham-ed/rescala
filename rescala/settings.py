@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'cloudinary',
     # 'cloudinary_storage',
-    'users',
+    'practicelog'
     'resources',
+    'users',
 ]
 
 SITE_ID = 2
