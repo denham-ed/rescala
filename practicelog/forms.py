@@ -1,10 +1,25 @@
 from .models import Session
 from django import forms
 
+FOCUS_CHOICES = [
+    ('listening', 'Listening'),
+    ('scales', 'Scales and Arpeggios'),
+    ('technique', 'Technique'),
+    ('sightreading', 'Sightreading'),
+    ('rhythm', 'Rhythm'),
+    ('memorising', 'Memorising'),
+    ('performing', 'Performing'),
+    ('musicality', 'Musicality'),
+]
+
 class CreateSessionForm(forms.ModelForm):
+
+    # focus = forms.MultipleChoiceField()
+
     class Meta:
         model = Session
-        fields = ['headline', 'date', 'duration']
+        fields = ['headline', 'date', 'duration','focus']
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,4 +35,12 @@ class CreateSessionForm(forms.ModelForm):
         self.fields["duration"].widget = forms.NumberInput(
             attrs={"placeholder": "", "label": "", "class": "form-control input-field py-1", 'type':'number'}
         )
+
+
+        self.fields['focus'] = forms.MultipleChoiceField(choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple())
+        # self.fields["focus"].widget = forms.CheckboxSelectMultiple(
+        #     attrs={"placeholder": "", "label": "", "class": "form-control input-field py-1"}
+        # )
+
+
   

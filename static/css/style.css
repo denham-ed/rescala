@@ -4,7 +4,9 @@
 /* ------------------------------- Base HTML Elements */
 
 
-h1,h2,h3{
+h1,
+h2,
+h3 {
 	font-family: 'Fraunces', Courier, monospace;
 }
 
@@ -15,25 +17,29 @@ body {
 	background-color: #E8F1F2;
 }
 
+a {
+	text-decoration: none;
+}
 /* ------------------------------- Footer */
 
 footer p i {
 	color: red;
 	font-size: 140%;
 }
+
 /* ------------------------------- Colours */
 
-.bg-dark-green{
+.bg-dark-green {
 	background-color: #14281D;
 	color: #E8F1F2;
 }
 
-.bg-green{
+.bg-green {
 	background-color: #355834;
 	color: #E8F1F2;
 }
 
-.bg-white{
+.bg-white {
 	color: #14281D;
 	background-color: #E8F1F2;
 }
@@ -41,22 +47,22 @@ footer p i {
 /* ------------------------------- Colours */
 
 
-.btn-logout{
+.btn-logout {
 	height: 3rem;
 }
 
-.btn-very-dark{
+.btn-very-dark {
 	color: #E8F1F2;
 	background-color: #14281D;
 }
 
-.btn-very-dark:hover{
+.btn-very-dark:hover {
 	color: #14281D;
 	background-color: #E8F1F2;
 	border: 1px solid #14281D;
 }
 
-.btn-dark{
+.btn-dark {
 	color: #14281D;
 	background-color: #E8F1F2;
 }
@@ -66,7 +72,7 @@ footer p i {
 	background-color: #355834
 }
 
-.btn-light{
+.btn-light {
 	color: #355834;
 	background-color: #E8F1F2;
 }
@@ -79,8 +85,8 @@ footer p i {
 
 
 /* ------------------------------- Text */
-.subtitle{
-    font-size: 120%;
+.subtitle {
+	font-size: 120%;
 }
 
 .black-text {
@@ -104,35 +110,35 @@ footer p i {
 }
 
 .h-20 {
-    min-height: 20%;
+	min-height: 20%;
 }
 
 .h-30 {
-    min-height: 30%;
+	min-height: 30%;
 }
 
 .h-40 {
-    min-height: 40%;
+	min-height: 40%;
 }
 
 /* ------------------------------ Spacing */
-.authentication-title-row{
+.authentication-title-row {
 	margin-top: 5rem;
 }
 
 /* ------------------------------- Icons */
-.sign-up-icon{
+.sign-up-icon {
 	font-size: 300%;
 	padding-bottom: 1rem;
 }
 
 .r-logo {
-    border: 0.2rem solid #E8F1F2;
-    width: 3.5rem;
-    height: 3.5rem;
+	border: 0.2rem solid #E8F1F2;
+	width: 3.5rem;
+	height: 3.5rem;
 }
 
-.circle{
+.circle {
 	height: 2rem;
 	width: 2rem;
 	border-radius: 50%;
@@ -145,12 +151,12 @@ footer p i {
 }
 
 /* ------------------------------ All Auth Templates */
-.input-sign-up > input{
-    width: 100%;
+.input-sign-up>input {
+	width: 100%;
 }
 
-.input-sign-up > button{
-    width: 75%;
+.input-sign-up>button {
+	width: 75%;
 }
 
 .input-field {
@@ -163,17 +169,20 @@ footer p i {
 	color: black;
 	/* width: 50%; */
 }
-.user-input-wrp .input-field{
+
+.user-input-wrp .input-field {
 	width: 100%;
 	outline: none;
-	border:none;
+	border: none;
 	border-bottom: 1px solid #777;
- 	box-shadow: none !important;
+	box-shadow: none !important;
 }
-.user-input-wrp .input-field:focus{
+
+.user-input-wrp .input-field:focus {
 	border-color: #B80C09;
 	border-width: medium medium 2px;
 }
+
 .user-input-wrp .floating-label {
 	position: absolute;
 	pointer-events: none;
@@ -181,21 +190,32 @@ footer p i {
 	bottom: 0.2rem;
 	transition: 0.4s ease all;
 }
-.user-input-wrp input:focus ~ .floating-label,
-.user-input-wrp input:not(:focus):valid ~ .floating-label{
+
+.user-input-wrp input:focus~.floating-label,
+.user-input-wrp input:not(:focus):valid~.floating-label {
 	color: black;
 	top: 0px;
 	left: 10px;
 	font-size: 13px;
 	opacity: 1;
 }
+
+/* https://stackoverflow.com/questions/28686288/remove-default-text-placeholder-present-in-html5-input-element-of-type-date */
+/* input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+input[type="date"]:in-range::-webkit-datetime-edit-day-field,
+input[type="date"]:in-range::-webkit-datetime-edit-text {
+	color: transparent;
+} */
+
+
 /* Assist from
 https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html */
 .input-icons i {
 	padding-right: 0.5rem;
 }
 
-.repeat-text-container{
+.repeat-text-container {
 	background-image: url('../images/rrr_background.png');
 	background-size: cover;
 	background-position: center;

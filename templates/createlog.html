@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container-fluid row-fill-no-header">
+<div class="container row-fill-no-header">
     <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>
@@ -28,7 +28,16 @@
                             {{create_session_form.duration}}
                             <span class='floating-label'>Duration (mins)</span>
                         </div>
+                        <div class="user-input-wrp my-2 input-icons">
+                            <span>Focus</span>
+                            <br />
+                            {{create_session_form.focus}}
+                            <!-- <span class='floating-label'>Focus</span> -->
+                        </div>
 
+                    </div>
+                    <div class="col-md-4">
+            
                     </div>
 
                     {% csrf_token %}
