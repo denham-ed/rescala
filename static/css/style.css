@@ -195,4 +195,8 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	padding-right: 0.5rem;
 }
 
-
+.repeat-text-container{
+	background-image: url('../images/rrr_background.png');
+	background-size: cover;
+	background-position: center;
+}
