@@ -18,8 +18,7 @@ class CreateSessionForm(forms.ModelForm):
 
     class Meta:
         model = Session
-        fields = ['headline', 'date', 'duration','focus']
-
+        fields = ['headline', 'date', 'duration','focus','summary']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

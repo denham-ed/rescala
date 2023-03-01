@@ -1,6 +1,7 @@
 /* *{
     outline: red dotted 1px;
 } */
+
 /* ------------------------------- Base HTML Elements */
 
 
@@ -169,6 +170,12 @@ footer p i {
 	color: black;
 	/* width: 50%; */
 }
+
+.user-input-wrp > textarea {
+resize: none;
+	/* width: 50%; */
+}
+
 
 .user-input-wrp .input-field {
 	width: 100%;

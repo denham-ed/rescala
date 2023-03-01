@@ -37,11 +37,35 @@
 
                     </div>
                     <div class="col-md-4">
-            
+                        <div class="user-input-wrp my-2 input-icons">
+                            <span>My Reflections</span>
+                            <br />
+                            {{create_session_form.summary}}
+                            <!-- <span class='floating-label'>Focus</span> -->
+                        </div>
+
+                        <div class="user-input-wrp my-2 input-icons">
+                            <span>Goals</span>
+                            <br />
+                            <div>
+                                <em>Set some personal goals to get started.</em>
+                            </div>
+                            <!-- <span class='floating-label'>Focus</span> -->
+                        </div>
+
                     </div>
 
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-very-dark btn-lg">Submit</button>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-3">
+
+                        <button type="submit" class="btn btn-very-dark btn-lg">Submit</button>
+
+                    </div>
+                </div>
             </form>
         </div>
     </div>
