@@ -13,4 +13,3 @@ class Session(models.Model):
     image = CloudinaryField('image')
     focus = models.JSONField(default=list)
     summary = models.TextField()
-    focus = models.JSONField(default=list)
