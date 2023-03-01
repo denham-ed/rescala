@@ -29,13 +29,17 @@ class CreateLog(View):
     def post(self,request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
+            session = create_session_form.save(commit=False)
+            session.user = request.user
+            session.save()
             testMessage = "Good form work"
         else:
             testMessage = "Fucked it"
             
         return render(
             request, 'createlog.html',
-            {   "testMessage": testMessage,
+            {   
+                "testMessage": testMessage,
                 "create_session_form": CreateSessionForm()
             }
         )

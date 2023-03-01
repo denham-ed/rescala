@@ -16,7 +16,8 @@
         <div class="col">
             <form method="POST" style="margin-top: 1.3rem ;">
                 <div class="row">
-                    <div class="col-md-4">
+                    {{create_session_form.as_p}}
+                    <!-- <div class="col-md-6">
                         <div class="user-input-wrp my-2 input-icons">
                             <br />
                             {{create_session_form.headline}}
@@ -41,7 +42,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="user-input-wrp my-2 input-icons">
                             <span>My Reflections</span>
                             <br />
@@ -58,7 +59,7 @@
                             <!-- <span class='floating-label'>Focus</span> -->
                         </div>
 
-                    </div>
+                    </div> -->
 
                     {% csrf_token %}
 

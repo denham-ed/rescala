@@ -36,7 +36,7 @@ class CreateSessionForm(forms.ModelForm):
         )
 
 
-        self.fields['focus'] = forms.MultipleChoiceField(choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple())
+        self.fields['focus'] = forms.MultipleChoiceField(choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False )
         # self.fields["focus"].widget = forms.CheckboxSelectMultiple(
         #     attrs={"placeholder": "", "label": "", "class": "form-control input-field py-1"}
         # )
