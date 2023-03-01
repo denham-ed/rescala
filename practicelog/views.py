@@ -21,7 +21,7 @@ class CreateLog(View):
     def get(self, request):
         return render(
             request, 'createlog.html',
-            {
+            {   "testMessage": "Nothing to see yet",
                 "create_session_form": CreateSessionForm()
             }
         )
@@ -29,13 +29,13 @@ class CreateLog(View):
     def post(self,request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
-            print(create_session_form)
+            testMessage = "Good form work"
         else:
-            print('something bad')
+            testMessage = "Fucked it"
             
         return render(
             request, 'createlog.html',
-            {
+            {   "testMessage": testMessage,
                 "create_session_form": CreateSessionForm()
             }
         )

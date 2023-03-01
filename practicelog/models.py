@@ -11,5 +11,5 @@ class Session(models.Model):
     duration = models.IntegerField()
     headline = models.CharField(max_length=150)
     image = CloudinaryField('image')
-    focus = models.JSONField(default=list)
+    focus = models.JSONField(default=list, blank=True)
     summary = models.TextField()
