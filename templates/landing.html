@@ -3,20 +3,23 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row row-fill-no-header">
-        <div class="col-md-6">
-            <div class="repeat-text-container container-fluid text-white text-center" style="height: 100%; width: 100%;">
-            </div>
-        </div>
-        <!-- Column Two -->
-        <div class="col-md-6 bg-dark-green d-flex flex-column align-items-center">
+
+        <div class="col-md-6 bg-dark-green d-flex flex-column align-items-center order-md-1">
             <!-- <h3>Rehearse. Record. Repeat</h3> -->
             <h1 class="text-center mt-5">Get closer to your musical goals with <strong>Rescala</strong></h1>
-            <p> Rescala helps you track your practice and become the musician you've always wanted to be.</p>
+            <p class="text-center"> Rescala helps you track your practice and become the musician you've always wanted to be.</p>
             <div>
                 <a class="btn btn-dark btn-lg " href="{% url 'account_signup' %}">Try Rescala Now</a>
 
             </div>
         </div>
+        <!-- Column Two -->
+        <div class="col-md-6">
+            <div class="repeat-text-container container-fluid text-white text-center" style="height: 100%; width: 100%;">
+            </div>
+        </div>
+
+
 
     </div>
 
