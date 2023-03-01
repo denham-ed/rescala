@@ -7,9 +7,9 @@ from cloudinary.models import CloudinaryField
 
 class Session(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, name='sessions')
-    date = models.DateTimeField()
+    date = models.DateField()
     duration = models.IntegerField()
-    headline = models.TextField()
+    headline = models.CharField(max_length=150)
     image = CloudinaryField('image')
     focus = models.JSONField(default=list)
     summary = models.TextField()

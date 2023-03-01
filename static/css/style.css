@@ -183,7 +183,7 @@ footer p i {
 }
 .user-input-wrp input:focus ~ .floating-label,
 .user-input-wrp input:not(:focus):valid ~ .floating-label{
-	color: #E8F1F2;
+	color: black;
 	top: 0px;
 	left: 10px;
 	font-size: 13px;

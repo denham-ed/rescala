@@ -1,10 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row row-fill-no-header">
+<div class="container-fluid row-fill-no-header">
+    <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST" style="margin-top: 1.3rem ;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="user-input-wrp my-2 input-icons">
+                            <br />
+                            {{create_session_form.headline}}
+                            <span class='floating-label'>Add a headline</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="user-input-wrp my-2 input-icons">
+                            <br />
+                            {{create_session_form.date}}
+                            <span class='floating-label'>Date</span>
+                        </div>
+                    </div>
+                </div>
+    
+                {% csrf_token %}
+                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+            </form>
         </div>
     </div>
 </div>
