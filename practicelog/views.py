@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views import View
 from .forms import CreateSessionForm
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -21,7 +23,8 @@ class CreateLog(View):
     def get(self, request):
         return render(
             request, 'createlog.html',
-            {   "testMessage": "Nothing to see yet",
+            { 
+                
                 "create_session_form": CreateSessionForm()
             }
         )
@@ -32,16 +35,8 @@ class CreateLog(View):
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
-            testMessage = "Good form work"
+            return HttpResponseRedirect(reverse('dashboard'))
         else:
-            testMessage = "Fucked it"
-            
-        return render(
-            request, 'createlog.html',
-            {   
-                "testMessage": testMessage,
-                "create_session_form": CreateSessionForm()
-            }
-        )
+            return render(request, 'createlog.html',{"create_session_form": CreateSessionForm()})
 
         
