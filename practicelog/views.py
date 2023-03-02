@@ -9,11 +9,13 @@ class Dashboard(View):
     template_name = "dashboard.html"
 
     def get(self, request):
-        sessions = Session.objects.filter(user=request.user)
+        sessions = Session.objects.filter(user=request.user).order_by('-date')
+        recent_sessions = sessions[:10]
         return render(
                 request, 'dashboard.html',
                 {
-                    "sessions": sessions
+                    "sessions": sessions,
+                    "recent_sessions": recent_sessions
                 }
             ) 
 
