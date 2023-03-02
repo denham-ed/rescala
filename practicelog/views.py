@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, reverse
 from django.views import View
 from .forms import CreateSessionForm
 from django.http import HttpResponseRedirect
@@ -9,11 +9,11 @@ class Dashboard(View):
     template_name = "dashboard.html"
 
     def get(self, request):
-        sessions = get_object_or_404(Session)
+        sessions = Session.objects.filter(user=request.user)
         return render(
                 request, 'dashboard.html',
                 {
-                    "sessions": session
+                    "sessions": sessions
                 }
             ) 
 

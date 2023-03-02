@@ -1,20 +1,22 @@
-{% extends "base.html" %}
-
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Dashboard</h1>
-        </div>
+{% extends "base.html" %} {% block content %} <div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Dashboard</h1>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="border
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="border
             ">
-                <h3>Recent Practices</h3>
-            </div>
-
-        </div>
+        <h3>Recent Practices</h3> {% for session in sessions %} <div>
+          <span>
+            <strong>
+              {{session.date | date:'D d M y'}}
+            </strong>
+          </span>
+          <span>{{session.headline}}</span>
+        </div> {% endfor %}
+      </div>
     </div>
-</div>
-{% endblock %}
+  </div>
+</div> {% endblock %}
