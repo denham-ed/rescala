@@ -8,8 +8,46 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-8">
-        Practice Details go here
+      <div class="col-md-6">
+        <span>
+          {{session.date}} | 
+        </span>
+        <span>
+          {{session.duration}} mins
+        </span>
+
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div>Summary</div>
+          <p>
+            {{session.summary}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div>Focus</div>
+          <p>
+            <ul>
+              {% for focus in session.focus%}
+              <li>{{focus | title }}</li>
+              {% endfor %}
+            </ul>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div>Moods</div>
+          <p>
+            <ul>
+              {% for focus in session.focus%}
+              <li>{{focus | title }}</li>
+              {% endfor %}
+            </ul>
+          </p>
+        </div>
+      </div>
+
+
+
   </div> {% endblock %}
