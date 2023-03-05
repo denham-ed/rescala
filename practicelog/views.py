@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
 from .forms import CreateSessionForm
 from django.http import HttpResponseRedirect
@@ -45,3 +45,16 @@ class CreateLog(View):
                 {"create_session_form": CreateSessionForm()}
             )
 
+
+class SessionDetails(View):
+    template_name = 'sessiondetails.html'
+
+    def get(self, request, session_id, *args, **kwargs):
+        session = get_object_or_404(Session, id=session_id)
+
+        return render(
+            request, 'sessiondetails.html',
+            {
+                "session": session
+            }
+        )
