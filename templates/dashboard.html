@@ -34,7 +34,7 @@
         </div> 
         {% endfor %}
         <!-- Add Goal Button -->
-        <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
+        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
       </div>
     </div>
   </div>
@@ -57,11 +57,11 @@
             </div>
           </div> 
           {% csrf_token %} 
-          <button type="submit" class="btn btn-primary">Add Goal</button>
+          <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
