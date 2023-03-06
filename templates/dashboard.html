@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %} <div class="container">
+{% extends "base.html" %} 
+
+{% block content %} 
+<div class="container">
   <div class="row">
     <div class="col">
       <h1>Dashboard</h1>
@@ -6,18 +9,61 @@
   </div>
   <div class="row">
     <div class="col-md-8">
+      <!-- Recent Practices -->
       <div class="border">
-        <h3>Recent Practices</h3> {% for session in recent_sessions %} <div>
+        <h3>Recent Practice</h3> {% for session in recent_sessions %} <div>
           <a href="{% url 'session_details' session.id %}">
             <span>
               <strong>
-                {{session.date | date:'D d M y'}} | 
-              </strong>
+                {{session.date | date:'D d M y'}} | </strong>
             </span>
             <span>{{session.headline}}</span>
           </a>
         </div> {% endfor %}
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="border">
+        <h3>My Goals</h3> 
+        {%for goal in goals%} 
+        <div>
+          {{goal.goal}}
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div> 
+        {% endfor %}
+        <!-- Add Goal Button -->
+        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
+      </div>
+    </div>
   </div>
-</div> {% endblock %}
+</div>
+<!-- Add Goal Modal -->
+<div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{% url 'add_goal' %}">
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <!-- <label for="id_goalName">New Goal</label> -->
+                {{goalform.goalName}}
+              </div>
+            </div>
+          </div> 
+          {% csrf_token %} 
+          <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> 
+{% endblock %}

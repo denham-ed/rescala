@@ -200,7 +200,7 @@ resize: none;
 
 .user-input-wrp input:focus~.floating-label,
 .user-input-wrp input:not(:focus):valid~.floating-label {
-	color: black;
+	color: #E8F1F2;
 	top: 0px;
 	left: 10px;
 	font-size: 13px;
@@ -226,4 +226,15 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	background-image: url('../images/rrr_background.png');
 	background-size: cover;
 	background-position: center;
+}
+
+/* Bootstrap Elements */
+
+.progress{
+	background-color: #fff;
+	border: 1px solid #355834;
+}
+
+.progress-bar{
+	background-color: #355834;
 }
