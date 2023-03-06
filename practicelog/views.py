@@ -4,6 +4,7 @@ from .forms import CreateSessionForm
 from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
+from allauth.exceptions import ImmediateHttpResponse
 
 
 # Dashboard
@@ -45,19 +46,26 @@ class CreateLog(View):
     template_name = "createlog.html"
 
     def get(self, request):
+        user = request.user
         return render(
             request, 'createlog.html',
-            { 
-                "create_session_form": CreateSessionForm()
+            {
+                "create_session_form": CreateSessionForm(),
+                "user": user
             }
         )
 
     def post(self, request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
+            # Capture Goal Inputs
+            user = request.user
+            goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
+            user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
+            user.save()
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             return render(
@@ -85,21 +93,4 @@ class SessionDetails(View):
         session.delete()
         return HttpResponseRedirect(reverse('dashboard'))
 
-
-
-
-#  class DeleteSession(View):       
-
-#     def delete(request, session_id):
-#         session = get_object_or_404(Session, id=session_id)
-#         session.delete()
-#         sessions = Session.objects.filter(user=request.user).order_by('-date')
-#         recent_sessions = sessions[:10]
-#         return render(
-#                 request, 'dashboard.html',
-#                 {
-#                     "sessions": sessions,
-#                     "recent_sessions": recent_sessions
-#                 }
-#             ) 
 
