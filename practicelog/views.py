@@ -94,3 +94,43 @@ class SessionDetails(View):
         return HttpResponseRedirect(reverse('dashboard'))
 
 
+class EditLog(View):
+    template_name = "editlog.html"
+
+    def get(self, request, session_id):
+        session = get_object_or_404(Session, id=session_id)
+        user = request.user
+        initial_values = {
+            'headline':session.headline,
+            'date':session.date.strftime("%Y-%m-%d"),
+            'duration':session.duration,
+            'focus': session.focus,
+            'summary':session.summary
+        }
+        return render(
+            request, 'editlog.html',
+            {
+                "create_session_form": CreateSessionForm(initial=initial_values),
+                "user": user,
+                "session":session
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        form = CreateSessionForm(data=request.POST)
+        if form.is_valid():
+            session_id = kwargs.get('session_id')
+            session = Session.objects.get(id=session_id)
+            session.headline = form.cleaned_data['headline']
+            session.date = form.cleaned_data['date']
+            session.focus = form.cleaned_data['focus']
+            session.duration = form.cleaned_data['duration']
+            session.summary = form.cleaned_data['summary']
+            session.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+        else:
+            return render(
+                request,
+                'editlog.html',
+                {"create_session_form": CreateSessionForm()}
+            )
