@@ -1,53 +1,89 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block content %} 
+{% block content %}
 <div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{session.headline}}</h1>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>
+        {{session.date}} |
+        {{session.duration}} mins
+      </h3>
+
+    </div>
     <div class="row">
-      <div class="col">
-        <h1>{{session.headline}}</h1>
+      <div class="col-md-6">
+        <div>Summary</div>
+        <p>
+          {{session.summary}}
+        </p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <span>
-          {{session.date}} | 
-        </span>
-        <span>
-          {{session.duration}} mins
-        </span>
-
+        <div>Focus</div>
+        <p>
+        <ul>
+          {% for focus in session.focus%}
+          <li>{{focus | title }}</li>
+          {% endfor %}
+        </ul>
+        </p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div>Summary</div>
-          <p>
-            {{session.summary}}
-          </p>
+      <div class="col-md-6">
+        <div>Moods</div>
+        <p>
+        <ul>
+          {% for focus in session.focus%}
+          <li>{{focus | title }}</li>
+          {% endfor %}
+        </ul>
+        </p>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+        Delete Sesion
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Session</h5>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete this session?</p>
+              <p>This cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-very-dark btn-sm" data-dismiss="modal">Close</button>
+              <form method="post" action="{% url 'delete_session' session.id %}">
+                {% csrf_token %}
+                <button type="submit" class='btn btn-dark btn-sm'>Yes, delete this session.</button>
+            </form>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div>Focus</div>
-          <p>
-            <ul>
-              {% for focus in session.focus%}
-              <li>{{focus | title }}</li>
-              {% endfor %}
-            </ul>
-          </p>
-        </div>
-        <div class="col-md-6">
-          <div>Moods</div>
-          <p>
-            <ul>
-              {% for focus in session.focus%}
-              <li>{{focus | title }}</li>
-              {% endfor %}
-            </ul>
-          </p>
-        </div>
-      </div>
+    </div>
+  </div>
+</div>
 
 
 
-  </div> {% endblock %}
+{% endblock %}

@@ -58,3 +58,25 @@ class SessionDetails(View):
                 "session": session
             }
         )
+    
+    def delete_session(request, session_id):
+        session = get_object_or_404(Session, id=session_id)
+        session.delete()
+        return HttpResponseRedirect(reverse('dashboard'))
+
+
+#  class DeleteSession(View):       
+
+#     def delete(request, session_id):
+#         session = get_object_or_404(Session, id=session_id)
+#         session.delete()
+#         sessions = Session.objects.filter(user=request.user).order_by('-date')
+#         recent_sessions = sessions[:10]
+#         return render(
+#                 request, 'dashboard.html',
+#                 {
+#                     "sessions": sessions,
+#                     "recent_sessions": recent_sessions
+#                 }
+#             ) 
+
