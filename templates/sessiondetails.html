@@ -53,6 +53,7 @@
 
   <div class="row">
     <div class="col-md-6">
+      <a class="btn btn-sm btn-very-dark" href="{% url 'edit_session' session.id %}">Edit Session</a>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
         Delete Sesion
@@ -71,6 +72,7 @@
               <p>This cannot be undone.</p>
             </div>
             <div class="modal-footer">
+   
               <button type="button" class="btn btn-very-dark btn-sm" data-dismiss="modal">Close</button>
               <form method="post" action="{% url 'delete_session' session.id %}">
                 {% csrf_token %}
