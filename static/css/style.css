@@ -227,3 +227,14 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	background-size: cover;
 	background-position: center;
 }
+
+/* Bootstrap Elements */
+
+.progress{
+	background-color: #fff;
+	border: 1px solid #355834;
+}
+
+.progress-bar{
+	background-color: #355834;
+}
