@@ -60,8 +60,11 @@
                     {% csrf_token %}
                 </div>
                 <div class="row">
-                    <div class="col-md-6 offset-3 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-very-dark btn-lg">Submit</button>
+                    <div class="col-md-3">
+                        <a class="btn btn-sm btn-dark" href="{% url 'session_details' session.id %}">Return to Practice</a>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-very-dark btn-lg">Update Practice</button>
                     </div>
                 </div>
             </form>
