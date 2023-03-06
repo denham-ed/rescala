@@ -116,21 +116,21 @@ class EditLog(View):
             }
         )
 
-    # def post(self, request, *args, **kwargs):
-    #     create_session_form = CreateSessionForm(data=request.POST)
-    #     if create_session_form.is_valid():
-    #         # Capture Goal Inputs
-    #         user = request.user
-    #         goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
-    #         user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
-    #         session = create_session_form.save(commit=False)
-    #         session.user = request.user
-    #         session.save()
-    #         user.save()
-    #         return HttpResponseRedirect(reverse('dashboard'))
-    #     else:
-    #         return render(
-    #             request,
-    #             'editlog.html',
-    #             {"create_session_form": CreateSessionForm()}
-    #         )
+    def post(self, request, *args, **kwargs):
+        form = CreateSessionForm(data=request.POST)
+        if form.is_valid():
+            session_id = kwargs.get('session_id')
+            session = Session.objects.get(id=session_id)
+            session.headline = form.cleaned_data['headline']
+            session.date = form.cleaned_data['date']
+            session.focus = form.cleaned_data['focus']
+            session.duration = form.cleaned_data['duration']
+            session.summary = form.cleaned_data['summary']
+            session.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+        else:
+            return render(
+                request,
+                'editlog.html',
+                {"create_session_form": CreateSessionForm()}
+            )
