@@ -23,6 +23,10 @@
     <div class="col-md-4">
       <div class="border">
         <h3>My Goals</h3>
+
+        {%for goal in goals%}
+        <div>{{goal.goal}}</div>
+        {% endfor %}
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#goalModal">
           Add Goal
@@ -42,24 +46,22 @@
         <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
       </div>
       <div class="modal-body">
+        <form method="POST" action="{% url 'add_goal' %}">
         <div class="row">
-          <div class="col">
-            <form method="POST">
-              {% csrf_token %}
-              <div class="user-input-wrp my-2 input-icons">
-                <label for="id_goalName">New Goal</label>
+          <div class="col-md-12">
+              <div >
+                <!-- <label for="id_goalName">New Goal</label> -->
                 {{goalform.goalName}}
-
               </div>
-            </form>
-
+            </div>
           </div>
-        </div>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Add Goal</button>
 
+            </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Goal</button>
       </div>
     </div>
   </div>

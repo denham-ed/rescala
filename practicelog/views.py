@@ -6,8 +6,26 @@ from .models import Session
 from users.forms import GoalForm
 
 
+# Dashboard
 class Dashboard(View):
     template_name = "dashboard.html"
+
+    def add_goal(request):
+        if request.method == 'POST':
+            current_user = request.user
+            form = GoalForm(request.POST)
+            if form.is_valid():
+                goal = form.cleaned_data['goalName']
+                current_user.goals.append({
+                    'goal': goal,
+                    'complete':0
+                })
+                current_user.save()
+                print(goal)
+                # Sessions
+                sessions = Session.objects.filter(user=request.user).order_by('-date')
+                recent_sessions = sessions[:10]
+                return HttpResponseRedirect(reverse('dashboard'))
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
@@ -17,7 +35,8 @@ class Dashboard(View):
                 {
                     "sessions": sessions,
                     "recent_sessions": recent_sessions,
-                    "goalform": GoalForm()
+                    "goalform": GoalForm(),
+                    "goals":request.user.goals
                 }
             ) 
 
@@ -65,6 +84,8 @@ class SessionDetails(View):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
         return HttpResponseRedirect(reverse('dashboard'))
+
+
 
 
 #  class DeleteSession(View):       
