@@ -94,3 +94,42 @@ class SessionDetails(View):
         return HttpResponseRedirect(reverse('dashboard'))
 
 
+class EditLog(View):
+    template_name = "editlog.html"
+
+    def get(self, request, session_id):
+        session = get_object_or_404(Session, id=session_id)
+        user = request.user
+        initial_values = {
+            'headline':session.headline,
+            'date':session.date.strftime("%Y-%m-%d"),
+            'duration':session.duration,
+            'focus': session.focus,
+            'summary':session.summary
+        }
+        return render(
+            request, 'editlog.html',
+            {
+                "create_session_form": CreateSessionForm(initial=initial_values),
+                "user": user
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        create_session_form = CreateSessionForm(data=request.POST)
+        if create_session_form.is_valid():
+            # Capture Goal Inputs
+            user = request.user
+            goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
+            user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
+            session = create_session_form.save(commit=False)
+            session.user = request.user
+            session.save()
+            user.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+        else:
+            return render(
+                request,
+                'editlog.html',
+                {"create_session_form": CreateSessionForm()}
+            )
