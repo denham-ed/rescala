@@ -9,11 +9,13 @@ class Dashboard(View):
     template_name = "dashboard.html"
 
     def get(self, request):
-        sessions = get_object_or_404(Session)
+        sessions = Session.objects.filter(user=request.user).order_by('-date')
+        recent_sessions = sessions[:10]
         return render(
                 request, 'dashboard.html',
                 {
-                    "sessions": session
+                    "sessions": sessions,
+                    "recent_sessions": recent_sessions
                 }
             ) 
 
@@ -43,3 +45,16 @@ class CreateLog(View):
                 {"create_session_form": CreateSessionForm()}
             )
 
+
+class SessionDetails(View):
+    template_name = 'sessiondetails.html'
+
+    def get(self, request, session_id, *args, **kwargs):
+        session = get_object_or_404(Session, id=session_id)
+
+        return render(
+            request, 'sessiondetails.html',
+            {
+                "session": session
+            }
+        )
