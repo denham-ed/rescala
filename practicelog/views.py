@@ -59,22 +59,9 @@ class CreateLog(View):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
             # Capture Goal Inputs
-            goals = []
-            i = 1
-            while True:
-                goal = request.POST.get(f'goal-{i}')
-                if goal:
-                    goals.append(goal)
-                    i += 1
-                else:
-                    break
-            print(goals)
             user = request.user
-            for i, goal in enumerate(goals):
-                user.goals[i] = {
-                    "goal": user.goals[i]['goal'],
-                    "complete": goal
-                }
+            goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
+            user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
