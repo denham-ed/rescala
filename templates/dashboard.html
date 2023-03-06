@@ -26,13 +26,15 @@
       <div class="border">
         <h3>My Goals</h3> 
         {%for goal in goals%} 
-        <div class="d-flex justify-content-between">
+        <div>
           {{goal.goal}}
-          <input type="range" value="{{goal.complete}}">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
         </div> 
-        {% endfor %}
+        {% endfor %}""
         <!-- Add Goal Button -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
+        <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
       </div>
     </div>
   </div>
