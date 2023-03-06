@@ -18,22 +18,22 @@
                             <label for="id_headline">Headline</label>
                             {{create_session_form.headline}}
                         </div>
-               
+
                         <div class="d-flex justify-content-between">
                             <div class="user-input-wrp my-2 input-icons">
                                 <label for="id_date">Date</label>
                                 {{create_session_form.date}}
-    
+
                             </div>
                             <div class="user-input-wrp my-2 input-icons">
                                 <label for="id_duration">Duration (mins)</label>
                                 {{create_session_form.duration}}
-    
+
                             </div>
-         
+
                         </div>
                         <div class="user-input-wrp my-2 input-icons">
-    
+
                             <label for="id_focus">Focus</label>
                             {{create_session_form.focus}}
                         </div>
@@ -48,23 +48,17 @@
                         <div class="user-input-wrp my-2 input-icons">
                             <span>Goals</span>
                             <br />
-                            <div>
-                                <div><label for="goal-1">Mozart Violin Concerto</label>
-                                <input type="range" name="" id="goal-1">
-                                </div>
-                                <div><label for="goal-2">Learn Major Scales</label>
-                                    <input type="range" name="" id="goal-2" value="10">
-                                    </div>
-                                    <div><label for="goal-3">Sautille Bowing</label>
-                                        <input type="range" name="" id="goal-3">
-                    
-                                        </div>
+                            {% for goal in user.goals %}
+                            <div><label for="goal-{{forloop.counter}}">{{goal.goal}}</label>
+                                <input type="range" name="" id="goal-{{forloop.counter}}" value="{{goal.complete}}">
                             </div>
+                            {% endfor %}
+
                             <!-- <span class='floating-label'>Focus</span> -->
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-md-4">
-                        <div class="border">
+                               <div class="border">
                             <h3>Practice Image</h3>
 
                         </div>
@@ -72,7 +66,7 @@
                             <h3>Inspiration Quote?</h3>
 
                         </div>
-                    </div> 
+                    </div>
                     {% csrf_token %}
                 </div>
                 <div class="row">

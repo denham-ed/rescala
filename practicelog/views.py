@@ -45,10 +45,12 @@ class CreateLog(View):
     template_name = "createlog.html"
 
     def get(self, request):
+        user = request.user
         return render(
             request, 'createlog.html',
             { 
-                "create_session_form": CreateSessionForm()
+                "create_session_form": CreateSessionForm(),
+                "user":user
             }
         )
 
@@ -85,21 +87,4 @@ class SessionDetails(View):
         session.delete()
         return HttpResponseRedirect(reverse('dashboard'))
 
-
-
-
-#  class DeleteSession(View):       
-
-#     def delete(request, session_id):
-#         session = get_object_or_404(Session, id=session_id)
-#         session.delete()
-#         sessions = Session.objects.filter(user=request.user).order_by('-date')
-#         recent_sessions = sessions[:10]
-#         return render(
-#                 request, 'dashboard.html',
-#                 {
-#                     "sessions": sessions,
-#                     "recent_sessions": recent_sessions
-#                 }
-#             ) 
 

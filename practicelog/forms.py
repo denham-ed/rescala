@@ -1,4 +1,6 @@
 from .models import Session
+from django.contrib.auth.models import User
+from users.models import Profile
 from django import forms
 from datetime import datetime
 FOCUS_CHOICES = [
@@ -18,9 +20,13 @@ class CreateSessionForm(forms.ModelForm):
 
     class Meta:
         model = Session
-        fields = ['headline', 'date', 'duration','focus','summary']
+        fields = ['headline', 'date', 'duration','focus','summary','user']
+
+    email = forms.EmailField()
+    # goals = forms.MultipleChoiceField()  
 
     def __init__(self, *args, **kwargs):
+        # user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
 
@@ -41,7 +47,15 @@ class CreateSessionForm(forms.ModelForm):
         #     attrs={"placeholder": "", "label": "", "class": "form-control input-field py-1"}
         # )
 
+        # self.fields['goals'] = forms.MultipleChoiceField(choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False )
+
+
         self.fields['summary'].widget=forms.Textarea(attrs={"placeholder":"Reflect on your practice. What went well? What will you work on next time?"})
+
+        self.fields['email'].widget.attrs.update({
+            'placeholder': 'Email address',
+            'class': 'form-control',
+        })
 
 
   
