@@ -50,7 +50,5 @@ class CustomLoginForm(LoginForm):
         def login(self, *args, **kwargs):
             return super(MyCustomLoginForm, self).login(*args, **kwargs)
 
-class GoalForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['goals']
+class GoalForm(forms.Form):
+    goalName = forms.CharField(max_length=100, required=True, label='Goal Name')

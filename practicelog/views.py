@@ -3,6 +3,7 @@ from django.views import View
 from .forms import CreateSessionForm
 from django.http import HttpResponseRedirect
 from .models import Session
+from users.forms import GoalForm
 
 
 class Dashboard(View):
@@ -15,7 +16,8 @@ class Dashboard(View):
                 request, 'dashboard.html',
                 {
                     "sessions": sessions,
-                    "recent_sessions": recent_sessions
+                    "recent_sessions": recent_sessions,
+                    "goalform": GoalForm()
                 }
             ) 
 

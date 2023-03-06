@@ -12,7 +12,7 @@
           <a href="{% url 'session_details' session.id %}">
             <span>
               <strong>
-                {{session.date | date:'D d M y'}} | 
+                {{session.date | date:'D d M y'}} |
               </strong>
             </span>
             <span>{{session.headline}}</span>
@@ -24,15 +24,15 @@
       <div class="border">
         <h3>My Goals</h3>
         <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#goalModal">
-  Add Goal
-</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#goalModal">
+          Add Goal
+        </button>
 
 
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 <!-- Add Goal Modal -->
 <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
@@ -42,7 +42,20 @@
         <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <div class="col">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="user-input-wrp my-2 input-icons">
+                <label for="id_goalName">New Goal</label>
+                {{goalform.goalName}}
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
