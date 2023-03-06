@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <!-- Recent Practices -->
       <div class="border">
-        <h3>Recent Practices</h3> {% for session in recent_sessions %} <div>
+        <h3>Recent Practice</h3> {% for session in recent_sessions %} <div>
           <a href="{% url 'session_details' session.id %}">
             <span>
               <strong>
@@ -23,7 +23,36 @@
     <div class="col-md-4">
       <div class="border">
         <h3>My Goals</h3>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#goalModal">
+  Add Goal
+</button>
+
+
       </div>
     </div>
   </div>
-</div> {% endblock %}
+</div> 
+
+<!-- Add Goal Modal -->
+<div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add Goal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
