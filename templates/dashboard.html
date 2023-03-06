@@ -6,8 +6,7 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <div class="border
-            ">
+      <div class="border">
         <h3>Recent Practices</h3> {% for session in recent_sessions %} <div>
           <a href="{% url 'session_details' session.id %}">
             <span>
@@ -17,7 +16,6 @@
             </span>
             <span>{{session.headline}}</span>
           </a>
-
         </div> {% endfor %}
       </div>
     </div>
