@@ -4,6 +4,7 @@ from .forms import CreateSessionForm
 from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
+from allauth.exceptions import ImmediateHttpResponse
 
 
 # Dashboard
@@ -48,18 +49,36 @@ class CreateLog(View):
         user = request.user
         return render(
             request, 'createlog.html',
-            { 
+            {
                 "create_session_form": CreateSessionForm(),
-                "user":user
+                "user": user
             }
         )
 
     def post(self, request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
+            # Capture Goal Inputs
+            goals = []
+            i = 1
+            while True:
+                goal = request.POST.get(f'goal-{i}')
+                if goal:
+                    goals.append(goal)
+                    i += 1
+                else:
+                    break
+            print(goals)
+            user = request.user
+            for i, goal in enumerate(goals):
+                user.goals[i] = {
+                    "goal": user.goals[i]['goal'],
+                    "complete": goal
+                }
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
+            user.save()
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             return render(

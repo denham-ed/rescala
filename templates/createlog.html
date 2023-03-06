@@ -11,6 +11,8 @@
     </div> -->
     <div class="row">
         <div class="col">
+            <div>
+          </div>
             <form method="POST" style="margin-top: 1.3rem ;">
                 <div class="row">
                     <div class="col-md-4">
@@ -23,38 +25,31 @@
                             <div class="user-input-wrp my-2 input-icons">
                                 <label for="id_date">Date</label>
                                 {{create_session_form.date}}
-
                             </div>
                             <div class="user-input-wrp my-2 input-icons">
                                 <label for="id_duration">Duration (mins)</label>
                                 {{create_session_form.duration}}
-
                             </div>
-
                         </div>
                         <div class="user-input-wrp my-2 input-icons">
-
                             <label for="id_focus">Focus</label>
                             {{create_session_form.focus}}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="user-input-wrp my-2 input-icons d-flex flex-column">
-
                             <label for="id_summary">Reflections</label>
                             {{create_session_form.summary}}
-
                         </div>
                         <div class="user-input-wrp my-2 input-icons">
                             <span>Goals</span>
                             <br />
                             {% for goal in user.goals %}
                             <div><label for="goal-{{forloop.counter}}">{{goal.goal}}</label>
-                                <input type="range" name="" id="goal-{{forloop.counter}}" value="{{goal.complete}}">
+                                <input type="range" name="goal-{{forloop.counter}}" id="goal-{{forloop.counter}}" value="{{goal.complete}}">
+                                <span id='complete-{{forloop.counter}}'>{{goal.complete}}%</span>
                             </div>
                             {% endfor %}
-
-                            <!-- <span class='floating-label'>Focus</span> -->
                         </div>
                     </div>
                     <div class="col-md-4">
