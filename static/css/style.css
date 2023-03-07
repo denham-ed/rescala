@@ -210,15 +210,6 @@ resize: none;
 	opacity: 1;
 }
 
-/* https://stackoverflow.com/questions/28686288/remove-default-text-placeholder-present-in-html5-input-element-of-type-date */
-/* input[type="date"]:in-range::-webkit-datetime-edit-year-field,
-input[type="date"]:in-range::-webkit-datetime-edit-month-field,
-input[type="date"]:in-range::-webkit-datetime-edit-day-field,
-input[type="date"]:in-range::-webkit-datetime-edit-text {
-	color: transparent;
-} */
-
-
 /* Assist from
 https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html */
 .input-icons i {

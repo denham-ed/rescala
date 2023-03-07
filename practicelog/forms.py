@@ -50,17 +50,12 @@ MOOD_CHOICES = [
 
 
 class CreateSessionForm(forms.ModelForm):
-
-    # focus = forms.MultipleChoiceField()
-
     class Meta:
         model = Session
         fields = ["headline", "date", "duration", "focus", "summary", "moods"]
 
     def __init__(self, *args, **kwargs):
-        # user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-
         self.fields["headline"].widget = forms.TextInput(
             attrs={
                 "placeholder": "One sentence that describes your practice...",
