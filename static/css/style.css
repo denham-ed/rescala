@@ -257,6 +257,11 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	border: 1px solid #14281D;
 }
 
+.calendar-day:hover{
+	border: 3px solid #14281D;
+	box-sizing: border-box;
+}
+
 .practiced{
 	background-color: #355834 !important;
 }

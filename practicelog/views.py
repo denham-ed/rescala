@@ -38,7 +38,7 @@ class Dashboard(View):
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
-                    d['headline'] = session.headline
+                    # d['headline'] = session.headline
 
         return render(
                 request, 'dashboard.html',
