@@ -240,3 +240,61 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 .progress-bar{
 	background-color: #355834;
 }
+
+
+/* ------------------------------- Dashboard */
+
+/* ------------------------------- Calendar */
+.calendar-day{
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	background-color: white;
+	margin-top: 0.5rem;
+	margin-right: 0.25rem;
+	margin-left: 0.25rem;
+	/* border: 1px solid black; */
+	position: relative; /* Add this to make the ::after element positioned relative to the .calendar-day element */
+
+}
+
+.practiced{
+	background-color: #B80C09 !important;
+	border: none;
+}
+
+.practiced::before {
+	content: "";
+	position: absolute;
+	height: 0.5rem;
+	width: 0.375rem;
+	background-color: #B80C09;
+	/* content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-left: 25px solid #f00; /* Change the color and size of the border as desired */
+	/* right: 2.75rem; */
+	left: -0.375rem;
+	top: 1.25rem
+  }
+
+  .practiced::after {
+	content: "";
+	position: absolute;
+	height: 0.5rem;
+	width: 0.375rem;
+	background-color: #B80C09;
+	/* content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-left: 25px solid #f00; /* Change the color and size of the border as desired */
+	/* right: 2.75rem; */
+	right: -0.375rem;
+	top: 1.25rem;
+  }

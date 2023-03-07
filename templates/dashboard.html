@@ -38,6 +38,22 @@
       </div>
     </div>
   </div>
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="border">
+        <h3>Calendar</h3>
+        <div class="calendar-container d-flex flex-wrap">
+
+          {% for i in range %}
+          <div class="calendar-day"></div>
+          <div class="calendar-day practiced"></div>
+          <div class="calendar-day practiced"></div>
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Add Goal Modal -->
 <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">

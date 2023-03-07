@@ -37,7 +37,8 @@ class Dashboard(View):
                     "sessions": sessions,
                     "recent_sessions": recent_sessions,
                     "goalform": GoalForm(),
-                    "goals":request.user.goals
+                    "goals":request.user.goals,
+                    "range": range(15)
                 }
             ) 
 
