@@ -55,7 +55,7 @@ class CreateSessionForm(forms.ModelForm):
 
     class Meta:
         model = Session
-        fields = ["headline", "date", "duration", "focus", "summary"]
+        fields = ["headline", "date", "duration", "focus", "summary", "moods"]
 
     def __init__(self, *args, **kwargs):
         # user = kwargs.pop('user', None)
@@ -90,6 +90,11 @@ class CreateSessionForm(forms.ModelForm):
         self.fields["focus"] = forms.MultipleChoiceField(
             choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
         )
+
+        self.fields["moods"] = forms.MultipleChoiceField(
+            choices=MOOD_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
+        )
+        
         self.fields["summary"].widget = forms.Textarea(
             attrs={
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
