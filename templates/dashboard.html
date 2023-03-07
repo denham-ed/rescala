@@ -1,6 +1,6 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block content %} 
+{% block content %}
 <div class="container">
   <div class="row">
     <div class="col">
@@ -24,17 +24,19 @@
     </div>
     <div class="col-md-4">
       <div class="border">
-        <h3>My Goals</h3> 
-        {%for goal in goals%} 
+        <h3>My Goals</h3>
+        {%for goal in goals%}
         <div>
           {{goal.goal}}
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-        </div> 
+        </div>
         {% endfor %}
         <!-- Add Goal Button -->
-        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal </button>
+        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal
+        </button>
       </div>
     </div>
   </div>
@@ -45,41 +47,46 @@
         <h3>Calendar</h3>
         <div class="calendar-container d-flex flex-wrap">
 
-          {% for i in range %}
+          {% for session in sessions %}
+          <div class="calendar-day" title="{{ session.date }}"></div>
+          {% endfor %}
+
+
+          <!-- {% for i in range %}
           <div class="calendar-day"></div>
           <div class="calendar-day practiced"></div>
           <div class="calendar-day practiced"></div>
-          {% endfor %}
+          {% endfor %} -->
 
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Add Goal Modal -->
-<div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="{% url 'add_goal' %}">
-          <div class="row">
-            <div class="col-md-12">
-              <div>
-                <!-- <label for="id_goalName">New Goal</label> -->
-                {{goalform.goalName}}
+  <!-- Add Goal Modal -->
+  <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'add_goal' %}">
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <!-- <label for="id_goalName">New Goal</label> -->
+                  {{goalform.goalName}}
+                </div>
               </div>
             </div>
-          </div> 
-          {% csrf_token %} 
-          <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div> 
-{% endblock %}
+  {% endblock %}

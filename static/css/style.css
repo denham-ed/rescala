@@ -299,3 +299,16 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	right: -0.375rem;
 	top: 1.25rem;
   }
+
+  /* Tooltips */
+  /* CHAT GPT Obvs - improve with bootstrap?? */
+  .calendar-day[title]:hover:after {
+	content: attr(title);
+	background-color: #000;
+	color: #fff;
+	padding: 5px;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+  }
