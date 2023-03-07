@@ -63,10 +63,10 @@
 
         {% for day in dates %}
           {% if day.practice%}
-          <div class="calendar-day practiced" id="{{day|date:'dmY'}}" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
+          <div class="calendar-day practiced" id="{{day|date:'dmY'}}" data-toggle="tooltip" data-placement="top" title="{{day.headline}} - {{ day.date | date:'d m Y' }}" data-date="{{ day | date:'d m Y' }}"></div>
 
           {% else %}
-          <div class="calendar-day" id="{{day|date:'dmY'}}" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
+          <div class="calendar-day" id="{{day|date:'dmY'}}" data-toggle="tooltip" data-placement="top" data-html="true" title="No Practice - {{ day.date | date:'d m Y' }}"></div>
 
           {% endif %}
         {% endfor %}

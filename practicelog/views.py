@@ -33,11 +33,12 @@ class Dashboard(View):
         recent_sessions = sessions[:10]
         start_date = datetime(2023, 2, 1)  # Replace with your desired start date
         dates = [start_date + timedelta(days=i) for i in range(30)]
-        mappedDates = [{'date': date, 'practice': False} for date in dates]
+        mappedDates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
         for d in mappedDates:
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
+                    d['headline'] = session.headline
 
         return render(
                 request, 'dashboard.html',
