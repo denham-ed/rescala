@@ -12,4 +12,5 @@ class Session(models.Model):
     headline = models.CharField(max_length=150)
     image = CloudinaryField('image', blank=True)
     focus = models.JSONField(default=list, blank=True)
+    moods = models.JSONField(default=list, blank=True)
     summary = models.TextField()
