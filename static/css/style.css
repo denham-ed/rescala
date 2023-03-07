@@ -254,51 +254,13 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	margin-top: 0.5rem;
 	margin-right: 0.25rem;
 	margin-left: 0.25rem;
-	/* border: 1px solid black; */
-	position: relative; /* Add this to make the ::after element positioned relative to the .calendar-day element */
-
+	border: 1px solid #14281D;
 }
 
 .practiced{
 	background-color: #355834 !important;
-	border: none;
+	border: 1px solid #14281D;
 }
-
-.practiced::before {
-	content: "";
-	position: absolute;
-	height: 0.5rem;
-	width: 0.375rem;
-	background-color: #355834;
-	/* content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-top: 25px solid transparent;
-	border-bottom: 25px solid transparent;
-	border-left: 25px solid #f00; /* Change the color and size of the border as desired */
-	/* right: 2.75rem; */
-	left: -0.375rem;
-	top: 1.25rem
-  }
-
-  .practiced::after {
-	content: "";
-	position: absolute;
-	height: 0.5rem;
-	width: 0.375rem;
-	background-color: #355834;
-	/* content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-top: 25px solid transparent;
-	border-bottom: 25px solid transparent;
-	border-left: 25px solid #f00; /* Change the color and size of the border as desired */
-	/* right: 2.75rem; */
-	right: -0.375rem;
-	top: 1.25rem;
-  }
 
   /* Tooltips */
   /* CHAT GPT Obvs - improve with bootstrap?? */
