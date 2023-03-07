@@ -52,9 +52,25 @@
           {% endfor %} -->
 
 <!-- Chat GPT -->
-          {% for day in dates %}
-          <div class="calendar-day practiced" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
-          {% endfor %}
+          <!-- {% for day in dates %}
+            {% for session in sessions %}
+              {% if session.date|date:"d m Y" == day|date:"d m Y" %}
+                <div class="calendar-day practiced" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
+              {% endif %}
+            {% endfor %}
+            <div class="calendar-day" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
+          {% endfor %} -->
+
+        {% for day in dates %}
+        <div class="border">
+          <div>{{day.date | date:"d / m / Y"}} </div>
+          <div>{{ day.practice }}</div>
+        </div>
+          <!-- <div class="calendar-day" id="{{day|date:'dmY'}}" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div> -->
+        {% endfor %}
+
+
+
 
         </div>
       </div>
