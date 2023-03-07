@@ -20,6 +20,7 @@ body {
 
 a {
 	text-decoration: none;
+	color:#14281D;
 }
 /* ------------------------------- Footer */
 
@@ -240,3 +241,28 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 .progress-bar{
 	background-color: #355834;
 }
+
+
+/* ------------------------------- Dashboard */
+
+/* ------------------------------- Calendar */
+.calendar-day{
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	background-color: white;
+	margin-top: 0.5rem;
+	margin-right: 0.25rem;
+	margin-left: 0.25rem;
+	border: 1px solid #14281D;
+}
+
+.calendar-day:hover{
+	border: 3px solid #14281D;
+	box-sizing: border-box;
+}
+
+.practiced{
+	background-color: #355834;
+}
+
