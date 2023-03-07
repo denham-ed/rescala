@@ -32,7 +32,7 @@ class Dashboard(View):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         recent_sessions = sessions[:10]
         start_date = datetime(2023, 2, 1)  # Replace with your desired start date
-        dates = [start_date + timedelta(days=i) for i in range(28)]
+        dates = [start_date + timedelta(days=i) for i in range(30)]
         mappedDates = [{'date': date, 'practice': False} for date in dates]
         for d in mappedDates:
             for session in sessions:
