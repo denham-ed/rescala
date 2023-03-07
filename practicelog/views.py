@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
 from allauth.exceptions import ImmediateHttpResponse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # Dashboard
 class Dashboard(View):
@@ -31,7 +31,7 @@ class Dashboard(View):
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         recent_sessions = sessions[:10]
-        start_date = datetime(2023, 2, 1)  # Replace with your desired start date
+        start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
         mappedDates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
         for d in mappedDates:
