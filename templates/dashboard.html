@@ -44,19 +44,17 @@
   <div class="row">
     <div class="col-md-8">
       <div class="border">
-        <h3>Calendar</h3>
+        <h3>Last 28 Days</h3>
         <div class="calendar-container d-flex flex-wrap">
 
-          {% for session in sessions %}
+          <!-- {% for session in sessions %}
           <div class="calendar-day" title="{{ session.date }}"></div>
-          {% endfor %}
-
-
-          <!-- {% for i in range %}
-          <div class="calendar-day"></div>
-          <div class="calendar-day practiced"></div>
-          <div class="calendar-day practiced"></div>
           {% endfor %} -->
+
+<!-- Chat GPT -->
+          {% for day in dates %}
+          <div class="calendar-day practiced" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
+          {% endfor %}
 
         </div>
       </div>
