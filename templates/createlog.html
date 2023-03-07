@@ -31,10 +31,15 @@
                                 {{create_session_form.duration}}
                             </div>
                         </div>
-                        <div class="user-input-wrp my-2 input-icons">
-                            <label for="id_focus">Focus</label>
-                            {{create_session_form.focus}}
-                        </div>
+                            <div class="user-input-wrp my-2 input-icons">
+                                <label for="id_focus">Focus</label>
+                                {{create_session_form.focus}}
+                            </div>
+         
+
+           
+
+   
                     </div>
                     <div class="col-md-4">
                         <div class="user-input-wrp my-2 input-icons d-flex flex-column">
@@ -53,6 +58,10 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <div>
+                            <label for="id_focus">Today I felt...</label>
+                            {{ create_session_form.moods_as_columns | safe }}
+                        </div>
                                <div class="border">
                             <h3>Practice Image</h3>
 

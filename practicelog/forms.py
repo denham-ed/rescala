@@ -94,9 +94,27 @@ class CreateSessionForm(forms.ModelForm):
         self.fields["moods"] = forms.MultipleChoiceField(
             choices=MOOD_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
         )
-        
+
         self.fields["summary"].widget = forms.Textarea(
             attrs={
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
             }
         )
+        # CHAT GPT
+    def moods_as_columns(self):
+            """
+            Render the moods field as two columns of checkboxes.
+            """
+            # Get the list of choices
+            choices = self.fields['moods'].choices
+            # Determine the number of choices per column
+            num_choices = len(choices)
+            num_per_column = num_choices // 2
+            # Split the choices into two lists
+            col1 = choices[:num_per_column]
+            col2 = choices[num_per_column:]
+            # Render each column as a string of HTML
+            col1_html = ''.join('<label"><input class="mx-1" type="checkbox" name="%s" value="%s">%s</label><br>' % ('moods', choice[0], choice[1]) for choice in col1)
+            col2_html = ''.join('<label><input class="mx-1" type="checkbox" name="%s" value="%s">%s</label><br>' % ('moods', choice[0], choice[1]) for choice in col2)
+            # Combine the columns and wrap in a div
+            return '<div class="row"><div class="col-sm-6">%s</div><div class="col-sm-6">%s</div></div>' % (col1_html, col2_html)
