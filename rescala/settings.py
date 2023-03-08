@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'cloudinary',
     # 'cloudinary_storage',
+    'crispy_forms',
     'practicelog',
     'resources',
     'users',

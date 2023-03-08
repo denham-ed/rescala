@@ -115,7 +115,8 @@ class EditLog(View):
             'date':session.date.strftime("%Y-%m-%d"),
             'duration':session.duration,
             'focus': session.focus,
-            'summary':session.summary
+            'summary':session.summary,
+            'moods':session.moods
         }
         return render(
             request, 'editlog.html',

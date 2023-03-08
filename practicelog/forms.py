@@ -106,6 +106,8 @@ class CreateSessionForm(forms.ModelForm):
             num_per_column = len(choices) // 2
             col1 = choices[:num_per_column]
             col2 = choices[num_per_column:]
+            for mood in col1:
+                print(choice)
             col1_html = ''.join(f'<label"><input class="mx-1" type="checkbox" name="moods" value={choice[0]}>{choice[1]}</label><br>' for choice in col1)
             col2_html = ''.join(f'<label"><input class="mx-1" type="checkbox" name="moods" value={choice[0]}>{choice[1]}</label><br>' for choice in col2)
             return f'<div class="row"><div class="col-sm-6">{col1_html}</div><div class="col-sm-6">{col2_html}</div></div>'
