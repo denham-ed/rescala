@@ -57,82 +57,63 @@ class CreateSessionForm(forms.ModelForm):
         model = Session
         fields = ["headline", "date", "duration", "focus", "summary", "moods"]
 
-    # name = forms.CharField()
-    # age = forms.IntegerField()
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'id-create-log-form'
+        self.helper.form_id = "id-create-log-form"
         # self.helper.form_class = 'blueForms'
-        self.helper.form_method = 'post'
-        self.helper.form_action = reverse_lazy('create_log')
+        self.helper.form_method = "post"
+        self.helper.form_action = reverse_lazy("create_log")
         self.helper.layout = Layout(
             Div(
-                Div('headline',
-                    Div('date','duration', css_class='d-flex justify-content-between')
-                    , 
-                    'focus',
-                    css_class='col-md-4'),
-                    Div('summary', css_class='col-md-4'),
-                    Div(
-                        Div(
-                            'moods', css_class='two-col'
-                        ),
-                         css_class='col-md-4'),
-                css_class='row'))
+                Div(
+                    "headline",
+                    Div("date", "duration", css_class="d-flex justify-content-between"),
+                    "focus",
+                    css_class="col-md-4",
+                ),
+                Div("summary", css_class="col-md-4"),
+                Div(Div("moods", css_class="two-col"), css_class="col-md-4"),
+                css_class="row",
+            )
+        )
 
+        self.helper.add_input(Submit("submit", "Submit"))
 
-        self.helper.add_input(Submit('submit', 'Submit'))
-
-
-
+        self.fields["headline"].label = "Add a headline"
         self.fields["headline"].widget = forms.TextInput(
             attrs={
                 "placeholder": "One sentence that describes your practice...",
-                "label": "Add a headline",
             }
         )
-     
+
         self.fields["date"].widget = forms.DateTimeInput(
             attrs={
                 "type": "date",
                 "max": datetime.now().date(),
             }
         )
-
+        self.fields["duration"].label = "Duration (mins)"
         self.fields["duration"].widget = forms.NumberInput(
-            attrs={
-                "type": "number",
-                "min":1,
-                "max":720
-            }
+            attrs={"type": "number", "min": 1, "max": 720}
         )
 
         self.fields["focus"] = forms.MultipleChoiceField(
-            choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
+            label="Today I foccussed on:",
+            choices=FOCUS_CHOICES,
+            widget=forms.CheckboxSelectMultiple(),
+            required=False,
         )
 
         self.fields["moods"] = forms.MultipleChoiceField(
-            choices=MOOD_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
+            label="Today I felt:",
+            choices=MOOD_CHOICES,
+            widget=forms.CheckboxSelectMultiple(),
+            required=False,
         )
-
+        self.fields["summary"].label = "Reflections:"
         self.fields["summary"].widget = forms.Textarea(
             attrs={
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
             }
         )
-
-
-        # Edited from ChatGPT
-    # def moods_as_columns(self):
-    #         """
-    #         Render the moods field as two columns of checkboxes.
-    #         """
-    #         choices = self.fields['moods'].choices
-    #         num_per_column = len(choices) // 2
-    #         col1 = choices[:num_per_column]
-    #         col2 = choices[num_per_column:]
-    #         col1_html = ''.join(f'<label"><input class="mx-1" type="checkbox" name="moods" value={choice[0]}>{choice[1]}</label><br>' for choice in col1)
-    #         col2_html = ''.join(f'<label"><input class="mx-1" type="checkbox" name="moods" value={choice[0]}>{choice[1]}</label><br>' for choice in col2)
-    #         return f'<div class="row"><div class="col-sm-6">{col1_html}</div><div class="col-sm-6">{col2_html}</div></div>'
