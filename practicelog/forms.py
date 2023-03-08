@@ -75,12 +75,16 @@ class CreateSessionForm(forms.ModelForm):
                 Div("summary", css_class="col-md-4"),
                 Div(Div("moods", css_class="two-col"), css_class="col-md-4"),
                 css_class="row",
-            )
+            ),
+            Div(
+                Div((
+                    Submit('submit', 'Add Session', css_class='btn-very-dark btn-lg btn')
+                ),css_class='col-md-6 offset-md-3 d-flex justify-content-center'),css_class='row')
         )
 
-        self.helper.add_input(Submit("submit", "Submit"))
+        # self.helper.add_input(Submit("submit", "Submit"))
 
-        self.fields["headline"].label = "Add a headline"
+        self.fields["headline"].label = "Add a Headline"
         self.fields["headline"].widget = forms.TextInput(
             attrs={
                 "placeholder": "One sentence that describes your practice...",
@@ -117,3 +121,35 @@ class CreateSessionForm(forms.ModelForm):
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
             }
         )
+
+
+class EditSessionForm(CreateSessionForm):
+        def __init__(self,session, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper = FormHelper()
+            self.helper.form_id = "id-edit-session-from"
+            # self.helper.form_class = 'blueForms'
+            self.helper.form_method = "post"
+            self.helper.form_action = reverse_lazy("edit_session", kwargs={
+                'session_id':session.id
+            })
+
+
+            self.helper.layout = Layout(
+                Div(
+                    Div(
+                        "headline",
+                        Div("date", "duration", css_class="d-flex justify-content-between"),
+                        "focus",
+                        css_class="col-md-4",
+                    ),
+                    Div("summary", css_class="col-md-4"),
+                    Div(Div("moods", css_class="two-col"), css_class="col-md-4"),
+                    css_class="row",
+                ),
+                           Div(
+                Div((
+                    Submit('submit', 'Update Session', css_class='btn-very-dark btn-lg btn')
+                ),css_class='col-md-6 offset-md-3 d-flex justify-content-center'),css_class='row')
+            )
+

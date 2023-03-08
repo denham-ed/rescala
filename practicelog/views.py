@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
-from .forms import CreateSessionForm
+from .forms import CreateSessionForm, EditSessionForm
 from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
@@ -121,17 +121,17 @@ class EditLog(View):
         return render(
             request, 'editlog.html',
             {
-                "form": CreateSessionForm(initial=initial_values),
+                "form": EditSessionForm(session=session, initial=initial_values),
                 "user": user,
                 "session":session
             }
         )
 
     def post(self, request, *args, **kwargs):
-        form = CreateSessionForm(data=request.POST)
+        session_id = kwargs.get('session_id')
+        session = Session.objects.get(id=session_id)
+        form = EditSessionForm(session=session, data=request.POST)
         if form.is_valid():
-            session_id = kwargs.get('session_id')
-            session = Session.objects.get(id=session_id)
             session.headline = form.cleaned_data['headline']
             session.date = form.cleaned_data['date']
             session.focus = form.cleaned_data['focus']
@@ -143,5 +143,5 @@ class EditLog(View):
             return render(
                 request,
                 'editlog.html',
-                {"form": CreateSessionForm()}
+                {"form": EditSessionForm()}
             )
