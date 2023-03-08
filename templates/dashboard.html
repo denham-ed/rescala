@@ -44,7 +44,10 @@
   <div class="row">
     <div class="col-md-4">
       <div class="border">
-        <div>Focus</div>
+        <div>Moods</div>
+        {% for mood in moods%}
+        <span>{{mood}}</span>
+        {% endfor %}
       </div>
 
     </div>

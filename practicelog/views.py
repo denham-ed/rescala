@@ -29,16 +29,22 @@ class Dashboard(View):
                 return HttpResponseRedirect(reverse('dashboard'))
 
     def get(self, request):
+        # Sesssions
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         recent_sessions = sessions[:10]
+        # Calendar
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
-        mappedDates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
-        for d in mappedDates:
+        mapped_dates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
+        for d in mapped_dates:
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
-                    # d['headline'] = session.headline
+
+        # Moods
+        aggregated_moods = []
+        for session in sessions:
+            aggregated_moods = aggregated_moods + session.moods
 
         return render(
                 request, 'dashboard.html',
@@ -47,7 +53,8 @@ class Dashboard(View):
                     "recent_sessions": recent_sessions,
                     "goalform": GoalForm(),
                     "goals":request.user.goals,
-                    "dates": mappedDates
+                    "dates": mapped_dates,
+                    "moods":aggregated_moods
                 }
             ) 
 
