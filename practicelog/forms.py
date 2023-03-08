@@ -1,10 +1,11 @@
 from .models import Session
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from users.models import Profile
 from django import forms
 from datetime import datetime
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, Div, Fieldset
 
 FOCUS_CHOICES = [
     ("listening", "Listening"),
@@ -51,65 +52,76 @@ MOOD_CHOICES = [
 ]
 
 
-class CreateSessionForm(forms.Form):
-    # class Meta:
-    #     model = Session
-    #     fields = ["headline", "date", "duration", "focus", "summary", "moods"]
+class CreateSessionForm(forms.ModelForm):
+    class Meta:
+        model = Session
+        fields = ["headline", "date", "duration", "focus", "summary", "moods"]
 
-    name = forms.CharField()
-    age = forms.IntegerField()
+    # name = forms.CharField()
+    # age = forms.IntegerField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'id-exampleForm'
-        self.helper.form_class = 'blueForms'
+        self.helper.form_id = 'id-create-log-form'
+        # self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
+        self.helper.form_action = reverse_lazy('create_log')
+        self.helper.layout = Layout(
+            Div(
+                Div('headline',
+                    Div('date','duration', css_class='d-flex justify-content-between')
+                    , 
+                    'focus',
+                    css_class='col-md-4'),
+                    Div('summary', css_class='col-md-4'),
+                    Div(
+                        Div(
+                            'moods', css_class='two-col'
+                        ),
+                         css_class='col-md-4'),
+                css_class='row'))
+
 
         self.helper.add_input(Submit('submit', 'Submit'))
 
 
 
-        # self.fields["headline"].widget = forms.TextInput(
-        #     attrs={
-        #         "placeholder": "One sentence that describes your practice...",
-        #         "label": "Add a headline",
-        #         "class": "input-field py-1",
-        #     }
-        # )
-        # https://stackoverflow.com/questions/61076688/django-form-dateinput-with-widget-in-update-loosing-the-initial-value
-        # self.fields["date"].widget = forms.DateTimeInput(
-        #     attrs={
-        #         "class": "form-control input-field py-1",
-        #         "placeholder": "",
-        #         "type": "date",
-        #         "max": datetime.now().date(),
-        #     }
-        # )
+        self.fields["headline"].widget = forms.TextInput(
+            attrs={
+                "placeholder": "One sentence that describes your practice...",
+                "label": "Add a headline",
+            }
+        )
+     
+        self.fields["date"].widget = forms.DateTimeInput(
+            attrs={
+                "type": "date",
+                "max": datetime.now().date(),
+            }
+        )
 
-        # self.fields["duration"].widget = forms.NumberInput(
-        #     attrs={
-        #         "placeholder": "",
-        #         "label": "",
-        #         "class": "form-control input-field py-1",
-        #         "type": "number",
-        #     }
-        # )
+        self.fields["duration"].widget = forms.NumberInput(
+            attrs={
+                "type": "number",
+                "min":1,
+                "max":720
+            }
+        )
 
-        # self.fields["focus"] = forms.MultipleChoiceField(
-        #     choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
-        # )
+        self.fields["focus"] = forms.MultipleChoiceField(
+            choices=FOCUS_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
+        )
 
-        # self.fields["moods"] = forms.MultipleChoiceField(
-        #     choices=MOOD_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
-        # )
+        self.fields["moods"] = forms.MultipleChoiceField(
+            choices=MOOD_CHOICES, widget=forms.CheckboxSelectMultiple(), required=False
+        )
 
-        # self.fields["summary"].widget = forms.Textarea(
-        #     attrs={
-        #         "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
-        #     }
-        # )
+        self.fields["summary"].widget = forms.Textarea(
+            attrs={
+                "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
+            }
+        )
 
 
         # Edited from ChatGPT

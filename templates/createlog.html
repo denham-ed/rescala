@@ -1,9 +1,10 @@
 {% extends "base.html" %} 
 
 {% load crispy_forms_tags%}
-<!-- {% load crispy_forms_tags %} -->
-<!-- {% crispy create_session_form create_session_form.helper %} -->
-{% block content %} <div class="container row-fill-no-header">
+{% crispy form form.helper %}
+
+{% block content %}
+ <div class="container row-fill-no-header">
     <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>

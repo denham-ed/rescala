@@ -22,6 +22,10 @@ a {
 	text-decoration: none;
 	color:#14281D;
 }
+
+textarea {
+	resize: none;
+}
 /* ------------------------------- Footer */
 
 footer p i {
@@ -84,6 +88,13 @@ footer p i {
 	background-color: #14281D;
 }
 
+/* ------------------------------- Layout */
+
+.two-col{
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
 
 
 /* ------------------------------- Text */
