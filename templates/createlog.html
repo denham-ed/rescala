@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% block content %} <div class="container row-fill-no-header">
+{% extends "base.html" %} 
+
+{% load crispy_forms_tags%}
+<!-- {% load crispy_forms_tags %} -->
+<!-- {% crispy create_session_form create_session_form.helper %} -->
+{% block content %} <div class="container row-fill-no-header">
     <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>
@@ -12,8 +17,11 @@
     <div class="row">
         <div class="col">
             <div>
+                {% crispy form %}
           </div>
-            <form method="POST" style="margin-top: 1.3rem ;">
+
+
+            <!-- <form method="POST" style="margin-top: 1.3rem ;">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="user-input-wrp my-2 input-icons">
@@ -78,7 +86,7 @@
                         <button type="submit" class="btn btn-very-dark btn-lg">Submit</button>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 </div> {% endblock %}

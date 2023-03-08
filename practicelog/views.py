@@ -60,7 +60,7 @@ class CreateLog(View):
         return render(
             request, 'createlog.html',
             {
-                "create_session_form": CreateSessionForm(),
+                "form": CreateSessionForm(),
                 "user": user
             }
         )
@@ -81,7 +81,7 @@ class CreateLog(View):
             return render(
                 request,
                 'createlog.html',
-                {"create_session_form": CreateSessionForm()}
+                {"form": CreateSessionForm()}
             )
 
 
