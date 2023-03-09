@@ -1,25 +1,13 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
 from .forms import CreateSessionForm, EditSessionForm
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
-from allauth.exceptions import ImmediateHttpResponse
 from datetime import datetime, timedelta, date
-
-# Word Cloud
-from wordcloud import WordCloud, STOPWORDS
-import matplotlib.pyplot as plt
-import pandas as pd
-from typing import Any, Optional
+from wordcloud import WordCloud
 import io
 import base64
-
-
-
-
-
-
 
 
 
@@ -56,23 +44,19 @@ class Dashboard(View):
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
-
         # Moods
         aggregated_moods = []
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
-            
         mood_string = ' '.join(aggregated_moods)
         wordcloud = WordCloud(width = 1000, height = 700).generate(mood_string)
-
         image = wordcloud.to_image()
         buf = io.BytesIO()
         image.save(buf, format='png')
-
+        # https://stackoverflow.com/questions/64974404/display-pil-image-object-in-django-template
         # Encode buffer contents as base64
         img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
 
-        # return HttpResponse(buffer.getvalue(), content_type='image/png')
         return render(
                 request, 'dashboard.html',
                 {
@@ -83,7 +67,6 @@ class Dashboard(View):
                     "dates": mapped_dates,
                     "moods":aggregated_moods,
                     "wordcloud":img_b64,
-                    "image":image
                 }
             ) 
 
