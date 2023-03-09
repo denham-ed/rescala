@@ -1,11 +1,27 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
 from .forms import CreateSessionForm, EditSessionForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Session
 from users.forms import GoalForm
 from allauth.exceptions import ImmediateHttpResponse
 from datetime import datetime, timedelta, date
+
+# Word Cloud
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
+import pandas as pd
+from typing import Any, Optional
+import io
+import base64
+
+
+
+
+
+
+
+
 
 # Dashboard
 class Dashboard(View):
@@ -45,7 +61,18 @@ class Dashboard(View):
         aggregated_moods = []
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
+            
+        mood_string = ' '.join(aggregated_moods)
+        wordcloud = WordCloud(width = 1000, height = 700).generate(mood_string)
 
+        image = wordcloud.to_image()
+        buf = io.BytesIO()
+        image.save(buf, format='png')
+
+        # Encode buffer contents as base64
+        img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+
+        # return HttpResponse(buffer.getvalue(), content_type='image/png')
         return render(
                 request, 'dashboard.html',
                 {
@@ -54,7 +81,9 @@ class Dashboard(View):
                     "goalform": GoalForm(),
                     "goals":request.user.goals,
                     "dates": mapped_dates,
-                    "moods":aggregated_moods
+                    "moods":aggregated_moods,
+                    "wordcloud":img_b64,
+                    "image":image
                 }
             ) 
 

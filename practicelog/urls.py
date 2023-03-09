@@ -7,5 +7,5 @@ urlpatterns = [
     path('<int:session_id>/', views.SessionDetails.as_view(), name='session_details'),
     path('<int:session_id>/edit', views.EditLog.as_view(), name='edit_session'),
     path('<int:session_id>/delete', views.SessionDetails.delete_session, name='delete_session'),
-    path('add-goal', views.Dashboard.add_goal, name='add_goal')
+    path('add-goal', views.Dashboard.add_goal, name='add_goal'),
 ]
