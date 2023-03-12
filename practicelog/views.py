@@ -49,12 +49,12 @@ class Dashboard(View):
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
         mood_string = ' '.join(aggregated_moods)
-        wordcloud = WordCloud(width = 1000, height = 700).generate(mood_string)
+        # https://www.holisticseo.digital/python-seo/word-cloud/
+        wordcloud = WordCloud(width = 1000, height = 700, mode="RGBA",background_color=None,color_func=lambda *args, **kwargs: (53, 88, 52)).generate(mood_string)
         image = wordcloud.to_image()
         buf = io.BytesIO()
         image.save(buf, format='png')
         # https://stackoverflow.com/questions/64974404/display-pil-image-object-in-django-template
-        # Encode buffer contents as base64
         img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
 
         return render(
