@@ -49,16 +49,37 @@ class Dashboard(View):
     def create_calendar(self, sessions):
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
-        mapped_dates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
+        mapped_dates = [{'date': date, 'practice': False} for date in dates]
         for d in mapped_dates:
+            # IS this right? looks like two loops!?
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
         return mapped_dates
 
 
-    def get(self, request):
+    def get_mins_practiced(self, sessions):
+        start_date = date.today()
+        # Weekly Minutes
+        weekly_dates = [start_date - timedelta(days=i) for i in range(6)]
+        weekly_minutes = sum(session.duration for session in sessions if session.date in weekly_dates)
+        # Monthly Minutes
+        monthly_dates = [start_date - timedelta(days=i) for i in range(30)]
+        monthly_minutes = sum(session.duration for session in sessions if session.date in monthly_dates)
+        # Total Minutes
+        total_minutes = sum(session.duration for session in sessions)
+        
+        return
+            { 
+                "weekly": weekly_minutes,
+                "monthly": monthly_minutes,
+                "total": total_minutes
+            }
 
+
+
+
+    def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         recent_sessions = sessions[:10]
 
@@ -70,7 +91,8 @@ class Dashboard(View):
                     "goalform": GoalForm(),
                     "goals":request.user.goals,
                     "dates": self.create_calendar(sessions),
-                    "wordcloud":self.create_mood_cloud(sessions)
+                    "wordcloud":self.create_mood_cloud(sessions),
+                    "practice_totals": self.get_mins_practiced(sessions)
                 }
             ) 
 

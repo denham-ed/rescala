@@ -20,12 +20,13 @@ body {
 
 a {
 	text-decoration: none;
-	color:#14281D;
+	color: #14281D;
 }
 
 textarea {
 	resize: none;
 }
+
 /* ------------------------------- Footer */
 
 footer p i {
@@ -90,10 +91,12 @@ footer p i {
 
 /* ------------------------------- Layout */
 
-.two-col{
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
+.two-col {
+	-webkit-column-count: 2;
+	/* Chrome, Safari, Opera */
+	-moz-column-count: 2;
+	/* Firefox */
+	column-count: 2;
 }
 
 
@@ -185,8 +188,8 @@ footer p i {
 	/* width: 50%; */
 }
 
-.user-input-wrp > textarea {
-resize: none;
+.user-input-wrp>textarea {
+	resize: none;
 	/* width: 50%; */
 }
 
@@ -235,12 +238,12 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 
 /* Bootstrap Elements */
 
-.progress{
+.progress {
 	background-color: #fff;
 	border: 1px solid #355834;
 }
 
-.progress-bar{
+.progress-bar {
 	background-color: #355834;
 }
 
@@ -248,7 +251,7 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 /* ------------------------------- Dashboard */
 
 /* ------------------------------- Calendar */
-.calendar-day{
+.calendar-day {
 	height: 3rem;
 	width: 3rem;
 	border-radius: 50%;
@@ -259,21 +262,30 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 	border: 1px solid #14281D;
 }
 
-.calendar-day:hover{
+.calendar-day:hover {
 	border: 3px solid #14281D;
 	box-sizing: border-box;
 }
 
-.practiced{
+.practiced {
 	background-color: #355834;
 }
 
 /* ------------------------------- Forms */
 .asteriskField {
-    display: none;
+	display: none;
 }
 
-.form-label{
+.form-label {
 	/* font-weight: bold; */
 	color: #B80C09;
+}
+
+.accent-header {
+	color: #B80C09;
+}
+
+.tally-container {
+	border: 2px solid #14281D;
+	padding: 1.5rem;
 }
