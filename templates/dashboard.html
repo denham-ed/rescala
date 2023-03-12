@@ -9,6 +9,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
+      {% for f in focus_list %}
+      <span>{{f}}</span>
+      {% endfor %}
       <!-- Recent Practices -->
       <div class="dashboard-item">
         <h3>Recent Practice</h3> {% for session in recent_sessions %} <div>
@@ -50,48 +53,50 @@
 
     </div>
     <div class="col-md-6">
-      <div class="row">
-        <div class="col">
-          <div class="dashboard-item">
-            <h3>Last 30 Days</h3>
-            <div class="calendar-container d-flex flex-wrap">
+      <div class="col">
+        <div class="dashboard-item">
+          <h3>Last 30 Days</h3>
+          <div class="calendar-container d-flex flex-wrap">
             {% for day in dates %}
-              {% if day.practice%}
-              <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top" title="{{ day.date | date:'D d M y' }}"></div>
-              {% else %}
-              <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ day.date | date:'D d M y' }}"></div>
-              {% endif %}
+            {% if day.practice%}
+            <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top"
+              title="{{ day.date | date:'D d M y' }}"></div>
+            {% else %}
+            <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
+              title="{{ day.date | date:'D d M y' }}"></div>
+            {% endif %}
             {% endfor %}
-            </div>
           </div>
-        </div>
-        <div class="col-md-12">
-          <div class="dashboard-item">
-          <h3>Total Practice</h3>
-          <div class="d-flex justify-content-evenly">
-            <div class="tally-container">
-              <div class="accent-header">This Week</div>
-              {{practice_totals.weekly}} minutes
-            </div>
-            <div class="tally-container">
-              <div class="accent-header">This Month</div>
-              {{practice_totals.monthly}} minutes
-            </div>
-            <div class="tally-container">
-              <div class="accent-header">Total</div>
-              {{practice_totals.total}} minutes
-            </div>
-          </div>
-        </div>
         </div>
       </div>
-
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <div>
-        <canvas id="myChart"></canvas>
+      <div class="dashboard-item">
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="dashboard-item">
+        <h3>Total Practice</h3>
+        <div class="d-flex justify-content-evenly">
+          <div class="tally-container">
+            <div class="accent-header">This Week</div>
+            {{practice_totals.weekly}} minutes
+          </div>
+          <div class="tally-container">
+            <div class="accent-header">This Month</div>
+            {{practice_totals.monthly}} minutes
+          </div>
+          <div class="tally-container">
+            <div class="accent-header">Total</div>
+            {{practice_totals.total}} minutes
+          </div>
+        </div>
       </div>
     </div>
   </div>

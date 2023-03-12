@@ -18,7 +18,7 @@ $(document).ready(function () {
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
-      type: 'bar',
+      type: 'pie',
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
