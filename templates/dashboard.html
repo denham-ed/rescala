@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <!-- Recent Practices -->
-      <div class="border">
+      <div class="dashboard-item">
         <h3>Recent Practice</h3> {% for session in recent_sessions %} <div>
           <a href="{% url 'session_details' session.id %}">
             <span>
@@ -22,8 +22,8 @@
         </div> {% endfor %}
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="border">
+    <div class="col-md-6">
+      <div class="dashboard-item">
         <h3>My Goals</h3>
         {%for goal in goals%}
         <div>
@@ -42,26 +42,50 @@
   </div>
   <!-- Row 2 -->
   <div class="row">
-    <div class="col-md-4">
-      <div class="border">
+    <div class="col-md-6">
+      <div class="dashboard-item">
         <h3>I am Feeling</h3>
         <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
       </div>
 
     </div>
-    <div class="col-md-8">
-      <div class="border">
-        <h3>Last 30 Days</h3>
-        <div class="calendar-container d-flex flex-wrap">
-        {% for day in dates %}
-          {% if day.practice%}
-          <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top" title="{{ day.date | date:'D d M y' }}"></div>
-          {% else %}
-          <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ day.date | date:'D d M y' }}"></div>
-          {% endif %}
-        {% endfor %}
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col">
+          <div class="dashboard-item">
+            <h3>Last 30 Days</h3>
+            <div class="calendar-container d-flex flex-wrap">
+            {% for day in dates %}
+              {% if day.practice%}
+              <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top" title="{{ day.date | date:'D d M y' }}"></div>
+              {% else %}
+              <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ day.date | date:'D d M y' }}"></div>
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="dashboard-item">
+          <h3>Total Practice</h3>
+          <div class="d-flex justify-content-evenly">
+            <div class="tally-container">
+              <div class="accent-header">This Week</div>
+              {{practice_totals.weekly}} minutes
+            </div>
+            <div class="tally-container">
+              <div class="accent-header">This Month</div>
+              {{practice_totals.monthly}} minutes
+            </div>
+            <div class="tally-container">
+              <div class="accent-header">Total</div>
+              {{practice_totals.total}} minutes
+            </div>
+          </div>
+        </div>
         </div>
       </div>
+
     </div>
   </div>
   <!-- Add Goal Modal -->
