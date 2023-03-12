@@ -9,9 +9,6 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      {% for f in focus_list %}
-      <span>{{f}}</span>
-      {% endfor %}
       <!-- Recent Practices -->
       <div class="dashboard-item">
         <h3>Recent Practice</h3> {% for session in recent_sessions %} <div>
@@ -26,6 +23,7 @@
       </div>
     </div>
     <div class="col-md-6">
+      <!-- Goals -->
       <div class="dashboard-item">
         <h3>My Goals</h3>
         {%for goal in goals%}
@@ -46,6 +44,7 @@
   <!-- Row 2 -->
   <div class="row">
     <div class="col-md-6">
+      <!-- Moods -->
       <div class="dashboard-item">
         <h3>I am Feeling</h3>
         <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
@@ -54,6 +53,7 @@
     </div>
     <div class="col-md-6">
       <div class="col">
+        <!-- Calendar -->
         <div class="dashboard-item">
           <h3>Last 30 Days</h3>
           <div class="calendar-container d-flex flex-wrap">
@@ -73,6 +73,7 @@
   </div>
   <div class="row">
     <div class="col-md-6">
+      <!-- Focus Chart -->
       <div class="dashboard-item">
         <h3>Focus</h3>
         <div>
@@ -83,6 +84,7 @@
     </div>
     <div class="col-md-6">
       <div class="dashboard-item">
+        <!-- Practice Time -->
         <h3>Total Practice</h3>
         <div class="d-flex justify-content-evenly">
           <div class="tally-container">
