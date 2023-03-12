@@ -64,9 +64,13 @@ class Dashboard(View):
         
         aggregated_focus = {}
         for focus in focus_list:
-            aggregated_focus[focus] += 1
+            if focus not in aggregated_focus:
+                aggregated_focus[focus] = 1
+            else:
+                aggregated_focus[focus] += 1
 
-        print (aggregated_focus)
+        aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
+        return aggregated_as_list
 
 
 
