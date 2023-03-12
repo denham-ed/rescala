@@ -1,75 +1,20 @@
-{% extends "base.html" %} {% block content %} <div class="container row-fill-no-header">
+{% extends "base.html" %} 
+
+{% load crispy_forms_tags%}
+{% crispy form form.helper %}
+
+{% block content %}
+ <div class="container row-fill-no-header">
     <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class="col">
-            {{testMessage}}
-        </div>
-    </div> -->
     <div class="row">
         <div class="col">
             <div>
+                {% crispy form %}
           </div>
-            <form method="POST" style="margin-top: 1.3rem ;">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <label for="id_headline">Headline</label>
-                            {{create_session_form.headline}}
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <div class="user-input-wrp my-2 input-icons">
-                                <label for="id_date">Date</label>
-                                {{create_session_form.date}}
-                            </div>
-                            <div class="user-input-wrp my-2 input-icons">
-                                <label for="id_duration">Duration (mins)</label>
-                                {{create_session_form.duration}}
-                            </div>
-                        </div>
-                        <div class="user-input-wrp my-2 input-icons">
-                            <label for="id_focus">Focus</label>
-                            {{create_session_form.focus}}
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="user-input-wrp my-2 input-icons d-flex flex-column">
-                            <label for="id_summary">Reflections</label>
-                            {{create_session_form.summary}}
-                        </div>
-                        <div class="user-input-wrp my-2 input-icons">
-                            <span>Goals</span>
-                            <br />
-                            {% for goal in user.goals %}
-                            <div><label for="goal-{{forloop.counter}}">{{goal.goal}}</label>
-                                <input type="range" name="goal-{{forloop.counter}}" id="goal-{{forloop.counter}}" value="{{goal.complete}}">
-                                <span id='complete-{{forloop.counter}}'>{{goal.complete}}%</span>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                               <div class="border">
-                            <h3>Practice Image</h3>
-
-                        </div>
-                        <div class="border">
-                            <h3>Inspiration Quote?</h3>
-
-                        </div>
-                    </div>
-                    {% csrf_token %}
-                </div>
-                <div class="row">
-                    <div class="col-md-6 offset-3 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-very-dark btn-lg">Submit</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 </div> {% endblock %}

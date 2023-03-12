@@ -44,7 +44,8 @@
   <div class="row">
     <div class="col-md-4">
       <div class="border">
-        <div>Focus</div>
+        <h3>I am Feeling</h3>
+        <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
       </div>
 
     </div>
@@ -52,34 +53,13 @@
       <div class="border">
         <h3>Last 30 Days</h3>
         <div class="calendar-container d-flex flex-wrap">
-
-          <!-- {% for session in sessions %}
-          <div class="calendar-day" title="{{ session.date }}"></div>
-          {% endfor %} -->
-
-<!-- Chat GPT -->
-          <!-- {% for day in dates %}
-            {% for session in sessions %}
-              {% if session.date|date:"d m Y" == day|date:"d m Y" %}
-                <div class="calendar-day practiced" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
-              {% endif %}
-            {% endfor %}
-            <div class="calendar-day" data-date="{{ day | date:'d m Y' }}">{{ day | date:"d m Y" }}</div>
-          {% endfor %} -->
-
         {% for day in dates %}
           {% if day.practice%}
           <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top" title="{{ day.date | date:'D d M y' }}"></div>
-
           {% else %}
           <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ day.date | date:'D d M y' }}"></div>
-
           {% endif %}
         {% endfor %}
-
-
-
-
         </div>
       </div>
     </div>

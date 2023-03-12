@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'cloudinary',
     # 'cloudinary_storage',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'practicelog',
     'resources',
     'users',
@@ -60,6 +62,9 @@ SITE_ID = 2
 LOGIN_REDIRECT_URL = '/practice'
 LOGOUT = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
 

@@ -1,11 +1,15 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.views import View
-from .forms import CreateSessionForm
+from .forms import CreateSessionForm, EditSessionForm
 from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
-from allauth.exceptions import ImmediateHttpResponse
 from datetime import datetime, timedelta, date
+from wordcloud import WordCloud
+import io
+import base64
+
+
 
 # Dashboard
 class Dashboard(View):
@@ -29,16 +33,29 @@ class Dashboard(View):
                 return HttpResponseRedirect(reverse('dashboard'))
 
     def get(self, request):
+        # Sesssions
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         recent_sessions = sessions[:10]
+        # Calendar
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
-        mappedDates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
-        for d in mappedDates:
+        mapped_dates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
+        for d in mapped_dates:
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
-                    # d['headline'] = session.headline
+        # Moods
+        aggregated_moods = []
+        for session in sessions:
+            aggregated_moods = aggregated_moods + session.moods
+        mood_string = ' '.join(aggregated_moods)
+        # https://www.holisticseo.digital/python-seo/word-cloud/
+        wordcloud = WordCloud(width = 1000, height = 700, mode="RGBA",background_color=None,color_func=lambda *args, **kwargs: (53, 88, 52)).generate(mood_string)
+        image = wordcloud.to_image()
+        buf = io.BytesIO()
+        image.save(buf, format='png')
+        # https://stackoverflow.com/questions/64974404/display-pil-image-object-in-django-template
+        img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
 
         return render(
                 request, 'dashboard.html',
@@ -47,7 +64,9 @@ class Dashboard(View):
                     "recent_sessions": recent_sessions,
                     "goalform": GoalForm(),
                     "goals":request.user.goals,
-                    "dates": mappedDates
+                    "dates": mapped_dates,
+                    "moods":aggregated_moods,
+                    "wordcloud":img_b64,
                 }
             ) 
 
@@ -60,7 +79,7 @@ class CreateLog(View):
         return render(
             request, 'createlog.html',
             {
-                "create_session_form": CreateSessionForm(),
+                "form": CreateSessionForm(),
                 "user": user
             }
         )
@@ -70,8 +89,8 @@ class CreateLog(View):
         if create_session_form.is_valid():
             # Capture Goal Inputs
             user = request.user
-            goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
-            user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
+            # goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
+            # user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
@@ -81,7 +100,7 @@ class CreateLog(View):
             return render(
                 request,
                 'createlog.html',
-                {"create_session_form": CreateSessionForm()}
+                {"form": CreateSessionForm()}
             )
 
 
@@ -115,22 +134,23 @@ class EditLog(View):
             'date':session.date.strftime("%Y-%m-%d"),
             'duration':session.duration,
             'focus': session.focus,
-            'summary':session.summary
+            'summary':session.summary,
+            'moods':session.moods
         }
         return render(
             request, 'editlog.html',
             {
-                "create_session_form": CreateSessionForm(initial=initial_values),
+                "form": EditSessionForm(session=session, initial=initial_values),
                 "user": user,
                 "session":session
             }
         )
 
     def post(self, request, *args, **kwargs):
-        form = CreateSessionForm(data=request.POST)
+        session_id = kwargs.get('session_id')
+        session = Session.objects.get(id=session_id)
+        form = EditSessionForm(session=session, data=request.POST)
         if form.is_valid():
-            session_id = kwargs.get('session_id')
-            session = Session.objects.get(id=session_id)
             session.headline = form.cleaned_data['headline']
             session.date = form.cleaned_data['date']
             session.focus = form.cleaned_data['focus']
@@ -142,5 +162,5 @@ class EditLog(View):
             return render(
                 request,
                 'editlog.html',
-                {"create_session_form": CreateSessionForm()}
+                {"form": EditSessionForm()}
             )

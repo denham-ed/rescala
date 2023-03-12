@@ -26,7 +26,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div>Focus</div>
+        <div>I focused on:</div>
         <p>
         <ul>
           {% for focus in session.focus%}
@@ -36,11 +36,11 @@
         </p>
       </div>
       <div class="col-md-6">
-        <div>Moods</div>
+        <div>How I felt:</div>
         <p>
         <ul>
-          {% for focus in session.focus%}
-          <li>{{focus | title }}</li>
+          {% for mood in session.moods%}
+          <li>{{mood | title }}</li>
           {% endfor %}
         </ul>
         </p>

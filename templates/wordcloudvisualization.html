@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+
+
+{% block content %} 
+<div>
+    <h1>Hi welcome to data visualization</h1>
+    <form method="post" enctype="multipart/form-data">
+       {{DataForm.file}}
+       {% csrf_token %}
+      <button>Upload Document</button>
+    </form>
+    {% if wordcloud is not None %}
+        <img src="{{ wordcloud }}">
+    {% endif %}
+</div>
+ {% endblock %}
