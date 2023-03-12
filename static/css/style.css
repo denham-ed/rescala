@@ -252,8 +252,8 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 
 /* ------------------------------- Calendar */
 .calendar-day {
-	height: 3rem;
-	width: 3rem;
+	height: 4rem;
+	width: 4rem;
 	border-radius: 50%;
 	background-color: white;
 	margin-top: 0.5rem;
