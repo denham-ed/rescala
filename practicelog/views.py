@@ -32,19 +32,7 @@ class Dashboard(View):
                 recent_sessions = sessions[:10]
                 return HttpResponseRedirect(reverse('dashboard'))
 
-    def get(self, request):
-        # Sesssions
-        sessions = Session.objects.filter(user=request.user).order_by('-date')
-        recent_sessions = sessions[:10]
-        # Calendar
-        start_date = date.today() - timedelta(days=29)
-        dates = [start_date + timedelta(days=i) for i in range(30)]
-        mapped_dates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
-        for d in mapped_dates:
-            for session in sessions:
-                if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
-                    d['practice'] = True
-        # Moods
+    def create_mood_cloud(self, sessions):
         aggregated_moods = []
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
@@ -56,6 +44,23 @@ class Dashboard(View):
         image.save(buf, format='png')
         # https://stackoverflow.com/questions/64974404/display-pil-image-object-in-django-template
         img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+        return img_b64
+
+    def create_calendar(self, sessions):
+        start_date = date.today() - timedelta(days=29)
+        dates = [start_date + timedelta(days=i) for i in range(30)]
+        mapped_dates = [{'date': date, 'practice': False, 'headline': None} for date in dates]
+        for d in mapped_dates:
+            for session in sessions:
+                if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
+                    d['practice'] = True
+        return mapped_dates
+
+
+    def get(self, request):
+
+        sessions = Session.objects.filter(user=request.user).order_by('-date')
+        recent_sessions = sessions[:10]
 
         return render(
                 request, 'dashboard.html',
@@ -64,9 +69,8 @@ class Dashboard(View):
                     "recent_sessions": recent_sessions,
                     "goalform": GoalForm(),
                     "goals":request.user.goals,
-                    "dates": mapped_dates,
-                    "moods":aggregated_moods,
-                    "wordcloud":img_b64,
+                    "dates": self.create_calendar(sessions),
+                    "wordcloud":self.create_mood_cloud(sessions)
                 }
             ) 
 
