@@ -69,12 +69,7 @@ class Dashboard(View):
         # Total Minutes
         total_minutes = sum(session.duration for session in sessions)
         
-        return
-            { 
-                "weekly": weekly_minutes,
-                "monthly": monthly_minutes,
-                "total": total_minutes
-            }
+        return { "weekly": weekly_minutes, "monthly": monthly_minutes, "total": total_minutes}
 
 
 
