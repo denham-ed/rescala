@@ -41,12 +41,12 @@
                   value="{{goal.complete}}" name="goal-complete">
               </div>
               <div class="col-md-4">
-                <button type='button' data-goal-id="{{forloop.counter}}" class=" edit-goal-button btn btn-sm btn-dark"><i
-                    class="fa-solid fa-pen"></i></button>
+                <button type='button' data-goal-id="{{forloop.counter}}"
+                  class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
                 <button data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
                     class="fa-regular fa-circle-check"></i></button>
-                <button type='button' data-goal-id="{{forloop.counter}}" class="delete-goal-button btn btn-sm btn-very-dark"><i
-                    class="fa-solid fa-xmark"></i></button>
+                <button type='button' data-goal-id="{{forloop.counter}}"
+                  class="delete-goal-button btn btn-sm btn-very-dark"><i class="fa-solid fa-xmark"></i></button>
 
 
               </div>
@@ -109,11 +109,11 @@
         <h3>Total Practice</h3>
         <div class="d-flex justify-content-evenly">
           <div class="tally-container">
-            <div class="accent-header">This Week</div>
+            <div class="accent-header">Last 7 Days</div>
             {{practice_totals.weekly}} minutes
           </div>
           <div class="tally-container">
-            <div class="accent-header">This Month</div>
+            <div class="accent-header">Last 30 Days</div>
             {{practice_totals.monthly}} minutes
           </div>
           <div class="tally-container">
