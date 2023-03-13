@@ -78,7 +78,12 @@
       <!-- Moods -->
       <div class="dashboard-item">
         <h3>I am Feeling</h3>
+        {% if wordcloud is not None %}
         <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
+        {% else %}
+        <p>Log a session to start learning more about how you feel about your practice sessions.</p>
+        {% endif %}
+
       </div>
 
     </div>
