@@ -1,12 +1,6 @@
 $(document).ready(function () {
     console.log('ready')
 
-    // Thanks Chat GPT for making less verbose
-    // Add labels to goals on Log screen
-    $('[id^="goal-"]').change(function () {
-        const goalId = $(this).attr('id').split('-')[1];
-        $(`#complete-${goalId}`).text(`${$(this).val()}%`);
-    });
 
     // Initialize tool tips
     $(function () {
@@ -16,13 +10,28 @@ $(document).ready(function () {
 
     // https://api.jquery.com/data/
     //Update Goal Inputs
+    //Hide Buttons On Load
     $(".edit-goal-range").hide("fast")
+    $(".save-goal-button").hide("fast")
+    //Toggle Buttons
     $(".edit-goal-button").click(function (){
         const goalId = $(this).data('goal-id');
         $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
         $(`.goal-progress[data-goal-id="${goalId}"]`).toggle()
+        $(`.save-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(this).toggle()
     })
 
+    $(".save-goal-button").click(function (){
+        // Toggle Buttons to Original State
+        const goalId = $(this).data('goal-id');
+        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
+        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle()
+        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(this).toggle()
+    })
 });
 
 
