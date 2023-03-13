@@ -46,6 +46,8 @@ class Dashboard(View):
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
         mood_string = ' '.join(aggregated_moods)
+        if not mood_string:
+            return None
         # https://www.holisticseo.digital/python-seo/word-cloud/
         wordcloud = WordCloud(width = 1000, height = 700, mode="RGBA",background_color=None,color_func=lambda *args, **kwargs: (53, 88, 52)).generate(mood_string)
         image = wordcloud.to_image()
@@ -101,6 +103,7 @@ class Dashboard(View):
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
+        user = request.user
         
         return render(
                 request, 'dashboard.html',
@@ -112,7 +115,8 @@ class Dashboard(View):
                     "dates": self.create_calendar(sessions),
                     "wordcloud": self.create_mood_cloud(sessions),
                     "practice_totals": self.get_mins_practiced(sessions),
-                    "focus_list": self.aggregate_focus(sessions)
+                    "focus_list": self.aggregate_focus(sessions),
+                    "user": user
                 }
             ) 
 
@@ -133,14 +137,10 @@ class CreateLog(View):
     def post(self, request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
-            # Capture Goal Inputs
             user = request.user
-            # goals = [request.POST.get(f'goal-{i}') for i in range(1, 100) if request.POST.get(f'goal-{i}')]
-            # user.goals = [{"goal": user.goals[i]['goal'], "complete": goal} for i, goal in enumerate(goals)]
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
-            user.save()
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             return render(
