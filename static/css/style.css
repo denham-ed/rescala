@@ -16,6 +16,7 @@ h3 {
 body {
 	font-family: 'Work Sans', Courier, monospace;
 	background-color: #E8F1F2;
+	accent-color: #355834;
 }
 
 a {
@@ -298,4 +299,13 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 
 .dashboard-item:hover {
 	border: 2px solid #14281D;
+}
+
+/* Input Range */
+.edit-goal-range{
+	display: none;
+}
+
+.save-goal-button{
+	display: none;
 }
