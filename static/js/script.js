@@ -14,11 +14,13 @@ $(document).ready(function () {
     })
 
 
+    // https://api.jquery.com/data/
     //Update Goal Inputs
-    $("#edit-goal-input-1").hide()
-    $("#edit-goal-1").click(function (){
-        $("#edit-goal-input-1").toggle()
-        $("#progress-goal-1").toggle()
+    $(".edit-goal-range").hide("fast")
+    $(".edit-goal-button").click(function (){
+        const goalId = $(this).data('goal-id');
+        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
+        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle()
     })
 
 });

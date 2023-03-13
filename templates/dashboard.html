@@ -31,14 +31,14 @@
           {{goal.goal}}
           <div class="row">
             <div class="col-md-8">
-              <div id="progress-goal-{{forloop.counter}}"class="progress">
+              <div class="progress goal-progress" data-goal-id="{{forloop.counter}}">
                 <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <input id="edit-goal-input-{{forloop.counter}}"type="range" class="w-100" value="{{goal.complete}}">
+              <input type="range" data-goal-id="{{forloop.counter}}" class="w-100 edit-goal-range" value="{{goal.complete}}">
             </div>
             <div class="col-md-4">
-              <button id="edit-goal-{{forloop.counter}}"class="btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
+              <button data-goal-id="{{forloop.counter}}"class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
               <button class="btn btn-sm btn-very-dark"><i class="fa-regular fa-circle-check"></i></button>
             </div>
           </div>
