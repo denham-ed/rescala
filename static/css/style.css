@@ -302,3 +302,10 @@ https://www.educative.io/answers/how-to-add-icons-inside-input-elements-in-html 
 }
 
 /* Input Range */
+.edit-goal-range{
+	display: none;
+}
+
+.save-goal-button{
+	display: none;
+}

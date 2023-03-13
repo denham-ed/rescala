@@ -11,8 +11,6 @@ $(document).ready(function () {
     // https://api.jquery.com/data/
     //Update Goal Inputs
     //Hide Buttons On Load
-    $(".edit-goal-range").hide("fast")
-    $(".save-goal-button").hide("fast")
     //Toggle Buttons
     $(".edit-goal-button").click(function (){
         const goalId = $(this).data('goal-id');
