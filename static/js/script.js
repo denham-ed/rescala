@@ -13,4 +13,14 @@ $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
 
+
+    //Update Goal Inputs
+    $("#edit-goal-input-1").hide()
+    $("#edit-goal-1").click(function (){
+        $("#edit-goal-input-1").toggle()
+        $("#progress-goal-1").toggle()
+    })
+
 });
+
+
