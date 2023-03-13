@@ -29,10 +29,19 @@
         {%for goal in goals%}
         <div>
           {{goal.goal}}
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
-              aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-sm btn-very-dark"><i class="fa-solid fa-trash"></i></button>
+            </div>
           </div>
+
         </div>
         {% endfor %}
         <!-- Add Goal Button -->
