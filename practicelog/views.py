@@ -32,6 +32,15 @@ class Dashboard(View):
                 recent_sessions = sessions[:10]
                 return HttpResponseRedirect(reverse('dashboard'))
 
+    def update_goal(request, goal_id):
+        if request.method == 'POST':
+            current_user = request.user
+            goal_complete = request.POST['goal-complete']
+            current_user.goals[goal_id]['complete']=goal_complete
+            current_user.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+
+
     def create_mood_cloud(self, sessions):
         aggregated_moods = []
         for session in sessions:
