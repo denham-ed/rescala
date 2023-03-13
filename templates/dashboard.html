@@ -7,29 +7,32 @@
       <h1>Dashboard</h1>
     </div>
   </div>
+  {% if sessions %}
   <div class="row">
     <div class="col-md-6">
       <!-- Recent Practices -->
       <div class="dashboard-item">
         <h3>Recent Practice</h3>
-          <table>
-            <tbody>
-              {% for session in recent_sessions %}
-              <tr>
-                <td>
-                  <a href="{% url 'session_details' session.id %}">
+        <table>
+          <tbody>
+            {% for session in recent_sessions %}
+            <tr>
+              <td>
+                <a href="{% url 'session_details' session.id %}">
                   {{session.date | date:'D d M y'}}
-                  </a>
-                </td>
-                <td>
-                  <a href="{% url 'session_details' session.id %}">
-                    {{session.headline}}
-                    </a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'session_details' session.id %}">
+                  {{session.headline}}
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <p>This is where your logged practices will appear!</p>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="col-md-6">
@@ -101,6 +104,8 @@
             <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
               title="{{ day.date | date:'D d M y' }}"></div>
             {% endif %}
+
+
             {% endfor %}
           </div>
         </div>
@@ -139,78 +144,99 @@
       </div>
     </div>
   </div>
-  <!-- Add Goal Modal -->
-  <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="{% url 'add_goal' %}">
-            <div class="row">
-              <div class="col-md-12">
-                <div>
-                  <!-- <label for="id_goalName">New Goal</label> -->
-                  {{goalform.goalName}}
-                </div>
+  {% else %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dashboard-item">
+        <h3>Welcome to Rescala</h3>
+        <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
+          feeling and start to move towards your musical goals.</div>
+        <div>You've done the hard work! Just log your first practice to get started.</div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- Add Goal Modal -->
+<div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{% url 'add_goal' %}">
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <!-- <label for="id_goalName">New Goal</label> -->
+                {{goalform.goalName}}
               </div>
             </div>
-            {% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        </div>
+          </div>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}
 
-  {%block scripts%}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // jquery function
-    // https://www.section.io/engineering-education/integrating-chart-js-in-django/
-    $(document).ready(function () {
+{%block scripts%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // jquery function
+  // https://www.section.io/engineering-education/integrating-chart-js-in-django/
+  $(document).ready(function () {
+    
+
+    try {
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           labels: [{%for focus in focus_list %}'{{focus.focus | capfirst }}',{% endfor %}],
-      datasets: [{
-        label: '# of practice sessions',
-        data: [{%for focus in focus_list %}{{ focus.count }}, {% endfor %}],
-      backgroundColor: [
-      'rgba(53, 88, 52, 0.2)',
-      'rgba(184, 12, 9, 0.2)',
-      'rgba(255, 255, 255, 1)',
-      'rgba(20, 40, 29, 0.2)',
-      'rgba(119, 119, 119, 0.2)',
-      'rgba(232, 241, 242, 0.2)'
-    ],
-      borderColor: [
-      'rgba(53, 88, 52, 1)',
-      'rgba(184, 12, 9, 1)',
-      'rgba(0,0,0,1)',
-      'rgba(20, 40, 29, 1)',
-      'rgba(119, 119, 119, 1)',
-      'rgba(0,0,0,1)'
-    ],
-      borderWidth: 1
+    datasets: [{
+      label: '# of practice sessions',
+      data: [{%for focus in focus_list %}{{ focus.count }}, {% endfor %}],
+    backgroundColor: [
+    'rgba(53, 88, 52, 0.2)',
+    'rgba(184, 12, 9, 0.2)',
+    'rgba(255, 255, 255, 1)',
+    'rgba(20, 40, 29, 0.2)',
+    'rgba(119, 119, 119, 0.2)',
+    'rgba(232, 241, 242, 0.2)'
+  ],
+    borderColor: [
+    'rgba(53, 88, 52, 1)',
+    'rgba(184, 12, 9, 1)',
+    'rgba(0,0,0,1)',
+    'rgba(20, 40, 29, 1)',
+    'rgba(119, 119, 119, 1)',
+    'rgba(0,0,0,1)'
+  ],
+    borderWidth: 1
                     }]
                 },
-      options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'right',
-        },
-      }
-    },
+    options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+    }
+  },
     });
+      } catch (e){
+
+      }
+
         });
-  </script>
-  {%endblock scripts%}
+</script>
+{%endblock scripts%}
