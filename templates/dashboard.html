@@ -23,6 +23,7 @@
       </div>
     </div>
     <div class="col-md-6">
+      <!-- Goals -->
       <div class="dashboard-item">
         <h3>My Goals</h3>
         {%for goal in goals%}
@@ -43,6 +44,7 @@
   <!-- Row 2 -->
   <div class="row">
     <div class="col-md-6">
+      <!-- Moods -->
       <div class="dashboard-item">
         <h3>I am Feeling</h3>
         <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
@@ -50,42 +52,55 @@
 
     </div>
     <div class="col-md-6">
-      <div class="row">
-        <div class="col">
-          <div class="dashboard-item">
-            <h3>Last 30 Days</h3>
-            <div class="calendar-container d-flex flex-wrap">
+      <div class="col">
+        <!-- Calendar -->
+        <div class="dashboard-item">
+          <h3>Last 30 Days</h3>
+          <div class="calendar-container d-flex flex-wrap">
             {% for day in dates %}
-              {% if day.practice%}
-              <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top" title="{{ day.date | date:'D d M y' }}"></div>
-              {% else %}
-              <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ day.date | date:'D d M y' }}"></div>
-              {% endif %}
+            {% if day.practice%}
+            <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top"
+              title="{{ day.date | date:'D d M y' }}"></div>
+            {% else %}
+            <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
+              title="{{ day.date | date:'D d M y' }}"></div>
+            {% endif %}
             {% endfor %}
-            </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <div class="dashboard-item">
-          <h3>Total Practice</h3>
-          <div class="d-flex justify-content-evenly">
-            <div class="tally-container">
-              <div class="accent-header">This Week</div>
-              {{practice_totals.weekly}} minutes
-            </div>
-            <div class="tally-container">
-              <div class="accent-header">This Month</div>
-              {{practice_totals.monthly}} minutes
-            </div>
-            <div class="tally-container">
-              <div class="accent-header">Total</div>
-              {{practice_totals.total}} minutes
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Focus Chart -->
+      <div class="dashboard-item">
+        <h3>Focus</h3>
+        <div>
+          <canvas id="myChart"></canvas>
         </div>
       </div>
 
+    </div>
+    <div class="col-md-6">
+      <div class="dashboard-item">
+        <!-- Practice Time -->
+        <h3>Total Practice</h3>
+        <div class="d-flex justify-content-evenly">
+          <div class="tally-container">
+            <div class="accent-header">This Week</div>
+            {{practice_totals.weekly}} minutes
+          </div>
+          <div class="tally-container">
+            <div class="accent-header">This Month</div>
+            {{practice_totals.monthly}} minutes
+          </div>
+          <div class="tally-container">
+            <div class="accent-header">Total</div>
+            {{practice_totals.total}} minutes
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Add Goal Modal -->
@@ -116,3 +131,50 @@
     </div>
   </div>
   {% endblock %}
+
+  {%block scripts%}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // jquery function
+    // https://www.section.io/engineering-education/integrating-chart-js-in-django/
+    $(document).ready(function(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [{%for focus in focus_list%}'{{focus.focus | capfirst }}',{%endfor%}],
+                    datasets: [{
+                        label: '# of practice sessions',
+                        data: [{%for focus in focus_list%}{{focus.count}},{%endfor%}],
+                        backgroundColor: [
+                            'rgba(53, 88, 52, 0.2)', 
+                            'rgba(184, 12, 9, 0.2)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(20, 40, 29, 0.2)',
+                            'rgba(119, 119, 119, 0.2)',
+                            'rgba(232, 241, 242, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(53, 88, 52, 1)',
+                            'rgba(184, 12, 9, 1)',
+                            'rgba(0,0,0,1)',
+                            'rgba(20, 40, 29, 1)',
+                            'rgba(119, 119, 119, 1)',
+                            'rgba(0,0,0,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+    }
+  },
+    });
+        });
+    </script>
+  {%endblock scripts%}

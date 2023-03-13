@@ -57,6 +57,22 @@ class Dashboard(View):
                     d['practice'] = True
         return mapped_dates
 
+    def aggregate_focus(self,sessions):
+        focus_list = []
+        for session in sessions:
+            focus_list = focus_list + session.focus
+        
+        aggregated_focus = {}
+        for focus in focus_list:
+            if focus not in aggregated_focus:
+                aggregated_focus[focus] = 1
+            else:
+                aggregated_focus[focus] += 1
+
+        aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
+        return aggregated_as_list
+
+
 
     def get_mins_practiced(self, sessions):
         start_date = date.today()
@@ -76,18 +92,18 @@ class Dashboard(View):
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
-        recent_sessions = sessions[:10]
-
+        
         return render(
                 request, 'dashboard.html',
                 {
                     "sessions": sessions,
-                    "recent_sessions": recent_sessions,
+                    "recent_sessions": sessions[:10],
                     "goalform": GoalForm(),
-                    "goals":request.user.goals,
+                    "goals": request.user.goals,
                     "dates": self.create_calendar(sessions),
-                    "wordcloud":self.create_mood_cloud(sessions),
-                    "practice_totals": self.get_mins_practiced(sessions)
+                    "wordcloud": self.create_mood_cloud(sessions),
+                    "practice_totals": self.get_mins_practiced(sessions),
+                    "focus_list": self.aggregate_focus(sessions)
                 }
             ) 
 
