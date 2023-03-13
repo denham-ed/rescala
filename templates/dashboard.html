@@ -30,6 +30,7 @@
         <div>
           {{goal.goal}}
           <form method="POST" action="{% url 'add_goal' %}">
+            {% csrf_token %}
             <div class="row">
               <div class="col-md-8">
                 <div class="progress goal-progress" data-goal-id="{{forloop.counter}}">
@@ -40,11 +41,11 @@
                   value="{{goal.complete}}">
               </div>
               <div class="col-md-4">
-                <button data-goal-id="{{forloop.counter}}" class=" edit-goal-button btn btn-sm btn-dark"><i
+                <button type='button' data-goal-id="{{forloop.counter}}" class=" edit-goal-button btn btn-sm btn-dark"><i
                     class="fa-solid fa-pen"></i></button>
-                <button data-goal-id="{{forloop.counter}}" class="submit save-goal-button btn btn-sm btn-dark"><i
+                <button data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
                     class="fa-regular fa-circle-check"></i></button>
-                <button data-goal-id="{{forloop.counter}}" class="delete-goal-button btn btn-sm btn-very-dark"><i
+                <button type='button' data-goal-id="{{forloop.counter}}" class="delete-goal-button btn btn-sm btn-very-dark"><i
                     class="fa-solid fa-xmark"></i></button>
 
 
