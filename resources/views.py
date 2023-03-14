@@ -12,7 +12,7 @@ class ResourcesPage(View):
     def get(self, request):
 
         resources = Resource.objects.all()
-        paginator = Paginator(resources, 1)
+        paginator = Paginator(resources, 3)
 
         page_number = request.GET.get('page')
         paginated_resources = paginator.get_page(page_number)
