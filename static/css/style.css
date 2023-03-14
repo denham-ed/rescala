@@ -1,6 +1,6 @@
-*{
+/* *{
     outline: red dotted 1px;
-}
+} */
 
 /* ------------------------------- Base HTML Elements */
 
@@ -40,7 +40,6 @@ textarea {
 
 footer {
 	border-top: 1px solid #14281D;
-	margin-top: 1rem;
 }
 
 footer p i {
