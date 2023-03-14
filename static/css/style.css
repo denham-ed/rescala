@@ -17,8 +17,14 @@ body {
 	font-family: 'Work Sans', Courier, monospace;
 	background-color: #E8F1F2;
 	accent-color: #355834;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 
+main {
+	flex-grow: 1;
+}
 a {
 	text-decoration: none;
 	color: #14281D;
@@ -28,10 +34,15 @@ textarea {
 	resize: none;
 }
 
+
+
 /* ------------------------------- Footer */
 
+footer {
+	border-top: 1px solid #14281D;
+}
+
 footer p i {
-	color: red;
 	font-size: 140%;
 }
 
@@ -113,7 +124,7 @@ footer p i {
 /* ------------------------------ Sizing */
 
 .row-fill {
-	min-height: calc(100vh - 6rem);
+	height: 100%;
 }
 
 .row-fill-no-header {
@@ -121,10 +132,10 @@ footer p i {
 }
 
 
-.fill {
+ .fill {
 	height: 100%;
 	min-height: 100%;
-}
+} 
 
 .h-20 {
 	min-height: 20%;
