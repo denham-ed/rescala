@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from django.views.generic import ListView, TemplateView, View
+from django.core.paginator import Paginator
 from .models import Resource
 
 # Create your views here.
@@ -7,14 +8,17 @@ from .models import Resource
 class LandingPage(TemplateView):
     template_name = 'landing.html'
 
-class ResourcesPage(TemplateView):
-    # template_name = 'resources.html'
+class ResourcesPage(View):
+    def get(self, request):
 
-    def get(self,request):
         resources = Resource.objects.all()
+        paginator = Paginator(resources, 1)
+
+        page_number = request.GET.get('page')
+        paginated_resources = paginator.get_page(page_number)
 
         return render(
             request, 'resources.html',{
-                "resources": resources
+                "resources": paginated_resources
             }
         )
