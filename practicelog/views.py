@@ -202,6 +202,7 @@ class EditLog(View):
             session.focus = form.cleaned_data['focus']
             session.duration = form.cleaned_data['duration']
             session.summary = form.cleaned_data['summary']
+            session.moods = form.cleaned_data['moods']
             session.save()
             return HttpResponseRedirect(reverse('dashboard'))
         else:
