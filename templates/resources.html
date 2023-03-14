@@ -3,10 +3,23 @@
  Rescala | Resources
 {% endblock%}
 {% block content %}
-<div class="container-fluid">
-    <div class="row row-fill-no-header">
+<div class="container">
+    <div class="row">
         <div class="col">
             <h1>Resources</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% for resource in resources %}
+            <div class="card w-100 my-2">
+                <img class="card-img-top" src="https://images.pexels.com/photos/586415/pexels-photo-586415.jpeg?cs=srgb&dl=pexels-bryan-geraldo-586415.jpg&fm=jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{resource.title}}</h5>
+                  <p class="card-text">{{resource.excerpt}}</p>
+                </div>
+              </div>
+            {% endfor %}
         </div>
     </div>
 </div>

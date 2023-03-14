@@ -274,3 +274,20 @@ footer p i {
 .accent-header {
 	color: #B80C09;
 }
+
+
+/* Resources */
+.card-img-top{
+	height: 8rem;
+	width: 100%;
+	object-fit: cover;
+	user-select: none;
+}
+
+.card {
+	border: 2px solid #14281D;
+}
+
+.card:hover{
+	background-color: #DCDCDC;
+}
