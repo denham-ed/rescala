@@ -4,4 +4,4 @@ from .models import Session
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ('date','duration','headline','summary')
+    list_display = ('date', 'duration', 'headline', 'summary')
