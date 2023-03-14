@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.views import View
 from .forms import CreateSessionForm, EditSessionForm
 from django.http import HttpResponseRedirect
@@ -204,7 +204,7 @@ class EditLog(View):
             session.summary = form.cleaned_data['summary']
             session.moods = form.cleaned_data['moods']
             session.save()
-            return HttpResponseRedirect(reverse('dashboard'))
+            return redirect(f"/practice/{session_id}")
         else:
             return render(
                 request,
