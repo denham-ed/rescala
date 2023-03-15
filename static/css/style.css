@@ -31,6 +31,10 @@ a {
 	color: black !important;
 }
 
+/* .light-text {
+	color:#DCDCDC !important;
+} */
+
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;
@@ -268,12 +272,18 @@ footer p i {
 	color: #B80C09;
 }
 
+
+
 .accent-header {
 	color: #B80C09;
 }
 
 #id-custom-login-form label {
 	color: #14281D;
+}
+
+#div_id_remember label {
+	color:#E8F1F2;
 }
 
 
