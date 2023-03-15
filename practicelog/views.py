@@ -147,7 +147,7 @@ class CreateLog(View):
         else:
             print(create_session_form.errors)
             messages.add_message(request, messages.ERROR, 'All sessions need a headline, a date, duration and your reflections.')
-            context={"form": CreateSessionForm()}
+            context={"form": create_session_form}
             return render(
                 request,
                 'createlog.html',

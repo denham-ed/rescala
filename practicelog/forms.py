@@ -91,9 +91,9 @@ class CreateSessionForm(forms.ModelForm):
             ),
         )
 
-        self.fields["headline"].label = "Add a Headline"
+        self.fields["headline"].label = "Headline"
         self.fields["headline"].error_messages = {
-            'required':'Enter a bloody headline pal.'
+            'required':'Whoops - you must enter a headline for this session.'
         }
         self.fields["headline"].widget = forms.TextInput(
             attrs={
@@ -107,13 +107,20 @@ class CreateSessionForm(forms.ModelForm):
                 "max": datetime.now().date(),
             }
         )
+        self.fields["date"].error_messages = {
+            'required':'Please enter a date for this session'
+        }
+
         self.fields["duration"].label = "Duration (mins)"
         self.fields["duration"].widget = forms.NumberInput(
             attrs={"type": "number", "min": 1, "max": 720}
         )
+        self.fields["duration"].error_messages = {
+            'required':'How long did you practice for?'
+        }
 
         self.fields["focus"] = forms.MultipleChoiceField(
-            label="Today I foccussed on:",
+            label="Today I focussed on:",
             choices=FOCUS_CHOICES,
             widget=forms.CheckboxSelectMultiple(),
             required=False,
@@ -131,6 +138,9 @@ class CreateSessionForm(forms.ModelForm):
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
             }
         )
+        self.fields["summary"].error_messages = {
+            'required':'You must add some reflections for this session'
+        }
 
 
 class EditSessionForm(CreateSessionForm):
