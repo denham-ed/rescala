@@ -1,7 +1,3 @@
-/* *{
-     outline: red dotted 1px;
-}
- */
 /* ------------------------------- Base HTML Elements */
 body {
 	font-family: 'Work Sans', Courier, monospace;
@@ -14,7 +10,6 @@ body {
 
 main {
 	flex-grow: 1;
-	margin-bottom: 2rem;
 }
 
 /* ------------------------------- Text and Fonts */
@@ -34,6 +29,10 @@ a {
 .black-text {
 	color: black !important;
 }
+
+/* .light-text {
+	color:#DCDCDC !important;
+} */
 
 /* ------------------------------- Inputs */
 textarea {
@@ -276,6 +275,36 @@ footer p i {
 	color: #B80C09;
 }
 
+.alert li {
+	list-style: none;
+}
+
+.alert ul {
+	padding-inline-start: 0;
+}
+
+/* Auth Forms */
+#id-custom-login-form , #id-custom-signup-form {
+	width: 75%;
+}
+
+
+#id-custom-login-form label, #id-custom-signup-form label {
+	color: #14281D;
+}
+
+#id-custom-login-form .invalid-feedback, #id-custom-signup-form .invalid-feedback{
+	color: #E8F1F2;
+}
+
+#div_id_remember label {
+	color:#E8F1F2;
+}
+
+.form-check-input:checked {
+    background-color: #B80C09;
+    border-color: #B80C09;
+}
 
 /* Resources */
 .card-img-top{
@@ -295,4 +324,4 @@ footer p i {
 }
 
 
-/* Resources */
+

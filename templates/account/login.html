@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% load i18n %}
+{% load crispy_forms_tags%}
+{% crispy form form.helper %}
 
 {% block title%}
 Rescala | Sign In
@@ -18,10 +19,8 @@ Rescala | Sign In
 
 {% block content %}
 <div class="container-fluid bg-green h-100">
-
   <div class="row h-100">
-    <div class="col d-flex flex-column justify-content-center align-items-center">
-
+    <div class="col-md-6 offset-md-3 d-flex flex-column justify-content-center align-items-center">
       <div>
         <h1 class="text-center ">Log In to Rescala</h1>
         <div class="d-flex col justify-content-center">
@@ -29,54 +28,11 @@ Rescala | Sign In
             <a href="{{ signup_url }}" class='btn btn-very-dark btn-sm'>Register Now</a>
           </p>
         </div>
-        <!-- Form -->
-        <div>
-          {% if form.errors %}
-          {% for field in form %}
-          {% for error in field.errors %}
-          <div class="alert alert-danger text-center" role="alert">
-            <strong>{{ error|escape }}</strong>
-          </div>
-          {% endfor %}
-          {% endfor %}
-          {% for error in form.non_field_errors %}
-          <div class="alert alert-danger text-center" role="alert">
-            <strong>{{ error|escape }}</strong>
-          </div>
-          {% endfor %}
-          {% endif %}
-        </div>
-        <form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
 
-          <div class="row">
-            <div class="col">
-              <div class="user-input-wrp my-2 input-icons">
-                <br />
-                {{form.login}}
-                <span class='floating-label'> <i class="fa-regular fa-user"></i>Username</span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="user-input-wrp my-2 input-icons">
-                <br />
-                {{form.password}}
-                <span class='floating-label'><i class="fa-solid fa-key"></i></i>Password</span>
-              </div>
-            </div>
-          </div>
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <div class='d-flex justify-content-center mb-5 mt-4'>
-            <button class="btn btn-light " type="submit">Log in</button>
-          </div>
-        </form>
+     
 
       </div>
-
+      {% crispy form %}
     </div>
   </div>
 </div>
