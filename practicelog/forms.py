@@ -63,6 +63,7 @@ class CreateSessionForm(forms.ModelForm):
         self.helper.form_id = "id-create-log-form"
         self.helper.form_method = "post"
         self.helper.form_action = reverse_lazy("create_log")
+        self.helper.attrs = {"novalidate": ''}
         self.helper.layout = Layout(
             Div(
                 Div(
@@ -91,6 +92,9 @@ class CreateSessionForm(forms.ModelForm):
         )
 
         self.fields["headline"].label = "Add a Headline"
+        self.fields["headline"].error_messages = {
+            'required':'Enter a bloody headline pal.'
+        }
         self.fields["headline"].widget = forms.TextInput(
             attrs={
                 "placeholder": "One sentence that describes your practice...",
