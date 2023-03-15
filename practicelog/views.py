@@ -8,6 +8,9 @@ from datetime import datetime, timedelta, date
 from wordcloud import WordCloud
 import io
 import base64
+from django.contrib import messages
+# Contenxt
+from django.template import context
 
 
 
@@ -125,13 +128,12 @@ class CreateLog(View):
     template_name = "createlog.html"
 
     def get(self, request):
-        user = request.user
+        # user = request.user
+        context={
+            "form": CreateSessionForm(),
+        }
         return render(
-            request, 'createlog.html',
-            {
-                "form": CreateSessionForm(),
-                "user": user
-            }
+            request, 'createlog.html',context=context
         )
 
     def post(self, request, *args, **kwargs):
@@ -143,10 +145,13 @@ class CreateLog(View):
             session.save()
             return HttpResponseRedirect(reverse('dashboard'))
         else:
+            print(create_session_form.errors)
+            messages.add_message(request, messages.ERROR, 'All sessions need a headline, a date, duration and your reflections.')
+            context={"form": CreateSessionForm()}
             return render(
                 request,
                 'createlog.html',
-                {"form": CreateSessionForm()}
+                context=context
             )
 
 
