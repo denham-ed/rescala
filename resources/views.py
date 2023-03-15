@@ -27,7 +27,8 @@ class ResourcesPage(View):
 
     def get(self, request):
 
-        resources = Resource.objects.all()
+        # resources = Resource.objects.all()
+        resources = Resource.objects.filter(status=1)
         paginator = Paginator(resources, 3)
 
         page_number = request.GET.get('page')
