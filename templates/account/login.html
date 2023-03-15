@@ -20,7 +20,7 @@ Rescala | Sign In
 {% block content %}
 <div class="container-fluid bg-green h-100">
   <div class="row h-100">
-    <div class="col d-flex flex-column justify-content-center align-items-center">
+    <div class="col-md-6 offset-3 d-flex flex-column justify-content-center align-items-center">
       <div>
         <h1 class="text-center ">Log In to Rescala</h1>
         <div class="d-flex col justify-content-center">
@@ -28,12 +28,11 @@ Rescala | Sign In
             <a href="{{ signup_url }}" class='btn btn-very-dark btn-sm'>Register Now</a>
           </p>
         </div>
-        <div class="row">
-          <div class="col">
-            {% crispy form %}
-          </div>
-        </div>
+
+     
+
       </div>
+      {% crispy form %}
     </div>
   </div>
 </div>

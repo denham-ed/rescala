@@ -10,7 +10,6 @@ body {
 
 main {
 	flex-grow: 1;
-	margin-bottom: 2rem;
 }
 
 /* ------------------------------- Text and Fonts */
@@ -284,12 +283,17 @@ footer p i {
 	padding-inline-start: 0;
 }
 
-/* Login Form */
-#id-custom-login-form label {
+/* Auth Forms */
+#id-custom-login-form , #id-custom-signup-form {
+	width: 100%;
+}
+
+
+#id-custom-login-form label, #id-custom-signup-form label {
 	color: #14281D;
 }
 
-#id-custom-login-form .invalid-feedback{
+#id-custom-login-form .invalid-feedback, #id-custom-signup-form .invalid-feedback{
 	color: #E8F1F2;
 }
 

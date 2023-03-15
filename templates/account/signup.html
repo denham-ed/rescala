@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% load i18n %}
+
+{% load crispy_forms_tags%}
+{% crispy form form.helper %}
 
 {% block title%}
 Rescala | Register
 {% endblock%}
 {% block header %}
-<header class="bg-green">
+<header class="bg-dark-green">
     <div>
         <div class="r-logo d-flex justify-content-center align-items-center mt-3">
             <h1>R</h1>
@@ -17,95 +19,22 @@ Rescala | Register
 {% block content %}
 <div class="container-fluid bg-dark-green h-100">
     <div class="row h-100">
-        <div class="col d-flex flex-column justify-content-center align-items-center">
+        <div class="col-md-6 offset-3 d-flex flex-column justify-content-center align-items-center">
             <div>
                 <h1 class="text-center ">Register with Rescala</h1>
-                <div class="d-flex col justify-content-center">
+                <div class="d-flex justify-content-center">
                     <p class="text-center">Already have an account? Then please
                         <a href="{{ login_url }}" class='btn btn-dark btn-sm'>Sign In</a>
                     </p>
                 </div>
             </div>
             <!-- Form -->
+    
+                  {% crispy form %}
+         
 
-            <div>
-                {% if form.errors %}
-                {% for field in form %}
-                {% for error in field.errors %}
-                <div class="alert alert-danger text-center" role="alert">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-                {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                <div class="alert alert-danger text-center" role="alert">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-                {% endfor %}
-                {% endif %}
-            </div>
-            <form class="signup w-50" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.first_name}}
-                            <span class='floating-label'> <i class="fa-regular fa-user"></i>First Name</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.last_name}}
-                            <span class='floating-label'> <i class="fa-regular fa-user"></i>Last Name</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.username}}
-                            <span class='floating-label'><i class="fa-solid fa-user-secret"></i>Enter a
-                                username</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.email}}
-                            <span class='floating-label'><i class="fa-regular fa-envelope"></i>Enter your
-                                email</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.password1}}
-                            <span class='floating-label'><i class="fa-solid fa-key"></i></i>Enter a
-                                password</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="user-input-wrp my-2 input-icons">
-                            <br />
-                            {{form.password2}}
-                            <span class='floating-label'><i class="fa-solid fa-lock"></i>Re-enter your
-                                password</span>
-                        </div>
-                    </div>
-                </div>
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <div class='d-flex justify-content-center mb-5 mt-4'>
-                    <button class="btn btn-dark " type="submit">Sign Up</button>
-                </div>
-            </form>
+
         </div>
     </div>
 </div>
