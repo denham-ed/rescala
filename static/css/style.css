@@ -279,9 +279,10 @@ footer p i {
 
 /* Resources */
 .card-img-top{
-	height: 8rem;
+	height: 12rem;
 	width: 100%;
 	object-fit: cover;
+	/* background-position: center; */
 	user-select: none;
 }
 
@@ -292,3 +293,6 @@ footer p i {
 .card:hover{
 	background-color: #DCDCDC;
 }
+
+
+/* Resources */

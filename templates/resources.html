@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% load cloudinary %}
+
 {% block title%}
  Rescala | Resources
 {% endblock%}
@@ -11,9 +14,17 @@
     </div>
     <div class="row">
         <div class="col">
-            {% for resource in resources %}
+            {% for resource in resources  %}
+
             <div class="card w-100 my-2">
-                <img class="card-img-top" src="https://images.pexels.com/photos/586415/pexels-photo-586415.jpeg?cs=srgb&dl=pexels-bryan-geraldo-586415.jpg&fm=jpg" alt="Card image cap">
+
+                <!-- <img src="https://res.cloudinary.com/dlnanftlf/image/upload/c_fill,h_100,w_1.0/v1678830219/{{resource.featured_image}}.jpg"> -->
+                <!-- {% cloudinary resource.featured_image height=150 %} -->
+                <img class="card-img-top" src="https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg" alt="Card image cap">
+
+     
+
+
                 <div class="card-body">
                   <h5 class="card-title">{{resource.title}}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">From: {{resource.link}}</h6>
