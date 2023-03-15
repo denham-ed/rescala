@@ -5,6 +5,10 @@ from .models import Resource
 # Register your models here.
 @admin.register(Resource)
 class ResourceAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'content', 'status')
+    list_display = ('title', 'excerpt', 'status')
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields =('content')
+    actions = ['publish_resource']
+
+    def publish_resource(self, request, queryset):
+        queryset.update(status=1)
