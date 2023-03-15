@@ -1,6 +1,12 @@
 from django import forms
 from .models import Profile
 from allauth.account.forms import SignupForm, LoginForm
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout, Div
+from crispy_forms.bootstrap import FormActions
+from crispy_bootstrap5.bootstrap5 import FloatingField
+from django.utils.safestring import mark_safe
+
 
 
 # https://dev.to/danielfeldroy/customizing-django-allauth-signup-forms-2o1m
@@ -36,16 +42,35 @@ class CustomSignupForm(SignupForm):
 
 
 class CustomLoginForm(LoginForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = "id-custom-login-form"
+        self.helper.form_method = "post"
+ 
+        self.fields["login"].label = mark_safe('<i class="fa-solid fa-user-secret"></i> Username ')
+        self.fields["password"].label = mark_safe('<i class="fa-solid fa-key"></i> Password ')
+    
 
-        self.fields["login"].widget = forms.TextInput(
-            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+        self.helper.layout = Layout(
+            Div(FloatingField("login")),
+            Div(FloatingField("password")),
+            Div(Submit(
+                "submit","Log In", css_class="btn btn-md btn-light"
+            ), css_class='d-flex justify-content-center')
         )
-        self.fields["password"].widget = forms.PasswordInput(
-            attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
-        )
+
+    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
+    #     self.fields["login"].widget = forms.TextInput(
+    #         attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+    #     )
+    #     self.fields["password"].widget = forms.PasswordInput(
+    #         attrs={"placeholder": "", "label": "", "class": "input-field py-1"}
+    #     )
     
         def login(self, *args, **kwargs):
             return super(MyCustomLoginForm, self).login(*args, **kwargs)

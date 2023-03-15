@@ -1,7 +1,3 @@
-/* *{
-     outline: red dotted 1px;
-}
- */
 /* ------------------------------- Base HTML Elements */
 body {
 	font-family: 'Work Sans', Courier, monospace;
@@ -276,6 +272,10 @@ footer p i {
 	color: #B80C09;
 }
 
+#id-custom-login-form label {
+	color: #14281D;
+}
+
 
 /* Resources */
 .card-img-top{
@@ -295,4 +295,4 @@ footer p i {
 }
 
 
-/* Resources */
+
