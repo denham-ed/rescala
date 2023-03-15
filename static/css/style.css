@@ -272,20 +272,35 @@ footer p i {
 	color: #B80C09;
 }
 
-
-
 .accent-header {
 	color: #B80C09;
 }
 
+.alert li {
+	list-style: none;
+}
+
+.alert ul {
+	padding-inline-start: 0;
+}
+
+/* Login Form */
 #id-custom-login-form label {
 	color: #14281D;
+}
+
+#id-custom-login-form .invalid-feedback{
+	color: #E8F1F2;
 }
 
 #div_id_remember label {
 	color:#E8F1F2;
 }
 
+.form-check-input:checked {
+    background-color: #B80C09;
+    border-color: #B80C09;
+}
 
 /* Resources */
 .card-img-top{

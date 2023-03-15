@@ -43,15 +43,32 @@ class CustomSignupForm(SignupForm):
 
 class CustomLoginForm(LoginForm):
 
+    error_messages = {
+        "username_password_mismatch": (
+            "Sorry! Your username or password isn't quite right. Please try again."
+        ),
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "id-custom-login-form"
         self.helper.form_method = "post"
- 
-        self.fields["login"].label = mark_safe('<i class="fa-solid fa-user-secret"></i> Username ')
-        self.fields["password"].label = mark_safe('<i class="fa-solid fa-key"></i> Password ')
-    
+        self.helper.attrs = {"novalidate": ''}
+        self.helper.form_tag = True
+
+
+        self.fields["login"] = forms.CharField(
+                label=mark_safe('<i class="fa-solid fa-user-secret"></i> Username '),
+                error_messages={'required': 'Please enter your Rescala username'}
+        )
+
+   
+
+        self.fields["password"].label=mark_safe('<i class="fa-solid fa-key"></i> Password ')
+        self.fields["password"].error_messages={'required': 'Please enter your password'}
+
+
 
         self.helper.layout = Layout(
             Div(FloatingField("login")),
