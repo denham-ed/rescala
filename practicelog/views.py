@@ -33,6 +33,7 @@ class Dashboard(View):
                 # Sessions
                 sessions = Session.objects.filter(user=request.user).order_by('-date')
                 recent_sessions = sessions[:10]
+                messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
                 return HttpResponseRedirect(reverse('dashboard'))
 
     def update_goal(request, goal_id):
@@ -41,6 +42,7 @@ class Dashboard(View):
             goal_complete = request.POST['goal-complete']
             current_user.goals[goal_id]['complete']=goal_complete
             current_user.save()
+            messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
             return HttpResponseRedirect(reverse('dashboard'))
 
 
@@ -65,7 +67,7 @@ class Dashboard(View):
         dates = [start_date + timedelta(days=i) for i in range(30)]
         mapped_dates = [{'date': date, 'practice': False} for date in dates]
         for d in mapped_dates:
-            # IS this right? looks like two loops!?
+            # Is this right? looks like two loops!?
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
@@ -75,7 +77,6 @@ class Dashboard(View):
         focus_list = []
         for session in sessions:
             focus_list = focus_list + session.focus
-        
         aggregated_focus = {}
         for focus in focus_list:
             if focus not in aggregated_focus:
@@ -166,6 +167,7 @@ class SessionDetails(View):
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
+        messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
         return HttpResponseRedirect(reverse('dashboard'))
 
 
@@ -204,6 +206,7 @@ class EditLog(View):
             session.summary = form.cleaned_data['summary']
             session.moods = form.cleaned_data['moods']
             session.save()
+            messages.add_message(request, messages.SUCCESS, 'You have successfully updated your practice session.')
             return redirect(f"/practice/{session_id}")
         else:
             return render(
