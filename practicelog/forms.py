@@ -113,7 +113,7 @@ class CreateSessionForm(forms.ModelForm):
 
         self.fields["duration"].label = "Duration (mins)"
         self.fields["duration"].widget = forms.NumberInput(
-            attrs={"type": "number", "min": 1, "max": 720}
+            attrs={"type": "number", "min": 1, "max": 360}
         )
         self.fields["duration"].error_messages = {
             'required':'How long did you practice for?'
