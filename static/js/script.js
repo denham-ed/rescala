@@ -28,12 +28,9 @@ $(document).ready(function () {
     })
 
     $(".save-goal-button").click(function (){
-        // Toggle Buttons to Original State
         const goalId = $(this).data('goal-id');
         $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
-        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle()
-        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.spinner-border[data-goal-id="${goalId}"]`).show()
         $(this).toggle()
     })
 });
