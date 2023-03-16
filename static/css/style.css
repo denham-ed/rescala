@@ -51,45 +51,6 @@ textarea {
 	border-radius: 5px;
 }
 
-/* Adapted from https://tinyurl.com/32v8acbn */
-.user-input-wrp {
-	position: relative;
-	color: black;
-}
-
-.user-input-wrp>textarea {
-	resize: none;
-}
-
-.user-input-wrp .input-field {
-	width: 100%;
-	outline: none;
-	border: none;
-	border-bottom: 1px solid #777;
-	box-shadow: none !important;
-}
-
-.user-input-wrp .input-field:focus {
-	border-color: #B80C09;
-	border-width: medium medium 2px;
-}
-
-.user-input-wrp .floating-label {
-	position: absolute;
-	pointer-events: none;
-	left: 1rem;
-	bottom: 0.2rem;
-	transition: 0.4s ease all;
-}
-
-.user-input-wrp input:focus~.floating-label, .user-input-wrp input:not(:focus):valid~.floating-label {
-	color: #E8F1F2;
-	top: 0px;
-	left: 10px;
-	font-size: 13px;
-	opacity: 1;
-}
-
 .edit-goal-range{
 	display: none;
 }
@@ -268,7 +229,7 @@ footer p i {
 }
 
 .form-label {
-	color: #B80C09;
+	color: #14281D;
 }
 
 .accent-header {

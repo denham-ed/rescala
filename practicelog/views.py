@@ -143,10 +143,11 @@ class CreateLog(View):
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
+            messages.add_message(request, messages.SUCCESS, 'Your practice has been logged successfully.')
+
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             print(create_session_form.errors)
-            messages.add_message(request, messages.ERROR, 'All sessions need a headline, a date, duration and your reflections.')
             context={"form": create_session_form}
             return render(
                 request,
