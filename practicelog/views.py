@@ -67,7 +67,7 @@ class Dashboard(View):
         dates = [start_date + timedelta(days=i) for i in range(30)]
         mapped_dates = [{'date': date, 'practice': False} for date in dates]
         for d in mapped_dates:
-            # IS this right? looks like two loops!?
+            # Is this right? looks like two loops!?
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
@@ -77,7 +77,6 @@ class Dashboard(View):
         focus_list = []
         for session in sessions:
             focus_list = focus_list + session.focus
-        
         aggregated_focus = {}
         for focus in focus_list:
             if focus not in aggregated_focus:
