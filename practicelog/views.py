@@ -168,6 +168,7 @@ class SessionDetails(View):
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
+        messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
         return HttpResponseRedirect(reverse('dashboard'))
 
 
@@ -206,6 +207,7 @@ class EditLog(View):
             session.summary = form.cleaned_data['summary']
             session.moods = form.cleaned_data['moods']
             session.save()
+            messages.add_message(request, messages.SUCCESS, 'You have successfully updated your practice session.')
             return redirect(f"/practice/{session_id}")
         else:
             return render(
