@@ -33,6 +33,7 @@ class Dashboard(View):
                 # Sessions
                 sessions = Session.objects.filter(user=request.user).order_by('-date')
                 recent_sessions = sessions[:10]
+                messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
                 return HttpResponseRedirect(reverse('dashboard'))
 
     def update_goal(request, goal_id):
@@ -41,6 +42,7 @@ class Dashboard(View):
             goal_complete = request.POST['goal-complete']
             current_user.goals[goal_id]['complete']=goal_complete
             current_user.save()
+            messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
             return HttpResponseRedirect(reverse('dashboard'))
 
 
