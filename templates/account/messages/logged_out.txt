@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}You have succesfully signed out. See you soon for your next practice.{% endblocktrans %}

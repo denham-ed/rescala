@@ -1,13 +1,13 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% load crispy_forms_tags%}
 {% crispy form form.helper %}
 
 {% block title%}
- Rescala | Log A Practice
+Rescala | Log A Practice
 {% endblock%}
 {% block content %}
- <div class="container row-fill-no-header">
+<div class="container row-fill-no-header">
     <div class="row ">
         <div class="col">
             <h1>Log A Practice</h1>
@@ -17,7 +17,7 @@
         <div class="col">
             <div>
                 {% crispy form %}
-          </div>
+            </div>
         </div>
     </div>
 </div> {% endblock %}

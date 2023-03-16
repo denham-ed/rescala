@@ -63,6 +63,7 @@ class CreateSessionForm(forms.ModelForm):
         self.helper.form_id = "id-create-log-form"
         self.helper.form_method = "post"
         self.helper.form_action = reverse_lazy("create_log")
+        self.helper.attrs = {"novalidate": ''}
         self.helper.layout = Layout(
             Div(
                 Div(
@@ -90,7 +91,10 @@ class CreateSessionForm(forms.ModelForm):
             ),
         )
 
-        self.fields["headline"].label = "Add a Headline"
+        self.fields["headline"].label = "Headline"
+        self.fields["headline"].error_messages = {
+            'required':'Whoops - you must enter a headline for this session.'
+        }
         self.fields["headline"].widget = forms.TextInput(
             attrs={
                 "placeholder": "One sentence that describes your practice...",
@@ -103,13 +107,20 @@ class CreateSessionForm(forms.ModelForm):
                 "max": datetime.now().date(),
             }
         )
+        self.fields["date"].error_messages = {
+            'required':'Please enter a date for this session'
+        }
+
         self.fields["duration"].label = "Duration (mins)"
         self.fields["duration"].widget = forms.NumberInput(
-            attrs={"type": "number", "min": 1, "max": 720}
+            attrs={"type": "number", "min": 1, "max": 360}
         )
+        self.fields["duration"].error_messages = {
+            'required':'How long did you practice for?'
+        }
 
         self.fields["focus"] = forms.MultipleChoiceField(
-            label="Today I foccussed on:",
+            label="Today I focussed on:",
             choices=FOCUS_CHOICES,
             widget=forms.CheckboxSelectMultiple(),
             required=False,
@@ -127,6 +138,9 @@ class CreateSessionForm(forms.ModelForm):
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
             }
         )
+        self.fields["summary"].error_messages = {
+            'required':'You must add some reflections for this session'
+        }
 
 
 class EditSessionForm(CreateSessionForm):
@@ -134,7 +148,7 @@ class EditSessionForm(CreateSessionForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "id-edit-session-from"
-        # self.helper.form_class = 'blueForms'
+        self.helper.attrs = {"novalidate": ''}
         self.helper.form_method = "post"
         self.helper.form_action = reverse_lazy(
             "edit_session", kwargs={"session_id": session.id}

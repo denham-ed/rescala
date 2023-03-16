@@ -8,6 +8,9 @@ from datetime import datetime, timedelta, date
 from wordcloud import WordCloud
 import io
 import base64
+from django.contrib import messages
+# Contenxt
+from django.template import context
 
 
 
@@ -83,8 +86,6 @@ class Dashboard(View):
         aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
         return aggregated_as_list
 
-
-
     def get_mins_practiced(self, sessions):
         start_date = date.today()
         # Weekly Minutes
@@ -95,11 +96,7 @@ class Dashboard(View):
         monthly_minutes = sum(session.duration for session in sessions if session.date in monthly_dates)
         # Total Minutes
         total_minutes = sum(session.duration for session in sessions)
-        
         return { "weekly": weekly_minutes, "monthly": monthly_minutes, "total": total_minutes}
-
-
-
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
@@ -125,13 +122,12 @@ class CreateLog(View):
     template_name = "createlog.html"
 
     def get(self, request):
-        user = request.user
+        # user = request.user
+        context={
+            "form": CreateSessionForm(),
+        }
         return render(
-            request, 'createlog.html',
-            {
-                "form": CreateSessionForm(),
-                "user": user
-            }
+            request, 'createlog.html',context=context
         )
 
     def post(self, request, *args, **kwargs):
@@ -141,12 +137,16 @@ class CreateLog(View):
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
+            messages.add_message(request, messages.SUCCESS, 'Your practice has been logged successfully.')
+
             return HttpResponseRedirect(reverse('dashboard'))
         else:
+            print(create_session_form.errors)
+            context={"form": create_session_form}
             return render(
                 request,
                 'createlog.html',
-                {"form": CreateSessionForm()}
+                context=context
             )
 
 
@@ -209,5 +209,5 @@ class EditLog(View):
             return render(
                 request,
                 'editlog.html',
-                {"form": EditSessionForm()}
+                {"form": form}
             )
