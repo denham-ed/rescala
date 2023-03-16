@@ -86,8 +86,6 @@ class Dashboard(View):
         aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
         return aggregated_as_list
 
-
-
     def get_mins_practiced(self, sessions):
         start_date = date.today()
         # Weekly Minutes
@@ -98,11 +96,7 @@ class Dashboard(View):
         monthly_minutes = sum(session.duration for session in sessions if session.date in monthly_dates)
         # Total Minutes
         total_minutes = sum(session.duration for session in sessions)
-        
         return { "weekly": weekly_minutes, "monthly": monthly_minutes, "total": total_minutes}
-
-
-
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
@@ -215,5 +209,5 @@ class EditLog(View):
             return render(
                 request,
                 'editlog.html',
-                {"form": EditSessionForm()}
+                {"form": form}
             )

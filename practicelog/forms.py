@@ -148,7 +148,7 @@ class EditSessionForm(CreateSessionForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = "id-edit-session-from"
-        # self.helper.form_class = 'blueForms'
+        self.helper.attrs = {"novalidate": ''}
         self.helper.form_method = "post"
         self.helper.form_action = reverse_lazy(
             "edit_session", kwargs={"session_id": session.id}
