@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-md-8">
 
             <div class="resource-img" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
                 <div>
@@ -23,7 +23,35 @@
             <div>
                 {{resource.content | safe}}
             </div>
+
         </div>
+
+    
+
+        <div class="col-md-4">
+            <h3>You might also like:</h3>
+            {% for article in articles%}
+            <a href="{% url 'resource_details' article.id%}">
+                <div class="card w-100 my-2">
+            
+                    <!-- <img src="https://res.cloudinary.com/dlnanftlf/image/upload/c_fill,h_100,w_1.0/v1678830219/{{resource.featured_image}}.jpg"> -->
+                    <!-- {% cloudinary resource.featured_image height=150 %} -->
+                    <img class="card-img-top" src="https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{article.featured_image}}.jpg" alt="Card image cap">
+            
+            
+            
+            
+                    <div class="card-body">
+                      <h5 class="card-title">{{article.title}}</h5>
+                      <!-- <p class="card-text">{{resource.excerpt}}</p> -->
+                    </div>
+                  </div>
+            
+            
+            </a>
+            {% endfor %}
+        </div>
+
     </div>
 </div>
 
