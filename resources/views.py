@@ -1,20 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, View
 from django.core.paginator import Paginator
 from .models import Resource
 
-# Create your views here.
-
 class LandingPage(TemplateView):
     template_name = 'landing.html'
 
-
-
-
-
 class ResourcesPage(View):
 
-    # Cloudinary Docs
+    # Cloudinary Docs ????
     def image_effects(request):
         return dict(
             IMAGE_EFFECTS = dict(
@@ -26,7 +20,6 @@ class ResourcesPage(View):
         )
 
     def get(self, request):
-
         # resources = Resource.objects.all()
         resources = Resource.objects.filter(status=1)
         paginator = Paginator(resources, 3)
@@ -40,5 +33,18 @@ class ResourcesPage(View):
             request, 'resources.html',{
                 "resources": paginated_resources,
                 "IMAGE_EFFECTS": image_effects
+            }
+        )
+
+class ResourceDetails(View):
+
+    def get(self,request, resource_id):
+
+        resource = get_object_or_404(Resource, id=resource_id)
+        articles = Resource.objects.exclude(id=resource_id).filter(status=1)
+        return render(
+            request, 'resourcedetails.html', {
+                "resource": resource,
+                "articles":articles
             }
         )
