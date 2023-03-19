@@ -39,8 +39,9 @@ class ResourcesPage(View):
 class ResourceDetails(View):
 
     def get(self,request, resource_id):
-        articles = Resource.objects.all()
+
         resource = get_object_or_404(Resource, id=resource_id)
+        articles = Resource.objects.exclude(id=resource_id).filter(status=1)
         return render(
             request, 'resourcedetails.html', {
                 "resource": resource,
