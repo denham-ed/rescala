@@ -8,10 +8,6 @@ from .models import Resource
 class LandingPage(TemplateView):
     template_name = 'landing.html'
 
-
-
-
-
 class ResourcesPage(View):
 
     # Cloudinary Docs
@@ -26,7 +22,6 @@ class ResourcesPage(View):
         )
 
     def get(self, request):
-
         # resources = Resource.objects.all()
         resources = Resource.objects.filter(status=1)
         paginator = Paginator(resources, 3)
@@ -42,3 +37,6 @@ class ResourcesPage(View):
                 "IMAGE_EFFECTS": image_effects
             }
         )
+
+class ResourceDetails(TemplateView):
+    template_name = 'resourcedetails.html'
