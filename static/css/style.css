@@ -284,5 +284,16 @@ footer p i {
 	background-color: #DCDCDC;
 }
 
+/* SPINNER */
+
+.spinner-border{
+	display: none;
+	color: #B80C09;
+}
+/* 
+#login-spinner{
+	display: block;
+}
+ */
 
 
