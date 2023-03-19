@@ -15,19 +15,14 @@
                     <div class="star-container">
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <div class="resource-date">{{resource.created_on}}</div>
+                    <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                 </div>
                 <h2 class="text-center">{{resource.title}}</h2>
             </div>
-
             <div>
                 {{resource.content | safe}}
             </div>
-
         </div>
-
-    
-
         <div class="col-md-4">
             <hr class="d-md-none">
             <h3>You might also like:</h3>
