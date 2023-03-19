@@ -6,5 +6,21 @@
  Rescala | Resources
 {% endblock%}
 {% block content %}
-<h1>{{resource.title}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="resource-img" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
+                <div>
+                    <div class="star-container">
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <div class="resource-date">{{resource.created_on}}</div>
+                </div>
+                <h2 class="text-center">{{resource.title}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
