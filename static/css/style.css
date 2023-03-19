@@ -16,6 +16,11 @@ main {
 	flex-grow: 1;
 }
 
+hr {
+	border-top: #14281D 3px solid;
+	opacity: 1;
+}
+
 /* ------------------------------- Text and Fonts */
 h1, h2, h3 {
 	font-family: 'Fraunces', Courier, monospace;

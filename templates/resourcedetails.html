@@ -29,6 +29,7 @@
     
 
         <div class="col-md-4">
+            <hr class="d-md-none">
             <h3>You might also like:</h3>
             {% for article in articles%}
             <a href="{% url 'resource_details' article.id%}">
