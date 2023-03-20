@@ -304,6 +304,14 @@ footer p i {
 		/* background-position: center; */
 	user-select: none;
 	position: relative;
+	margin: 0.5rem 0;
+	transition: border 300ms linear;
+}
+
+.resource-listing:hover{
+	border: 0.2rem solid #14281D;
+	box-sizing: border-box;
+
 
 }
 
@@ -315,8 +323,9 @@ footer p i {
 	color: #E8F1F2;
 	padding: 1rem 3rem;
 	margin: 0;
-
 }
+
+
 
 
 /* Individual Resource */
@@ -329,8 +338,8 @@ footer p i {
 		/* background-position: center; */
 	user-select: none;
 	position: relative;
-
 }
+
 
 .resource-img h2 {
 	position: absolute;
