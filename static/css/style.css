@@ -293,6 +293,65 @@ footer p i {
 	background-color: #DCDCDC;
 }
 
+/* Listing */
+
+.resource-listing{
+	height: 20rem;
+	/* width: 100%; */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+		/* background-position: center; */
+	user-select: none;
+	position: relative;
+	margin: 0.5rem 0;
+}
+
+.resource-listing:hover{
+	border: 0.2rem solid #14281D;
+	box-sizing: border-box;
+}
+
+.resource-summary {
+    color: #E8F1F2;
+    background-color: rgba(53,88,52,0.8);
+    height: 100%;
+	display: none;
+    padding: 3rem 1rem 0 1rem;
+	overflow: hidden;
+
+}
+
+.resource-listing:hover .resource-summary{
+	display: block;
+}
+
+.resource-listing:hover .resource-title{
+	display: none;
+}
+
+
+
+.resource-title{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(53, 88, 52, 0.8);
+	color: #E8F1F2;
+	padding: 1rem 3rem;
+	margin: 0;
+}
+
+.page-link{
+	color: #14281D;
+}
+
+
+
+
+
+
+/* Individual Resource */
 .resource-img{
 	height: 40rem;
 	width: 100%;
@@ -302,8 +361,8 @@ footer p i {
 		/* background-position: center; */
 	user-select: none;
 	position: relative;
-
 }
+
 
 .resource-img h2 {
 	position: absolute;
