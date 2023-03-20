@@ -10,7 +10,7 @@ class Resource(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
+    excerpt = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
