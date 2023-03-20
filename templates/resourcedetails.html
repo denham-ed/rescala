@@ -11,9 +11,16 @@
         <div class="col-md-8">
             <div class="resource-img" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
                 <div>
+                    {% if user.is_authenticated %}
                     <div class="star-container">
-                        <i class="fa-regular fa-star"></i>
+                        <form action="{% url 'favourite_resource' resource.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" value="{{resource.id}}">
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                        </form>
                     </div>
+                    {% endif %}
                     <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                 </div>
                 <h2 class="text-center">{{resource.title}}</h2>

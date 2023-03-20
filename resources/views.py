@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic import ListView, TemplateView, View
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
+
 from .models import Resource
 
 class LandingPage(TemplateView):
@@ -48,3 +50,16 @@ class ResourceDetails(View):
                 "articles": articles[:3]
             }
         )
+
+
+class FavouriteResource(View):
+    def post(self, request, resource_id):
+        user = request.user
+        # resource = get_object_or_404(Resource, id=resource_id)
+        if user.resources.filter(id=resource_id).exists():
+            print('Liked it')
+        else:
+            print('havent liked it')
+        return HttpResponseRedirect(reverse(
+            'resource_details',
+            args=[resource_id]))
