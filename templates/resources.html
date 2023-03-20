@@ -3,59 +3,78 @@
 {% load cloudinary %}
 
 {% block title%}
- Rescala | Resources
+Rescala | Resources
 {% endblock%}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <h1>Resources</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class="row resource-row">
+
             {% if resources %}
 
 
-            {% for resource in resources  %}
-<a href="{% url 'resource_details' resource.id%}">
-    <div class="card w-100 my-2">
+            {% for resource in resources %}
+            {% if forloop.counter == 1 or forloop.counter == 6%}
+            <div class="col-md-6">
+                <a href="{% url 'resource_details' resource.id%}">
+                    <div class="resource-listing" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
+                        <div>
+                            <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
+                        </div>
+                        <div class=" resource-title">{{resource.title}}</div>
+                    </div>
+                </a>
+                </div>
 
-        <!-- <img src="https://res.cloudinary.com/dlnanftlf/image/upload/c_fill,h_100,w_1.0/v1678830219/{{resource.featured_image}}.jpg"> -->
-        <!-- {% cloudinary resource.featured_image height=150 %} -->
-        <img class="card-img-top" src="https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg" alt="Card image cap">
+            {% else %}            
+            <div class="col-md-3">
+                <a href="{% url 'resource_details' resource.id%}">
+                    <div class="resource-listing" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
+                        <div>
+                            <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
+                        </div>
+                        <div class="resource-title">{{resource.title}}</div>
+                    </div>
+                </a>
+            </div>
 
 
+            {% endif %}
 
-
-        <div class="card-body">
-          <h5 class="card-title">{{resource.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">From: {{resource.link}}</h6>
-          <p class="card-text">{{resource.excerpt}}</p>
-        </div>
-      </div>
-
-
-</a>
- 
+                <!-- <div class="card w-100 my-2">
+                    <img class="card-img-top"
+                        src="https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{resource.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">From: {{resource.link}}</h6>
+                        <p class="card-text">{{resource.excerpt}}</p>
+                    </div>
+                </div> -->
+    
             {% endfor %}
-        </div>
-    </div>
+
+
+</div>
     <div class="row">
         <div class="col d-flex justify-content-center">
             <!-- Adapted from Django Docs -->
             <div class="pagination">
                 <span class="step-links">
                     {% if resources.has_previous %}
-                        <a class="btn btn-dark" href="?page={{ resources.previous_page_number }}"> &laquo; previous </a>
+                    <a class="btn btn-dark" href="?page={{ resources.previous_page_number }}"> &laquo; previous </a>
                     {% endif %}
-            
+
                     <span class="current">
                         Page {{ resources.number }} of {{ resources.paginator.num_pages }}.
                     </span>
-        
+
                     {% if resources.has_next %}
-                        <a class="btn btn-dark" href="?page={{ resources.next_page_number }}">next &raquo;</a>
+                    <a class="btn btn-dark" href="?page={{ resources.next_page_number }}">next &raquo;</a>
                     {% endif %}
                 </span>
             </div>
@@ -65,7 +84,8 @@
 
     <div class="row">
         <div class="col">
-          Rescala will bring you the best insights on practice, music and the industry from around the web. Check back in future to learn more.
+            Rescala will bring you the best insights on practice, music and the industry from around the web. Check back
+            in future to learn more.
         </div>
     </div>
     {% endif%}

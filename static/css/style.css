@@ -293,6 +293,33 @@ footer p i {
 	background-color: #DCDCDC;
 }
 
+/* Listing */
+
+.resource-listing{
+	height: 20rem;
+	/* width: 100%; */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+		/* background-position: center; */
+	user-select: none;
+	position: relative;
+
+}
+
+.resource-title{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(53, 88, 52, 0.8);
+	color: #E8F1F2;
+	padding: 1rem 3rem;
+	margin: 0;
+
+}
+
+
+/* Individual Resource */
 .resource-img{
 	height: 40rem;
 	width: 100%;
