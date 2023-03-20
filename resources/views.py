@@ -22,7 +22,7 @@ class ResourcesPage(View):
     def get(self, request):
         # resources = Resource.objects.all()
         resources = Resource.objects.filter(status=1)
-        paginator = Paginator(resources, 3)
+        paginator = Paginator(resources, 6)
 
         page_number = request.GET.get('page')
         paginated_resources = paginator.get_page(page_number)
@@ -45,6 +45,6 @@ class ResourceDetails(View):
         return render(
             request, 'resourcedetails.html', {
                 "resource": resource,
-                "articles":articles
+                "articles": articles[:3]
             }
         )
