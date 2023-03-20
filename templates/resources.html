@@ -25,7 +25,10 @@ Rescala | Resources
                         <div>
                             <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                         </div>
-                        <div class=" resource-title">{{resource.title}}</div>
+                        <div class="resource-title">{{resource.title}}</div>
+                        <div class="resource-summary">
+                            {{resource.excerpt}}
+                        </div>
                     </div>
                 </a>
                 </div>
@@ -38,6 +41,9 @@ Rescala | Resources
                             <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                         </div>
                         <div class="resource-title">{{resource.title}}</div>
+                        <div class="resource-summary">
+                            {{resource.excerpt}}
+                        </div>
                     </div>
                 </a>
             </div>
