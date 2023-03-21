@@ -14,12 +14,13 @@ from django.utils.decorators import method_decorator
 # Contenxt
 from django.template import context
 
+# Auth
+from django.contrib.auth.mixins import  LoginRequiredMixin
+
 
 # Dashboard
-@method_decorator(login_required, name="get")
-class Dashboard(View):
-    template_name = "dashboard.html"
 
+class Dashboard(LoginRequiredMixin, View):
     def add_goal(request):
         if request.method == 'POST':
             current_user = request.user
@@ -123,10 +124,7 @@ class Dashboard(View):
             ) 
 
 
-@method_decorator(login_required, name="get")
-class CreateLog(View):
-    template_name = "createlog.html"
-
+class CreateLog(LoginRequiredMixin, View):
     def get(self, request):
         # user = request.user
         context = {
@@ -155,10 +153,7 @@ class CreateLog(View):
                 context=context
             )
 
-@method_decorator(login_required, name="get")
-class SessionDetails(View):
-    template_name = 'sessiondetails.html'
-
+class SessionDetails(LoginRequiredMixin, View):
     def get(self, request, session_id, *args, **kwargs):
         session = get_object_or_404(Session, id=session_id)
 
@@ -175,8 +170,8 @@ class SessionDetails(View):
         messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
         return HttpResponseRedirect(reverse('dashboard'))
 
-@method_decorator(login_required, name="get")
-class EditLog(View):
+
+class EditLog(LoginRequiredMixin, View):
     template_name = "editlog.html"
 
     def get(self, request, session_id):
