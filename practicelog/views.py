@@ -11,12 +11,13 @@ import base64
 from django.contrib import messages
 # Contenxt
 from django.template import context
+# Auth
+from django.contrib.auth.mixins import  LoginRequiredMixin
 
 
-# Dashboard
-class Dashboard(View):
-    template_name = "dashboard.html"
 
+
+class Dashboard(LoginRequiredMixin, View):
     def add_goal(request):
         if request.method == 'POST':
             current_user = request.user
@@ -72,7 +73,7 @@ class Dashboard(View):
                     d['practice'] = True
         return mapped_dates
 
-    def aggregate_focus(self,sessions):
+    def aggregate_focus(self, sessions):
         focus_list = []
         for session in sessions:
             focus_list = focus_list + session.focus
@@ -83,7 +84,7 @@ class Dashboard(View):
             else:
                 aggregated_focus[focus] += 1
 
-        aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
+        aggregated_as_list = [{"focus": x, "count": y} for x, y in aggregated_focus.items()]
         return aggregated_as_list
 
     def get_mins_practiced(self, sessions):
@@ -120,16 +121,14 @@ class Dashboard(View):
             ) 
 
 
-class CreateLog(View):
-    template_name = "createlog.html"
-
+class CreateLog(LoginRequiredMixin, View):
     def get(self, request):
         # user = request.user
-        context={
+        context = {
             "form": CreateSessionForm(),
         }
         return render(
-            request, 'createlog.html',context=context
+            request, 'createlog.html', context=context
         )
 
     def post(self, request, *args, **kwargs):
@@ -144,17 +143,14 @@ class CreateLog(View):
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             print(create_session_form.errors)
-            context={"form": create_session_form}
+            context = {"form": create_session_form}
             return render(
                 request,
                 'createlog.html',
                 context=context
             )
 
-
-class SessionDetails(View):
-    template_name = 'sessiondetails.html'
-
+class SessionDetails(LoginRequiredMixin, View):
     def get(self, request, session_id, *args, **kwargs):
         session = get_object_or_404(Session, id=session_id)
 
@@ -164,7 +160,7 @@ class SessionDetails(View):
                 "session": session
             }
         )
-    
+   
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
@@ -172,7 +168,7 @@ class SessionDetails(View):
         return HttpResponseRedirect(reverse('dashboard'))
 
 
-class EditLog(View):
+class EditLog(LoginRequiredMixin, View):
     template_name = "editlog.html"
 
     def get(self, request, session_id):

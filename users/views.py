@@ -1,9 +1,9 @@
-from django.shortcuts import render
-from allauth.account.views import SignupView
-from .forms import CustomSignupForm
+from django.shortcuts import render, redirect
+from django.views.generic import View
 
 
-# class CustomSignUpView(SignupView):
-#     template_name = "account/signup.html"
-#     form_class = CustomSignupForm
-    
+class LandingPage(View):
+    def get(self,request):
+        if request.user.is_authenticated:
+            return redirect('dashboard')
+        return render(request, 'landing.html')

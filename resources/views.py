@@ -6,8 +6,8 @@ from django.contrib import messages
 from .models import Resource
 
 
-class LandingPage(TemplateView):
-    template_name = 'landing.html'
+
+
 
 
 class ResourcesPage(View):
