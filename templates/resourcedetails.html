@@ -25,6 +25,12 @@
                         </form>
                     </div>
                     {% endif %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags}} alert-dismissible fade show w-50 mt-5 ms-5" id="msg" role="alert">
+                      {{ message | safe }}
+                      <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
                     <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                 </div>
                 <h2 class="text-center">{{resource.title}}</h2>
