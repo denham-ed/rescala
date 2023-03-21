@@ -43,6 +43,10 @@ a {
 	color:#DCDCDC !important;
 } */
 
+.rescala-red{
+	color: #B80C09;
+}
+
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;

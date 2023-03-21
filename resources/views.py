@@ -39,15 +39,16 @@ class ResourcesPage(View):
         )
 
 class ResourceDetails(View):
-
     def get(self,request, resource_id):
-
+        user = request.user
         resource = get_object_or_404(Resource, id=resource_id)
+        favourite = user.resources.filter(id=resource_id).exists()
         articles = Resource.objects.exclude(id=resource_id).filter(status=1)
         return render(
             request, 'resourcedetails.html', {
                 "resource": resource,
-                "articles": articles[:3]
+                "articles": articles[:3],
+                "favourite": favourite
             }
         )
 
