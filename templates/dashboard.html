@@ -6,7 +6,7 @@ Rescala | Dasboard
 
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col">
       <h1>Dashboard</h1>
@@ -24,12 +24,13 @@ Rescala | Dasboard
   </div>
   <!-- Messages -->
   <div class="row" data-masonry='{"percentPosition": true }'>
-
-
-    <div class="col-md-6">
-      <div class="card">
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>Recent Practice</h3>
+          <div class="dashboard-title">
+            <h3>Recent Practice</h3>
+          </div>
+
           {% if sessions %}
           <table>
             <tbody>
@@ -53,9 +54,14 @@ Rescala | Dasboard
           </table>
         </div>
       </div>
-      <div class="card">
+    </div>
+    <!-- Card 2 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>My Goals</h3>
+          <div class="dashboard-title">
+            <h3>My Goals </h3>
+          </div>
           {%for goal in goals%}
           <div>
             {{goal.goal}}
@@ -83,13 +89,9 @@ Rescala | Dasboard
                       class="fa-regular fa-circle-check"></i></button>
                   <button type='button' data-goal-id="{{forloop.counter}}"
                     class="delete-goal-button btn btn-sm btn-very-dark"><i class="fa-solid fa-xmark"></i></button>
-
-
                 </div>
               </div>
             </form>
-
-
           </div>
           {% endfor %}
           <!-- Add Goal Button -->
@@ -97,10 +99,15 @@ Rescala | Dasboard
           </button>
         </div>
       </div>
-      <!-- Card Three -->
-      <div class="card">
+    </div>
+
+    <!-- Card Three -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>I am Feeling</h3>
+          <div class="dashboard-title">
+            <h3>Moods</h3>
+          </div>
           {% if wordcloud is not None %}
           <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
           {% else %}
@@ -108,17 +115,14 @@ Rescala | Dasboard
           {% endif %}
         </div>
       </div>
-
-
-
-
     </div>
     <!-- Column 2 -->
-    <div class="col-md-6">
-      <!-- Card 1 -->
-      <div class="card">
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>Last 30 Days</h3>
+          <div class="dashboard-title">
+            <h3>Last 30 Days</h3>
+          </div>
           <div class="calendar-container d-flex flex-wrap">
             {% for day in dates %}
             {% if day.practice%}
@@ -128,25 +132,30 @@ Rescala | Dasboard
             <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
               title="{{ day.date | date:'D d M y' }}"></div>
             {% endif %}
-
-
             {% endfor %}
           </div>
         </div>
       </div>
-      <!-- Card 2 -->
-      <div class="card">
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>Focus</h3>
+          <div class="dashboard-title">
+            <h3>Focus</h3>
+          </div>
           <div>
             <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
-      <!-- Card 3 -->
-      <div class="card">
+    </div>
+    <!-- Card 3 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>Total Practice</h3>
+          <div class="dashboard-title">
+            <h3>Total Practice</h3>
+          </div>
           <div class="d-flex justify-content-evenly">
             <div class="tally-container">
               <div class="accent-header">Last 7 Days</div>
@@ -163,10 +172,15 @@ Rescala | Dasboard
           </div>
         </div>
       </div>
-      <!-- Card 4 -->
-      <div class="card">
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
         <div class="card-body">
-          <h3>My Resources</h3>
+          <div class="dashboard-title">
+            <h3>My Resources</h3>
+          </div>
           {% for resource in resources%}
           <a href="{% url 'resource_details' resource.id %}">
             <div>{{resource.title}}</div>
@@ -181,18 +195,19 @@ Rescala | Dasboard
     </div>
   </div>
 
-  {% else %}
-  <div class="row">
-    <div class="col-md-12">
-      <div class="dashboard-item">
-        <h3>Welcome to Rescala, {{user.first_name}}</h3>
-        <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
-          feeling and start to move towards your musical goals.</div>
-        <div>You've done the hard work! Just log your first practice to get started.</div>
-      </div>
+{% else %}
+<!-- CHECK STYLING?? -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="dashboard-item">
+      <h3>Welcome to Rescala, {{user.first_name}}</h3>
+      <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
+        feeling and start to move towards your musical goals.</div>
+      <div>You've done the hard work! Just log your first practice to get started.</div>
     </div>
   </div>
-  {% endif %}
+</div>
+{% endif %}
 </div>
 <!-- Add Goal Modal -->
 <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
@@ -225,8 +240,7 @@ Rescala | Dasboard
 
 {%block scripts%}
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-  integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
-  async></script>
+  integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
