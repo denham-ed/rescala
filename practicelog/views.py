@@ -13,7 +13,6 @@ from django.contrib import messages
 from django.template import context
 
 
-
 # Dashboard
 class Dashboard(View):
     template_name = "dashboard.html"
@@ -26,7 +25,7 @@ class Dashboard(View):
                 goal = form.cleaned_data['goalName']
                 current_user.goals.append({
                     'goal': goal,
-                    'complete':0
+                    'complete': 0
                 })
                 current_user.save()
                 print(goal)

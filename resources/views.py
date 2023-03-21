@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views.generic import ListView, TemplateView, View
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
@@ -55,11 +55,10 @@ class ResourceDetails(View):
 class FavouriteResource(View):
     def post(self, request, resource_id):
         user = request.user
-        # resource = get_object_or_404(Resource, id=resource_id)
+        resource = get_object_or_404(Resource, id=resource_id)
         if user.resources.filter(id=resource_id).exists():
-            print('Liked it')
+            user.resources.remove(resource_id)
         else:
-            print('havent liked it')
-        return HttpResponseRedirect(reverse(
-            'resource_details',
-            args=[resource_id]))
+            user.resources.add(resource)
+        return redirect(reverse('resource_details', args=[resource_id]))
+

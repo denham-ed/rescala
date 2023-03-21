@@ -13,9 +13,9 @@
                 <div>
                     {% if user.is_authenticated %}
                     <div class="star-container">
-                        <form action="{% url 'favourite_resource' resource.id %}" method="POST">
+                        <form action="{% url 'favourite_resource' resource.id %}" method="POST" name="favourite_form">
                             {% csrf_token %}
-                            <button type="submit" value="{{resource.id}}">
+                            <span type="submit" value="{{resource.id}}" onclick="favourite_form.submit()">
                                 <i class="fa-regular fa-star"></i>
                             </button>
                         </form>
