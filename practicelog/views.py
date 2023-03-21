@@ -101,6 +101,7 @@ class Dashboard(View):
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         user = request.user
+        resources = user.resources.all()
         
         return render(
                 request, 'dashboard.html',
@@ -113,7 +114,8 @@ class Dashboard(View):
                     "wordcloud": self.create_mood_cloud(sessions),
                     "practice_totals": self.get_mins_practiced(sessions),
                     "focus_list": self.aggregate_focus(sessions),
-                    "user": user
+                    "user": user,
+                    "resources": resources
                 }
             ) 
 

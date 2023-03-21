@@ -134,6 +134,7 @@ Rescala | Dasboard
       </div>
     </div>
   </div>
+  <!-- Row 3 -->
   <div class="row">
     <div class="col-md-6">
       <!-- Focus Chart -->
@@ -165,6 +166,20 @@ Rescala | Dasboard
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="dashboard-item">
+      <h3>My Resources</h3>
+      {% for resource in resources%}
+      <a href="{% url 'resource_details' resource.id %}">
+        <div>{{resource.title}}</div>
+      </a>
+      {% empty %}
+      <div>Here you can see all your favourite articles, tips and interviews. Head over to Resources to get started.</div>
+      {%endfor%}
+    </div>    
+</div>
   </div>
   {% else %}
   <div class="row">
