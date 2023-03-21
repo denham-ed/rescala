@@ -9,6 +9,7 @@ from .models import Resource
 
 
 
+
 class ResourcesPage(View):
     def get(self, request):
         resources = Resource.objects.filter(status=1)

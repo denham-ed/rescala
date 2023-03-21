@@ -9,11 +9,14 @@ from wordcloud import WordCloud
 import io
 import base64
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Contenxt
 from django.template import context
 
 
 # Dashboard
+@method_decorator(login_required, name="get")
 class Dashboard(View):
     template_name = "dashboard.html"
 
@@ -72,7 +75,7 @@ class Dashboard(View):
                     d['practice'] = True
         return mapped_dates
 
-    def aggregate_focus(self,sessions):
+    def aggregate_focus(self, sessions):
         focus_list = []
         for session in sessions:
             focus_list = focus_list + session.focus
@@ -83,7 +86,7 @@ class Dashboard(View):
             else:
                 aggregated_focus[focus] += 1
 
-        aggregated_as_list = [{"focus":x, "count":y} for x,y in aggregated_focus.items()]
+        aggregated_as_list = [{"focus": x, "count": y} for x, y in aggregated_focus.items()]
         return aggregated_as_list
 
     def get_mins_practiced(self, sessions):
@@ -120,16 +123,17 @@ class Dashboard(View):
             ) 
 
 
+@method_decorator(login_required, name="get")
 class CreateLog(View):
     template_name = "createlog.html"
 
     def get(self, request):
         # user = request.user
-        context={
+        context = {
             "form": CreateSessionForm(),
         }
         return render(
-            request, 'createlog.html',context=context
+            request, 'createlog.html', context=context
         )
 
     def post(self, request, *args, **kwargs):
@@ -144,14 +148,14 @@ class CreateLog(View):
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             print(create_session_form.errors)
-            context={"form": create_session_form}
+            context = {"form": create_session_form}
             return render(
                 request,
                 'createlog.html',
                 context=context
             )
 
-
+@method_decorator(login_required, name="get")
 class SessionDetails(View):
     template_name = 'sessiondetails.html'
 
@@ -164,14 +168,14 @@ class SessionDetails(View):
                 "session": session
             }
         )
-    
+   
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
         messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
         return HttpResponseRedirect(reverse('dashboard'))
 
-
+@method_decorator(login_required, name="get")
 class EditLog(View):
     template_name = "editlog.html"
 
