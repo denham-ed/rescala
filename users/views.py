@@ -1,9 +1,7 @@
 from django.shortcuts import render
-from allauth.account.views import SignupView
-from .forms import CustomSignupForm
+from django.views.generic import View
 
 
-# class CustomSignUpView(SignupView):
-#     template_name = "account/signup.html"
-#     form_class = CustomSignupForm
-    
+class LandingPage(View):
+    def get(self,request):
+        return render(request, 'landing.html')
