@@ -9,16 +9,13 @@ from wordcloud import WordCloud
 import io
 import base64
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 # Contenxt
 from django.template import context
-
 # Auth
 from django.contrib.auth.mixins import  LoginRequiredMixin
 
 
-# Dashboard
+
 
 class Dashboard(LoginRequiredMixin, View):
     def add_goal(request):
