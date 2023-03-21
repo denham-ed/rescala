@@ -233,8 +233,8 @@ footer p i {
 
 /* ------------------------------- Calendar */
 .calendar-day {
-	height: 4rem;
-	width: 4rem;
+	height: 3rem;
+	width: 3rem;
 	border-radius: 50%;
 	background-color: white;
 	margin-top: 0.5rem;
