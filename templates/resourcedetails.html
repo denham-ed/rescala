@@ -11,9 +11,26 @@
         <div class="col-md-8">
             <div class="resource-img" style='background-image: url("https://res.cloudinary.com/dlnanftlf/image/upload/v1678830219/{{resource.featured_image}}.jpg")'>
                 <div>
+                    {% if user.is_authenticated %}
                     <div class="star-container">
-                        <i class="fa-regular fa-star"></i>
+                        <form action="{% url 'favourite_resource' resource.id %}" method="POST" name="favourite_form">
+                            {% csrf_token %}
+                            <span type="submit" value="{{resource.id}}" onclick="favourite_form.submit()">
+                                {%if favourite %}
+                                <i class="fa-solid fa-star rescala-red"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-star"></i>
+                                {% endif %}
+                            </span>
+                        </form>
                     </div>
+                    {% endif %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags}} alert-dismissible fade show w-50 mt-5 ms-5" id="msg" role="alert">
+                      {{ message | safe }}
+                      <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
                     <div class="resource-date">{{resource.created_on|date:"D d M Y" }}</div>
                 </div>
                 <h2 class="text-center">{{resource.title}}</h2>

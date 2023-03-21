@@ -13,7 +13,6 @@ from django.contrib import messages
 from django.template import context
 
 
-
 # Dashboard
 class Dashboard(View):
     template_name = "dashboard.html"
@@ -26,7 +25,7 @@ class Dashboard(View):
                 goal = form.cleaned_data['goalName']
                 current_user.goals.append({
                     'goal': goal,
-                    'complete':0
+                    'complete': 0
                 })
                 current_user.save()
                 print(goal)
@@ -102,6 +101,7 @@ class Dashboard(View):
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         user = request.user
+        resources = user.resources.all()
         
         return render(
                 request, 'dashboard.html',
@@ -114,7 +114,8 @@ class Dashboard(View):
                     "wordcloud": self.create_mood_cloud(sessions),
                     "practice_totals": self.get_mins_practiced(sessions),
                     "focus_list": self.aggregate_focus(sessions),
-                    "user": user
+                    "user": user,
+                    "resources": resources
                 }
             ) 
 
