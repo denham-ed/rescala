@@ -6,13 +6,13 @@ Rescala | Dasboard
 
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col">
       <h1>Dashboard</h1>
+      <hr/>
     </div>
   </div>
-  <!-- Messages -->
   <div class="row">
     <div class="col-md-8 offset-md-2">
       {% for message in messages %}
@@ -23,100 +23,107 @@ Rescala | Dasboard
       {% endfor %}
     </div>
   </div>
-  {% if sessions %}
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Recent Practices -->
-      <div class="dashboard-item">
-        <h3>Recent Practice</h3>
-        <table>
-          <tbody>
-            {% for session in recent_sessions %}
-            <tr>
-              <td>
-                <a href="{% url 'session_details' session.id %}">
-                  {{session.date | date:'D d M y'}}
-                </a>
-              </td>
-              <td>
-                <a href="{% url 'session_details' session.id %}">
-                  {{session.headline}}
-                </a>
-              </td>
-            </tr>
-            {% empty %}
-            <p>This is where your logged practices will appear!</p>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <!-- Goals -->
-      <div class="dashboard-item">
-        <h3>My Goals</h3>
-        {%for goal in goals%}
-        <div>
-          {{goal.goal}}
-          <form method="POST" action="{% url 'update_goal' forloop.counter0 %}">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-md-8">
-                <div class="progress goal-progress" data-goal-id="{{forloop.counter}}">
-                  <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="d-flex justify-content-center">
-                  <div class="spinner-border" role="status" data-goal-id="{{forloop.counter}}">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                </div>
+  <!-- Messages -->
+  <div class="row" data-masonry='{"percentPosition": true }'>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>Recent Practice</h3>
+          </div>
 
-                <input type="range" data-goal-id="{{forloop.counter}}" class="w-100 edit-goal-range"
-                  value="{{goal.complete}}" name="goal-complete">
-              </div>
-              <div class="col-md-4">
-                <button type='button' data-goal-id="{{forloop.counter}}"
-                  class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
-                <button data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
-                    class="fa-regular fa-circle-check"></i></button>
-                <button type='button' data-goal-id="{{forloop.counter}}"
-                  class="delete-goal-button btn btn-sm btn-very-dark"><i class="fa-solid fa-xmark"></i></button>
-
-
-              </div>
-            </div>
-          </form>
-
-
+          {% if sessions %}
+          <table>
+            <tbody>
+              {% for session in recent_sessions %}
+              <tr>
+                <td>
+                  <a href="{% url 'session_details' session.id %}">
+                    {{session.date | date:'D d M y'}}
+                  </a>
+                </td>
+                <td>
+                  <a href="{% url 'session_details' session.id %}">
+                    {{session.headline}}
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <p>This is where your logged practices will appear!</p>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
-        {% endfor %}
-        <!-- Add Goal Button -->
-        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal
-        </button>
       </div>
     </div>
-  </div>
-  <!-- Row 2 -->
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Moods -->
-      <div class="dashboard-item">
-        <h3>I am Feeling</h3>
-        {% if wordcloud is not None %}
-        <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
-        {% else %}
-        <p>Log a session to start learning more about how you feel about your practice sessions.</p>
-        {% endif %}
+    <!-- Card 2 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>My Goals </h3>
+          </div>
+          {%for goal in goals%}
+          <div>
+            {{goal.goal}}
+            <form method="POST" action="{% url 'update_goal' forloop.counter0 %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="progress goal-progress" data-goal-id="{{forloop.counter}}">
+                    <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status" data-goal-id="{{forloop.counter}}">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
 
+                  <input type="range" data-goal-id="{{forloop.counter}}" class="w-100 edit-goal-range"
+                    value="{{goal.complete}}" name="goal-complete">
+                </div>
+                <div class="col-md-4">
+                  <button type='button' data-goal-id="{{forloop.counter}}"
+                    class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
+                  <button data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
+                      class="fa-regular fa-circle-check"></i></button>
+                  <button type='button' data-goal-id="{{forloop.counter}}"
+                    class="delete-goal-button btn btn-sm btn-very-dark"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endfor %}
+          <!-- Add Goal Button -->
+          <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add Goal
+          </button>
+        </div>
       </div>
-
     </div>
-    <div class="col-md-6">
-      <div class="col">
-        <!-- Calendar -->
-        <div class="dashboard-item">
-          <h3>Last 30 Days</h3>
+
+    <!-- Card Three -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>Moods</h3>
+          </div>
+          {% if wordcloud is not None %}
+          <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
+          {% else %}
+          <p>Log a session to start learning more about how you feel about your practice sessions.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- Column 2 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>Last 30 Days</h3>
+          </div>
           <div class="calendar-container d-flex flex-wrap">
             {% for day in dates %}
             {% if day.practice%}
@@ -126,74 +133,82 @@ Rescala | Dasboard
             <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
               title="{{ day.date | date:'D d M y' }}"></div>
             {% endif %}
-
-
             {% endfor %}
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Row 3 -->
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Focus Chart -->
-      <div class="dashboard-item">
-        <h3>Focus</h3>
-        <div>
-          <canvas id="myChart"></canvas>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>Focus</h3>
+          </div>
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
         </div>
       </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>Total Practice</h3>
+          </div>
+          <div class="d-flex justify-content-evenly">
+            <div class="tally-container">
+              <div class="accent-header">Last 7 Days</div>
+              {{practice_totals.weekly}} minutes
+            </div>
+            <div class="tally-container">
+              <div class="accent-header">Last 30 Days</div>
+              {{practice_totals.monthly}} minutes
+            </div>
+            <div class="tally-container">
+              <div class="accent-header">Total</div>
+              {{practice_totals.total}} minutes
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    </div>
-    <div class="col-md-6">
-      <div class="dashboard-item">
-        <!-- Practice Time -->
-        <h3>Total Practice</h3>
-        <div class="d-flex justify-content-evenly">
-          <div class="tally-container">
-            <div class="accent-header">Last 7 Days</div>
-            {{practice_totals.weekly}} minutes
+    <!-- Card 4 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card dashboard-card">
+        <div class="card-body">
+          <div class="dashboard-title">
+            <h3>My Resources</h3>
           </div>
-          <div class="tally-container">
-            <div class="accent-header">Last 30 Days</div>
-            {{practice_totals.monthly}} minutes
+          {% for resource in resources%}
+          <a href="{% url 'resource_details' resource.id %}">
+            <div>{{resource.title}}</div>
+          </a>
+          {% empty %}
+          <div>Here you can see all your favourite articles, tips and interviews. Head over to Resources to get started.
           </div>
-          <div class="tally-container">
-            <div class="accent-header">Total</div>
-            {{practice_totals.total}} minutes
-          </div>
+          {%endfor%}
         </div>
+
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="dashboard-item">
-      <h3>My Resources</h3>
-      {% for resource in resources%}
-      <a href="{% url 'resource_details' resource.id %}">
-        <div>{{resource.title}}</div>
-      </a>
-      {% empty %}
-      <div>Here you can see all your favourite articles, tips and interviews. Head over to Resources to get started.</div>
-      {%endfor%}
-    </div>    
+
+{% else %}
+<!-- CHECK STYLING?? -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="dashboard-item">
+      <h3>Welcome to Rescala, {{user.first_name}}</h3>
+      <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
+        feeling and start to move towards your musical goals.</div>
+      <div>You've done the hard work! Just log your first practice to get started.</div>
+    </div>
+  </div>
 </div>
-  </div>
-  {% else %}
-  <div class="row">
-    <div class="col-md-12">
-      <div class="dashboard-item">
-        <h3>Welcome to Rescala, {{user.first_name}}</h3>
-        <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
-          feeling and start to move towards your musical goals.</div>
-        <div>You've done the hard work! Just log your first practice to get started.</div>
-      </div>
-
-    </div>
-  </div>
-  {% endif %}
+{% endif %}
 </div>
 <!-- Add Goal Modal -->
 <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModal" aria-hidden="true">
@@ -225,6 +240,9 @@ Rescala | Dasboard
 {% endblock %}
 
 {%block scripts%}
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+  integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   // jquery function

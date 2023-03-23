@@ -201,9 +201,25 @@ footer p i {
 	padding: 1.5rem;
 }
 
-.dashboard-item:hover {
-	border: 2px solid #14281D;
+.dashboard-card {
+	/* color: red; */
+	position: relative;
 }
+
+.dashboard-card .dashboard-title {
+	width: 100%;
+    color: #E8F1F2;
+    background-color: rgba(53,88,52,0.8);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-bottom: 2rem;
+	
+}
+
+/* .dashboard-item:hover {
+	border: 2px solid #14281D;
+} */
 
 /* ------------------------------- Progress Bars */
 .progress {
@@ -217,8 +233,8 @@ footer p i {
 
 /* ------------------------------- Calendar */
 .calendar-day {
-	height: 4rem;
-	width: 4rem;
+	height: 3rem;
+	width: 3rem;
 	border-radius: 50%;
 	background-color: white;
 	margin-top: 0.5rem;
