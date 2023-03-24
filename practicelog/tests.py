@@ -112,12 +112,14 @@ class TestCreateLogForm(TestCase):
         form = CreateSessionForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-
-    # def test_blank_required_fields(self):
-
-    #     self.assertIn('date', form.errors)
-
-
+    def test_future_date_is_invalid(self):
+        form_data = {
+            **self.form_data,
+            "date": datetime.strptime('2024-01-01', '%Y-%m-%d'),
+        }
+        form = CreateSessionForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('date', form.errors)
 
     def tearDown(self):
         self.user.delete()
