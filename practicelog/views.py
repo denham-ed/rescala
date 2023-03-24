@@ -133,6 +133,7 @@ class CreateLog(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         create_session_form = CreateSessionForm(data=request.POST)
+        print(request.POST)
         if create_session_form.is_valid():
             user = request.user
             session = create_session_form.save(commit=False)

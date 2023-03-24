@@ -32,11 +32,10 @@ if os.path.isfile('env.py'):
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# ALLOWED_HOSTS = ['127.0.0.1', '.localhost','8000-denhamed-rescalav2-jjmg9and1w8.ws-us92']
+
+DEBUG = os.environ.get("DEVELOPMENT")
+
 ALLOWED_HOSTS = ['*']
-print(ALLOWED_HOSTS)
-# DEBUG = os.environ.get("DEVELOPMENT")
-DEBUG = 0
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -71,7 +70,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'cloudinary',
-    # 'corsheaders',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
@@ -98,7 +96,6 @@ MESSAGE_TAGS = {
 }
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
