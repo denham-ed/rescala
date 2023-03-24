@@ -15,7 +15,7 @@ from django.template import context
 from django.contrib.auth.mixins import  LoginRequiredMixin
 
 
-
+# LoginRequiredMixin,
 
 class Dashboard(LoginRequiredMixin, View):
     def add_goal(request):
