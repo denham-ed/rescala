@@ -14,21 +14,25 @@ class TestCreateLogView(TestCase):
             password='testpass',
         )
 
+    def test_anonymous_user_cannot_is_redirected(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+
     def test_user_can_view_create_log_form(self):
         self.client.login(username='testuser', password='testpass')
-        response = self.client.get(self.url, follow=True)
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'createlog.html')
 
     def test_create_log_form_renders(self):
         self.client.login(username='testuser', password='testpass')
-        response = self.client.get(self.url, follow=True)
+        response = self.client.get(self.url)
         self.assertIsInstance(response.context['form'], CreateSessionForm)
 
     def tearDown(self):
         self.user.delete()
 
-
+# Create Session Log Form
 class TestCreateLogForm(TestCase):
     def setUp(self):
         self.client = Client()
@@ -123,3 +127,6 @@ class TestCreateLogForm(TestCase):
 
     def tearDown(self):
         self.user.delete()
+
+
+# Edit Session Form
