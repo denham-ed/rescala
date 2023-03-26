@@ -4,7 +4,7 @@ from users.models import Profile
 from django.shortcuts import reverse
 from datetime import datetime
 
-
+# Set Up Class to log in/out??
 class TestCreateLogView(TestCase):
     def setUp(self):
         self.client = Client()

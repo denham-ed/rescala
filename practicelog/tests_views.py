@@ -4,20 +4,31 @@ from django.shortcuts import reverse
 
 class TestDashboardView(TestCase):
 
-    def setUp(self):
-        self.client = Client()
-        self.url = reverse('dashboard')
-        self.user = Profile.objects.create_user(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client = Client()
+        cls.url = reverse('dashboard')
+        cls.user = Profile.objects.create_user(
             username='testuser',
             password='testpass',
         )
+
+    def test_user_can_view_dashboard(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'dashboard.html')
+
+    # def test_dashboard_context_is_present(self):
 
     def test_anonymous_user_is_redirected(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
 
-    def test_user_can_view_create_log_form(self):
-        self.client.login(username='testuser', password='testpass')
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'dashboard.html')
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.user.delete()
+        super().tearDownClass()
+
