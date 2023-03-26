@@ -205,3 +205,4 @@ class TestEditSessionForm(TestCase):
 
     def tearDown(self):
         self.user.delete()
+        
