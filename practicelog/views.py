@@ -5,17 +5,13 @@ from django.http import HttpResponseRedirect
 from .models import Session
 from users.forms import GoalForm
 from datetime import datetime, timedelta, date
-from wordcloud import WordCloud
-import io
-import base64
 from django.contrib import messages
+import random
 # Contenxt
 from django.template import context
 # Auth
 from django.contrib.auth.mixins import  LoginRequiredMixin
 
-
-# LoginRequiredMixin,
 
 class Dashboard(LoginRequiredMixin, View):
     def add_goal(request):
@@ -29,8 +25,7 @@ class Dashboard(LoginRequiredMixin, View):
                     'complete': 0
                 })
                 current_user.save()
-                print(goal)
-                # Sessions
+                # Sessions?????
                 sessions = Session.objects.filter(user=request.user).order_by('-date')
                 recent_sessions = sessions[:10]
                 messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
@@ -45,29 +40,27 @@ class Dashboard(LoginRequiredMixin, View):
             messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
             return HttpResponseRedirect(reverse('dashboard'))
 
-
     def create_mood_cloud(self, sessions):
         aggregated_moods = []
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
-        mood_string = ' '.join(aggregated_moods)
-        if not mood_string:
-            return None
-        # https://www.holisticseo.digital/python-seo/word-cloud/
-        wordcloud = WordCloud(width = 1000, height = 700, mode="RGBA",background_color=None,color_func=lambda *args, **kwargs: (53, 88, 52)).generate(mood_string)
-        image = wordcloud.to_image()
-        buf = io.BytesIO()
-        image.save(buf, format='png')
-        # https://stackoverflow.com/questions/64974404/display-pil-image-object-in-django-template
-        img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-        return img_b64
+        mood_dict = {}
+        for mood in aggregated_moods:
+            if mood not in mood_dict:
+                mood_dict[mood] = 1
+            else:
+                mood_dict[mood] += 1
+        total_moods = sum(mood_dict.values())
+        aggregated_as_list = [{"mood": x, "count": round(y/total_moods,2)*100} for x, y in mood_dict.items()]
+        random.shuffle(aggregated_as_list)
+        return aggregated_as_list
+        
 
     def create_calendar(self, sessions):
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
         mapped_dates = [{'date': date, 'practice': False} for date in dates]
         for d in mapped_dates:
-            # Is this right? looks like two loops!?
             for session in sessions:
                 if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
