@@ -110,7 +110,18 @@ Rescala | Dasboard
             <h3>Moods</h3>
           </div>
           {% if wordcloud is not None %}
-          <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud">
+          {% for word in wordcloud %}
+            {% if word.count > 10 %}
+            <span class="wordcloud-lg">{{word.mood}} </span>
+            {% elif word.count > 5%}
+            <span class="wordcloud-md">{{word.mood}} </span>
+            {% elif word.count > 2%}
+            <span class="wordcloud-sm">{{word.mood}} </span>
+            {% else %}
+            <span class="wordcloud-xs">{{word.mood}} </span>
+            {% endif %}
+          {% endfor %}
+          <!-- <img class="img-fluid" src="data:image/png;base64, {{ wordcloud }}" alt="Word Cloud"> -->
           {% else %}
           <p>Log a session to start learning more about how you feel about your practice sessions.</p>
           {% endif %}
