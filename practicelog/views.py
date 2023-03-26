@@ -6,6 +6,7 @@ from .models import Session
 from users.forms import GoalForm
 from datetime import datetime, timedelta, date
 from django.contrib import messages
+import random
 # Contenxt
 from django.template import context
 # Auth
@@ -51,6 +52,7 @@ class Dashboard(LoginRequiredMixin, View):
                 mood_dict[mood] += 1
         total_moods = sum(mood_dict.values())
         aggregated_as_list = [{"mood": x, "count": round(y/total_moods,2)*100} for x, y in mood_dict.items()]
+        random.shuffle(aggregated_as_list)
         return aggregated_as_list
         
 
