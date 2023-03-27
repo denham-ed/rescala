@@ -7,15 +7,13 @@
 {% block title%}
 Rescala | Register
 {% endblock%}
-{% block header %}
-<header class="bg-dark-green">
-    <div>
-        <div class="r-logo d-flex justify-content-center align-items-center mt-3">
-            <h1>R</h1>
-        </div>
-    </div>
+{% block header%}
+<header>
+  <nav class="navbar navbar-expand-lg bg-dark-green h-100">
+        <a class="navbar-brand" href="{% url 'landing_page' %}"><div class="rescala-logo rescala-logo-light"><span>R</span></div></a>
+  </nav>
 </header>
-{% endblock header %}
+{%endblock header%}
 {% block content %}
 <div class="container-fluid bg-dark-green h-100">
     <div class="row h-100">
