@@ -10,7 +10,7 @@ import random
 # Contenxt
 from django.template import context
 # Auth
-from django.contrib.auth.mixins import  LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Dashboard(LoginRequiredMixin, View):
@@ -148,12 +148,12 @@ class SessionDetails(LoginRequiredMixin, View):
                 "session": session
             }
         )
-   
+
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
         messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
-        return HttpResponseRedirect(reverse('dashboard'))
+        return redirect('dashboard')
 
 
 class EditLog(LoginRequiredMixin, View):

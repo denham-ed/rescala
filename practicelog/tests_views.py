@@ -1,12 +1,11 @@
-from django.test import TestCase, Client
-from users.models import Profile
-from .models import Session
-# from resources.models import Resource
-from django.shortcuts import reverse
-from users.forms import GoalForm
 from datetime import datetime
 from django.contrib.messages import get_messages
+from django.shortcuts import reverse
+from django.test import TestCase, Client
+from users.forms import GoalForm
+from users.models import Profile
 from .forms import CreateSessionForm
+from .models import Session
 
 
 class TestDashboardView(TestCase):
@@ -186,7 +185,7 @@ class TestCreateSessionView(TestCase):
         response = self.client.post(
             reverse('create_log'), data={})
         self.assertTemplateUsed(response, 'createlog.html')
-    
+
     def test_create_session_displays_message_on_success(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.post(
@@ -196,7 +195,7 @@ class TestCreateSessionView(TestCase):
         self.assertEqual(
             str(messages[0]),
             'Your practice has been logged successfully.')
-        
+
     # Authentication
     def test_anonymous_user_is_redirected(self):
         response = self.client.get(self.url)
@@ -206,3 +205,67 @@ class TestCreateSessionView(TestCase):
     def tearDownClass(cls):
         cls.user.delete()
         super().tearDownClass()
+
+
+class TestSessionDetailsView(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client = Client()
+        
+        cls.user = Profile.objects.create_user(
+            username='testuser',
+            password='testpass',
+        )
+        cls.session = Session.objects.create(
+            user=cls.user,
+            headline="Session with Session Details",
+            date=datetime.strptime('2023-03-25', '%Y-%m-%d'),
+            duration=60,
+            focus=["performing", "technique"],
+            moods=["anxious", "ambitious"],
+            summary="Session with Session Details Summary",
+        )
+
+    def test_user_can_view_session_details_page(self):
+        url = reverse('session_details', args=[self.session.id])
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'sessiondetails.html')
+    
+    def test_session_is_provided_as_context(self):
+        url = reverse('session_details', args=[self.session.id])
+        session = Session.objects.filter(id=self.session.id)[0]
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(url)
+        self.assertEqual(response.context['session'], session)
+
+    def test_anonymous_user_is_redirected(self):
+        url = reverse('session_details', args=[self.session.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_session_removes_session_from_db(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('delete_session', args=[self.session.id]))
+        self.assertFalse(Session.objects.filter(id=self.session.id).exists())
+
+    def test_user_redirected_after_deleting_session(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('delete_session', args=[self.session.id]))
+        self.assertEqual(response.status_code, 302)
+
+
+
+
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.user.delete()
+        super().tearDownClass()
+
+
