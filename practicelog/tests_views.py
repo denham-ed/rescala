@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 from django.test import TestCase, Client
 from users.forms import GoalForm
 from users.models import Profile
-from .forms import CreateSessionForm
+from .forms import CreateSessionForm, EditSessionForm
 from .models import Session
 
 
@@ -180,7 +180,7 @@ class TestCreateSessionView(TestCase):
             reverse('create_log'), data=self.form_data)
         self.assertRedirects(response, reverse('dashboard'))
 
-    def test_invalid_create_session_form_redirects(self):
+    def test_invalid_create_session_form_rerenders(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.post(
             reverse('create_log'), data={})
@@ -257,6 +257,106 @@ class TestSessionDetailsView(TestCase):
         self.client.login(username='testuser', password='testpass')
         response = self.client.post(
             reverse('delete_session', args=[self.session.id]))
+        self.assertEqual(response.status_code, 302)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.user.delete()
+        super().tearDownClass()
+
+
+class TestEditSessionView(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client = Client()
+        cls.user = Profile.objects.create_user(
+            username='testuser',
+            password='testpass'
+        )
+        cls.url = reverse('create_log')
+        cls.session = Session.objects.create(
+            user=cls.user,
+            headline="Session for Edit Session",
+            date=datetime.strptime('2023-03-25', '%Y-%m-%d'),
+            duration=60,
+            focus=["performing", "technique"],
+            moods=["anxious", "ambitious"],
+            summary="Session with Session Details Summary",
+        )
+        cls.edit_form_data = {
+            "headline": "Edited  Session",
+            "date": '2023-01-01',
+            "duration": 30,
+            "focus": ["rhythm", "sightreading"],
+            "moods": ["inspired", "determined"],
+            "summary": "Edited Summary",
+        }
+
+    def test_user_can_view_edit_session_page(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(reverse('edit_session', args=[self.session.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'editlog.html')
+
+    def test_context_is_provided(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(reverse('edit_session', args=[self.session.id]))
+        self.assertIsInstance(response.context['form'], EditSessionForm)
+        self.assertEqual(response.context['session'], self.session)
+
+    def test_initial_values_in_form(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.get(reverse('edit_session', args=[self.session.id]))
+        initial_values = {
+            'headline': self.session.headline,
+            'date': self.session.date.strftime("%Y-%m-%d"),
+            'duration': self.session.duration,
+            'focus': self.session.focus,
+            'summary': self.session.summary,
+            'moods': self. session.moods
+        }
+        form = response.context['form']
+        self.assertEqual(form.initial['headline'], initial_values['headline'])
+        self.assertEqual(form.initial['date'], initial_values['date'])
+        self.assertEqual(form.initial['duration'], initial_values['duration'])
+        self.assertEqual(form.initial['focus'], initial_values['focus'])
+        self.assertEqual(form.initial['summary'], initial_values['summary'])
+        self.assertEqual(form.initial['moods'], initial_values['moods'])
+
+
+
+    # Test Post Method
+    def test_valid_edit_session_form_updates_session(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('edit_session', args=[self.session.id]),
+            data=self.edit_form_data)
+        sessions = Session.objects.filter(id=self.session.id)
+        session = Session.objects.get(id=self.session.id)
+        self.assertEqual(
+            session.headline,
+            self.edit_form_data['headline'])
+        self.assertEqual(session.date, datetime.strptime(self.edit_form_data['date'], '%Y-%m-%d').date())
+        self.assertEqual(session.duration, self.edit_form_data['duration'])
+        self.assertEqual(session.focus, self.edit_form_data['focus'])
+        self.assertEqual(session.summary, self.edit_form_data['summary'])
+        self.assertEqual(session.moods, self.edit_form_data['moods'])
+
+    
+    def test_invalid_form_rerenders_edit_session_view(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('edit_session', args=[self.session.id]),
+            data={})
+        self.assertTemplateUsed(response, 'editlog.html')
+
+
+
+    # Authentication
+    def test_anonymous_user_is_redirected(self):
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
 
     @classmethod
