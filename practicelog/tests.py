@@ -4,7 +4,7 @@ from users.models import Profile
 from django.shortcuts import reverse
 from datetime import datetime
 
-
+# Set Up Class to log in/out??
 class TestCreateLogView(TestCase):
     def setUp(self):
         self.client = Client()
@@ -14,7 +14,7 @@ class TestCreateLogView(TestCase):
             password='testpass',
         )
 
-    def test_anonymous_user_cannot_is_redirected(self):
+    def test_anonymous_user_is_redirected(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
 
