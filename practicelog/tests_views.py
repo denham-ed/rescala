@@ -5,6 +5,8 @@ from .models import Session
 from django.shortcuts import reverse
 from users.forms import GoalForm
 from datetime import datetime
+from django.contrib.messages import get_messages
+
 
 class TestDashboardView(TestCase):
 
@@ -43,22 +45,22 @@ class TestDashboardView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'dashboard.html')
 
-
     def test_goals_context_is_provided(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.get(self.url)
         self.assertEqual(response.context['goals'], self.user.goals)
         self.assertIsInstance(response.context['goalform'], GoalForm)
 
-
     def test_sessions_context_is_provided(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.get(self.url)
-        self.assertEqual(list(response.context['sessions']), [self.session1, self.session2])
+        self.assertEqual(
+            list(response.context['sessions']),
+            [self.session1, self.session2])
 
     def test_add_goal_form_is_valid(self):
         form_data = {
-            "goal_name":"Perfect unit testing for Django"
+            "goal_name": "Perfect unit testing for Django"
         }
         form = GoalForm(data=form_data)
         self.assertEqual(form.is_valid(), True)
@@ -83,30 +85,51 @@ class TestDashboardView(TestCase):
             )
         self.assertEqual(response.status_code, 302)
 
+    def test_add_goal_displays_message_on_success(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('add_goal'),
+            {'goal_name': "A user-added goal"}
+            )
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You have added a long term goal!')
 
+    # Update Goal
+    def test_updated_goal_is_saved(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('update_goal', args=[0]),
+            {'goal_id': '0', 'goal-complete': 100})
+        self.user.refresh_from_db()
+        added_goal = self.user.goals[0]
+        self.assertEqual(added_goal['goal'], "Create First Tests")
+        self.assertEqual(added_goal['complete'], '100')
 
+    def test_update_goal_displays_message_on_success(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('update_goal', args=[0]),
+            {'goal_id': '0', 'goal-complete': 100})
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]),
+            'You have updated a long term goal.')
 
-    # def test_sessions__list_provied_if_empty(self):
-    #     self.session1.delete()
-    #     self.session2.delete()
-    #     self.client.login(username='testuser', password='testpass')
-    #     response = self.client.get(self.url)
-    #     self.assertQuerysetEqual(response.context['sessions'],[])
+    def test_add_goal_redirects_to_dashboard(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('update_goal', args=[0]),
+            {'goal_id': '0', 'goal-complete': 100})
+        self.assertEqual(response.status_code, 302)
 
-
-
-
-
-    # def test_add_goal_displays_message_on_success(self):
-
-
+# Authentication
     def test_anonymous_user_is_redirected(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
-
 
     @classmethod
     def tearDownClass(cls):
         cls.user.delete()
         super().tearDownClass()
-

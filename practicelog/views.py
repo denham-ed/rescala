@@ -27,7 +27,6 @@ class Dashboard(LoginRequiredMixin, View):
                 current_user.save()
                 messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
                 return redirect('dashboard')
-                return HttpResponseRedirect(reverse('dashboard'))
 
     def update_goal(request, goal_id):
         if request.method == 'POST':
@@ -36,7 +35,7 @@ class Dashboard(LoginRequiredMixin, View):
             current_user.goals[goal_id]['complete']=goal_complete
             current_user.save()
             messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
-            return HttpResponseRedirect(reverse('dashboard'))
+            return redirect('dashboard')
 
     def create_mood_cloud(self, sessions):
         aggregated_moods = []
