@@ -25,9 +25,13 @@ class ResourcesPage(View):
 
 class ResourceDetails(View):
     def get(self, request, resource_id):
-        user = request.user
         resource = get_object_or_404(Resource, id=resource_id)
-        favourite = user.resources.filter(id=resource_id).exists()
+        user = request.user
+        if user.is_authenticated:
+            favourite = user.resources.filter(id=resource_id).exists()
+        else:
+            favourite = False
+        
         articles = Resource.objects.exclude(id=resource_id).filter(status=1)
         return render(
             request, 'resourcedetails.html', {
@@ -48,6 +52,6 @@ class FavouriteResource(View):
 
         else:
             user.resources.add(resource)
-            messages.add_message(request, messages.SUCCESS, 'This article has been to your favourites!')
+            messages.add_message(request, messages.SUCCESS, 'This article has been added to your favourites!')
 
         return redirect(reverse('resource_details', args=[resource_id]))
