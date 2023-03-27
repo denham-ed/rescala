@@ -213,7 +213,7 @@ class TestSessionDetailsView(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.client = Client()
-        
+
         cls.user = Profile.objects.create_user(
             username='testuser',
             password='testpass',
@@ -234,7 +234,7 @@ class TestSessionDetailsView(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'sessiondetails.html')
-    
+
     def test_session_is_provided_as_context(self):
         url = reverse('session_details', args=[self.session.id])
         session = Session.objects.filter(id=self.session.id)[0]
@@ -259,13 +259,7 @@ class TestSessionDetailsView(TestCase):
             reverse('delete_session', args=[self.session.id]))
         self.assertEqual(response.status_code, 302)
 
-
-
-
-
     @classmethod
     def tearDownClass(cls):
         cls.user.delete()
         super().tearDownClass()
-
-
