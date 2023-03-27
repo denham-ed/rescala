@@ -25,9 +25,14 @@ class ResourcesPage(View):
 
 class ResourceDetails(View):
     def get(self, request, resource_id):
-        user = request.user
         resource = get_object_or_404(Resource, id=resource_id)
-        favourite = user.resources.filter(id=resource_id).exists()
+        user = request.user
+        print(user)
+        if user.is_authenticated:
+            favourite = user.resources.filter(id=resource_id).exists()
+        else:
+            favourite = False
+        
         articles = Resource.objects.exclude(id=resource_id).filter(status=1)
         return render(
             request, 'resourcedetails.html', {
