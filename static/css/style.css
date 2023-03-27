@@ -160,10 +160,22 @@ footer p i {
 	padding-bottom: 1rem;
 }
 
-.r-logo {
-	border: 0.2rem solid #E8F1F2;
+.rescala-logo {
+	border: 0.2rem solid #14281D;
+	color: #14281D;
 	width: 3.5rem;
 	height: 3.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Fraunces', Courier, monospace;
+	font-size: 150%;
+	margin-left: 1rem;
+}
+
+.rescala-logo-light{
+	color: #E8F1F2;
+	border-color: #E8F1F2;
 }
 
 .circle {
