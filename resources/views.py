@@ -52,6 +52,6 @@ class FavouriteResource(View):
 
         else:
             user.resources.add(resource)
-            messages.add_message(request, messages.SUCCESS, 'This article has been to your favourites!')
+            messages.add_message(request, messages.SUCCESS, 'This article has been added to your favourites!')
 
         return redirect(reverse('resource_details', args=[resource_id]))
