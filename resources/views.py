@@ -27,7 +27,6 @@ class ResourceDetails(View):
     def get(self, request, resource_id):
         resource = get_object_or_404(Resource, id=resource_id)
         user = request.user
-        print(user)
         if user.is_authenticated:
             favourite = user.resources.filter(id=resource_id).exists()
         else:
