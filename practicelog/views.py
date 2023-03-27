@@ -19,16 +19,14 @@ class Dashboard(LoginRequiredMixin, View):
             current_user = request.user
             form = GoalForm(request.POST)
             if form.is_valid():
-                goal = form.cleaned_data['goalName']
+                goal = form.cleaned_data['goal_name']
                 current_user.goals.append({
                     'goal': goal,
                     'complete': 0
                 })
                 current_user.save()
-                # Sessions?????
-                sessions = Session.objects.filter(user=request.user).order_by('-date')
-                recent_sessions = sessions[:10]
                 messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
+                return redirect('dashboard')
                 return HttpResponseRedirect(reverse('dashboard'))
 
     def update_goal(request, goal_id):

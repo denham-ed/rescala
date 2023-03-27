@@ -86,4 +86,4 @@ class CustomLoginForm(LoginForm):
             return super(MyCustomLoginForm, self).login(*args, **kwargs)
 
 class GoalForm(forms.Form):
-    goalName = forms.CharField(max_length=100, required=True, label='Goal Name')
+    goal_name = forms.CharField(max_length=100, required=True, label='Goal Name')
