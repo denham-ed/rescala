@@ -37,6 +37,14 @@ class Dashboard(LoginRequiredMixin, View):
             messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
             return redirect('dashboard')
 
+    def delete_goal(request, goal_id):
+        if request.method == 'POST':
+            current_user = request.user
+            current_user.goals.remove(current_user.goals[goal_id])
+            current_user.save()
+            messages.add_message(request, messages.SUCCESS, 'You have removed a long term goal.')
+        return redirect('dashboard')
+
     def create_mood_cloud(self, sessions):
         aggregated_moods = []
         for session in sessions:
@@ -105,8 +113,7 @@ class Dashboard(LoginRequiredMixin, View):
                     "user": user,
                     "resources": resources
                 }
-            ) 
-
+            )
 
 class CreateLog(LoginRequiredMixin, View):
     def get(self, request):

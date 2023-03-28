@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:session_id>/delete', views.SessionDetails.delete_session, name='delete_session'),
     path('goal/add-goal', views.Dashboard.add_goal, name='add_goal'),
     path('goal/<int:goal_id>/update', views.Dashboard.update_goal, name='update_goal'),
+    path('goal/<int:goal_id>/delete', views.Dashboard.delete_goal, name='delete_goal')
 ]
