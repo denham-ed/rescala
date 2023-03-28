@@ -10,6 +10,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	font-weight: 300;
 }
 
 main {
@@ -18,8 +19,12 @@ main {
 }
 
 hr {
-	border-top: #14281D 3px solid;
+	border-top: #14281D 1px solid;
 	opacity: 1;
+}
+
+header {
+	font-weight: 400;
 }
 
 /* ------------------------------- Text and Fonts */
@@ -34,6 +39,7 @@ a {
 
 .subtitle {
 	font-size: 120%;
+	font-weight: 400;
 }
 
 .black-text {
@@ -54,6 +60,8 @@ a {
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;
+	font-weight: 300;
+	height: 30rem;
 }
 
 .input-sign-up>input {
@@ -70,6 +78,22 @@ textarea {
 
 .edit-goal-range{
 	display: none;
+}
+
+.textinput{
+	font-weight: 300;
+}
+
+.datetimeinput{
+	font-weight: 300;
+}
+
+.form-control{
+	font-weight: 300;
+}
+
+.form-label{
+	font-weight: 400;
 }
 
 /* ------------------------------- Footer */
@@ -142,6 +166,10 @@ footer p i {
 .btn-light:hover {
 	color: #E8F1F2;
 	background-color: #14281D;
+}
+
+.btn-primary{
+	border: 1px solid #14281D;
 }
 
 .save-goal-button{
@@ -511,25 +539,26 @@ footer p i {
 /* WORDCLOUD */
 
 .wordcloud-lg{
-	font-size: 250%;
+	font-size: 180%;
 	color: #B80C09;
-	line-height: 150%;
+
+	font-weight: 700;
 }
 
 .wordcloud-md{
-	font-size: 200%;
+	font-size: 150%;
 	color:#355834;
-	line-height: 150%;
+	font-weight: 400;
 }
 
 .wordcloud-sm{
-	font-size: 180%;
+	font-size: 150%;
 	color:#14281D;
-	line-height: 150%;
+	font-weight: 400;
 }
 
-.wordcloud-sm{
-	font-size: 100%;
+.wordcloud-xs{
+	font-size: 90%;
 	color:#B80C09;
-	line-height: 150%;
+	font-weight: 300;
 }

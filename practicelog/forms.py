@@ -70,10 +70,10 @@ class CreateSessionForm(forms.ModelForm):
                     "headline",
                     Div("date", "duration", css_class="d-flex justify-content-between"),
                     "focus",
-                    css_class="col-md-4",
+                    css_class="col-lg-4",
                 ),
-                Div("summary", css_class="col-md-4"),
-                Div(Div("moods", css_class="two-col"), css_class="col-md-4"),
+                Div("summary", css_class="col-lg-4"),
+                Div(Div("moods", css_class="two-col"), css_class="col-lg-4"),
                 css_class="row",
             ),
             Div(
@@ -82,12 +82,12 @@ class CreateSessionForm(forms.ModelForm):
                         Submit(
                             "submit",
                             "Add Session",
-                            css_class="btn-very-dark btn-lg btn",
+                            css_class="btn-very-dark btn-md btn",
                         )
                     ),
                     css_class="col-md-6 offset-md-3 d-flex justify-content-center",
                 ),
-                css_class="row",
+                css_class="row pt-5",
             ),
         )
 
@@ -120,19 +120,19 @@ class CreateSessionForm(forms.ModelForm):
         }
 
         self.fields["focus"] = forms.MultipleChoiceField(
-            label="Today I focussed on:",
+            label="Focus",
             choices=FOCUS_CHOICES,
             widget=forms.CheckboxSelectMultiple(),
             required=False,
         )
 
         self.fields["moods"] = forms.MultipleChoiceField(
-            label="Today I felt:",
+            label="Mood",
             choices=MOOD_CHOICES,
             widget=forms.CheckboxSelectMultiple(),
             required=False,
         )
-        self.fields["summary"].label = "Reflections:"
+        self.fields["summary"].label = "Reflections"
         self.fields["summary"].widget = forms.Textarea(
             attrs={
                 "placeholder": "Reflect on your practice. What went well? What will you work on next time?"
@@ -160,10 +160,10 @@ class EditSessionForm(CreateSessionForm):
                     "headline",
                     Div("date", "duration", css_class="d-flex justify-content-between"),
                     "focus",
-                    css_class="col-md-4",
+                    css_class="col-lg-4",
                 ),
-                Div("summary", css_class="col-md-4"),
-                Div(Div("moods", css_class="two-col"), css_class="col-md-4"),
+                Div("summary", css_class="col-lg-4"),
+                Div(Div("moods", css_class="two-col"), css_class="col-lg-4"),
                 css_class="row",
             ),
             Div(
@@ -172,12 +172,12 @@ class EditSessionForm(CreateSessionForm):
                         Submit(
                             "submit",
                             "Update Session",
-                            css_class="btn-very-dark btn-lg btn",
+                            css_class="btn-very-dark btn-md btn",
                         )
                     ),
                     css_class="col-md-6 offset-md-3 d-flex justify-content-center",
                 ),
-                css_class="row",
+                css_class="row pt-5",
             ),
         )
 
