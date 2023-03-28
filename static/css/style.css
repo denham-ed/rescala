@@ -19,7 +19,7 @@ main {
 }
 
 hr {
-	border-top: #14281D 3px solid;
+	border-top: #14281D 1px solid;
 	opacity: 1;
 }
 
@@ -60,6 +60,7 @@ a {
 textarea {
 	resize: none;
 	font-weight: 300;
+	height: 30rem;
 }
 
 .input-sign-up>input {
