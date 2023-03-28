@@ -4,6 +4,9 @@
 Rescala | Dasboard
 {% endblock%}
 
+{% load crispy_forms_tags%}
+{% crispy form form.helper %}
+
 {% block content %}
 <div class="container-fluid">
   <div class="row">
@@ -244,20 +247,10 @@ Rescala | Dasboard
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+        <h5 class="modal-title" id="add-goal-modal-label">Add Goal</h5>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{% url 'add_goal' %}">
-          <div class="row">
-            <div class="col-md-12">
-              <div>
-                {{goalform.goal_name}}
-              </div>
-            </div>
-          </div>
-          {% csrf_token %}
-          <button type="submit" class="btn btn-sm btn-very-dark">Add Goal</button>
-        </form>
+        {% crispy goalform %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>

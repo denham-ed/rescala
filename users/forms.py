@@ -6,6 +6,7 @@ from crispy_forms.layout import Submit, Layout, Div
 from crispy_forms.bootstrap import FormActions
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from django.utils.safestring import mark_safe
+from django.shortcuts import reverse
 
 
 class CustomSignupForm(SignupForm):
@@ -86,4 +87,22 @@ class CustomLoginForm(LoginForm):
             return super(MyCustomLoginForm, self).login(*args, **kwargs)
 
 class GoalForm(forms.Form):
-    goal_name = forms.CharField(max_length=100, required=True, label='Goal Name')
+
+    goal_name = forms.CharField(max_length=100, required=True, label='Set a Long Term Goal')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = "id-add-goal-form"
+        self.helper.form_method = "post"
+        self.helper.form_action = reverse("add_goal")
+        self.helper.attrs = {"novalidate": ''}
+        self.helper.layout = Layout(
+            Div(FloatingField("goal_name")), 
+            Div(Submit(
+                "submit","Add Goal", css_class="btn btn-md btn-dark"
+            ), css_class='d-flex justify-content-center')
+        )
+        self.fields["goal_name"].error_messages = {
+            'required':'You must enter a goal'
+        }

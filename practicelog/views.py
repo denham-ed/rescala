@@ -26,7 +26,11 @@ class Dashboard(LoginRequiredMixin, View):
                 })
                 current_user.save()
                 messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
-                return redirect('dashboard')
+                return redirect(reverse('dashboard'))
+            else:
+                messages.add_message(request, messages.WARNING, 'Oops - you need to enter a goal. Please try again.')
+                return redirect(reverse('dashboard'))
+
 
     def update_goal(request, goal_id):
         if request.method == 'POST':
