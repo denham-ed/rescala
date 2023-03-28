@@ -538,25 +538,26 @@ footer p i {
 /* WORDCLOUD */
 
 .wordcloud-lg{
-	font-size: 250%;
+	font-size: 180%;
 	color: #B80C09;
-	line-height: 150%;
+
+	font-weight: 700;
 }
 
 .wordcloud-md{
-	font-size: 200%;
+	font-size: 150%;
 	color:#355834;
-	line-height: 150%;
+	font-weight: 400;
 }
 
 .wordcloud-sm{
-	font-size: 180%;
+	font-size: 150%;
 	color:#14281D;
-	line-height: 150%;
+	font-weight: 400;
 }
 
-.wordcloud-sm{
-	font-size: 100%;
+.wordcloud-xs{
+	font-size: 90%;
 	color:#B80C09;
-	line-height: 150%;
+	font-weight: 300;
 }
