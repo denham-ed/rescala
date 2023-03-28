@@ -84,15 +84,19 @@ Rescala | Dasboard
                   <div class="col-md-4 d-flex">
                     <button type='button' data-goal-id="{{forloop.counter}}"
                       class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
-                    <button data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
+                    <button type='submit' data-goal-id="{{forloop.counter}}" class="save-goal-button btn btn-sm btn-dark"><i
                         class="fa-regular fa-circle-check"></i></button>
               </form>
-              <form method="POST" action="{% url 'delete_goal' forloop.counter0 %}">
+              <form method="POST" action="{% url 'delete_goal' forloop.counter0 %}" class="d-flex ">
                 {% csrf_token %}
-                <button type='submit' data-goal-id="{{forloop.counter}}"
+                <button  type='button' data-goal-id="{{forloop.counter}}"
                 class="delete-goal-button btn btn-sm btn-very-dark ms-2"><i class="fa-solid fa-xmark"></i></button>
-                <button data-goal-id="{{forloop.counter}}" class="confirm-delete-button btn btn-sm btn-very-dark"><i
-                  class="fa-regular fa-circle-check"></i></button>
+                <button  type='button' data-goal-id="{{forloop.counter}}"
+                class="revert-goal-button btn btn-sm btn-dark"><i
+                class="fa-regular fa-circle-check"></i></button>
+                <button type='submit' data-goal-id="{{forloop.counter}}" class="confirm-delete-button btn btn-sm btn-red ms-2">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
                 </form>
             </div>
           </div>
@@ -247,7 +251,7 @@ Rescala | Dasboard
           <div class="row">
             <div class="col-md-12">
               <div>
-                {{goalform.goalName}}
+                {{goalform.goal_name}}
               </div>
             </div>
           </div>

@@ -98,6 +98,17 @@ footer p i {
 	height: 3rem;
 }
 
+.btn-red {
+	color: #fff;
+	background-color: #B80C09;
+}
+
+.btn-red:hover {
+	color: #B80C09;
+	background-color: #E8F1F2;
+	border: 1px solid #B80C09;
+}
+
 .btn-very-dark {
 	color: #E8F1F2;
 	background-color: #14281D;
@@ -132,6 +143,15 @@ footer p i {
 .save-goal-button{
 	display: none;
 }
+
+.confirm-delete-button{
+	display: none;
+}
+
+.revert-goal-button{
+	display: none;
+}
+
 
 /* ------------------------------- Layout & Sizing */
 .two-col {
