@@ -257,12 +257,14 @@ footer p i {
 	padding-top: 2rem;
 }
 
+.dashboard-content > table {
+	width: 100%;
+}
 /* .dashboard-item:hover {
 	border: 2px solid #14281D;
 } */
-
 .date-cell{
-	width: 30%;
+	width: 40%;
 }
 
 .practice-row{
