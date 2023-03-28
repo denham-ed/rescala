@@ -45,7 +45,10 @@ Rescala | Dasboard
                   </td>
                   <td>
                     <a href="{% url 'session_details' session.id %}">
-                      {{session.headline}}
+                      <span class="fw-bold">
+                        {{session.headline}}
+                      </span>
+
                     </a>
                   </td>
                 </tr>
@@ -214,7 +217,7 @@ Rescala | Dasboard
           {% for resource in resources%}
           <li class="resource-list-item">
             <a href="{% url 'resource_details' resource.id %}">
-              <span>{{resource.title}}</span>
+              <span class="fw-bold">{{resource.title}}</span>
             </a>
           </li>
           {% empty %}

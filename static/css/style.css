@@ -46,6 +46,10 @@ a {
 	color: black;
 }
 
+.fw-bold{
+	font-weight: 400;
+}
+
 /* .light-text {
 	color:#DCDCDC !important;
 } */
