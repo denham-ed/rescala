@@ -79,13 +79,10 @@ class Dashboard(LoginRequiredMixin, View):
 
     def get_mins_practiced(self, sessions):
         start_date = date.today()
-        # Weekly Minutes
         weekly_dates = [start_date - timedelta(days=i) for i in range(6)]
         weekly_minutes = sum(session.duration for session in sessions if session.date in weekly_dates)
-        # Monthly Minutes
         monthly_dates = [start_date - timedelta(days=i) for i in range(30)]
         monthly_minutes = sum(session.duration for session in sessions if session.date in monthly_dates)
-        # Total Minutes
         total_minutes = sum(session.duration for session in sessions)
         return { "weekly": weekly_minutes, "monthly": monthly_minutes, "total": total_minutes}
 
@@ -98,7 +95,7 @@ class Dashboard(LoginRequiredMixin, View):
                 request, 'dashboard.html',
                 {
                     "sessions": sessions,
-                    "recent_sessions": sessions[:10],
+                    "recent_sessions": sessions[:5],
                     "goalform": GoalForm(),
                     "goals": request.user.goals,
                     "dates": self.create_calendar(sessions),
