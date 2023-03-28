@@ -239,6 +239,20 @@ footer p i {
 	border: 2px solid #14281D;
 } */
 
+.date-cell{
+	width: 30%;
+}
+
+.practice-row{
+	border-bottom: rgba(184, 12, 9, 0.2) 1px solid;
+}
+
+.practice-row:hover{
+	color: #B80C09;
+	border-bottom: rgba(184, 12, 9, 1) 1px solid;
+	
+}
+
 /* ------------------------------- Progress Bars */
 .progress {
 	background-color: #fff;
@@ -327,9 +341,9 @@ footer p i {
 	border: 2px solid #14281D;
 }
 
-.card:hover{
+/* .card:hover{
 	background-color: #DCDCDC;
-}
+} */
 
 /* Listing */
 
