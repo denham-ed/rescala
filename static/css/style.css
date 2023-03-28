@@ -253,6 +253,18 @@ footer p i {
 	
 }
 
+.resource-list-item{
+	border-bottom: rgba(184, 12, 9, 0.2) 1px solid;
+
+}
+
+.resource-list-item:hover{
+	border-bottom: rgba(184, 12, 9, 1) 1px solid;
+	box-sizing: border-box;
+	
+}
+
+
 /* ------------------------------- Progress Bars */
 .progress {
 	background-color: #fff;

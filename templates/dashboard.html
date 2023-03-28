@@ -190,15 +190,23 @@ Rescala | Dasboard
             <h3>My Resources</h3>
           </div>
           <div class="dashboard-content">
+            <ul>
+
+
+       
             {% for resource in resources%}
+          <li class="resource-list-item">
             <a href="{% url 'resource_details' resource.id %}">
-              <div>{{resource.title}}</div>
+              <span >{{resource.title}}</span>
             </a>
+          </li>
+       
             {% empty %}
             <div>Here you can see all your favourite articles, tips and interviews. Head over to Resources to get
               started.
             </div>
             {%endfor%}
+          </ul>
           </div>
         </div>
       </div>
