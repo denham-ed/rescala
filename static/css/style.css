@@ -10,6 +10,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	font-weight: 300;
 }
 
 main {
@@ -20,6 +21,10 @@ main {
 hr {
 	border-top: #14281D 3px solid;
 	opacity: 1;
+}
+
+header {
+	font-weight: 400;
 }
 
 /* ------------------------------- Text and Fonts */
@@ -54,6 +59,7 @@ a {
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;
+	font-weight: 300;
 }
 
 .input-sign-up>input {
@@ -70,6 +76,22 @@ textarea {
 
 .edit-goal-range{
 	display: none;
+}
+
+.textinput{
+	font-weight: 300;
+}
+
+.datetimeinput{
+	font-weight: 300;
+}
+
+.form-control{
+	font-weight: 300;
+}
+
+.form-label{
+	font-weight: 700;
 }
 
 /* ------------------------------- Footer */
