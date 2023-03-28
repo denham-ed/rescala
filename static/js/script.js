@@ -49,20 +49,6 @@ $(document).ready(function () {
         $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle()
         $(this).toggle()
     })
-
-
-
-    // $('#submit-id-submit').html(
-    //     "<div id='login-spinner' class='spinner-border spinner-border-sm' role='status'><span class='sr-only'>Loading...</span></div></div>"
-    // )
-
-    //Button Spinner
-    // $('#submit-id-submit').click(function (){
-    //     $('#submit-id-submit').html(
-    //         "<div id='login-spinner' class='spinner-border spinner-border-sm' role='status'><span class='sr-only'>Loading...</span></div></div>"
-    //     )
-    // })
-
 });
 
 
