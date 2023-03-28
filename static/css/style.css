@@ -91,7 +91,7 @@ textarea {
 }
 
 .form-label{
-	font-weight: 700;
+	font-weight: 400;
 }
 
 /* ------------------------------- Footer */
@@ -164,6 +164,10 @@ footer p i {
 .btn-light:hover {
 	color: #E8F1F2;
 	background-color: #14281D;
+}
+
+.btn-primary{
+	border: 1px solid #14281D;
 }
 
 .save-goal-button{
