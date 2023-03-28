@@ -31,28 +31,31 @@ Rescala | Dasboard
           <div class="dashboard-title">
             <h3>Recent Practice</h3>
           </div>
-
           {% if sessions %}
-          <table>
-            <tbody>
-              {% for session in recent_sessions %}
-              <tr>
-                <td>
-                  <a href="{% url 'session_details' session.id %}">
-                    {{session.date | date:'D d M y'}}
-                  </a>
-                </td>
-                <td>
-                  <a href="{% url 'session_details' session.id %}">
-                    {{session.headline}}
-                  </a>
-                </td>
-              </tr>
-              {% empty %}
-              <p>This is where your logged practices will appear!</p>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="dashboard-content">
+            <table>
+              <tbody>
+                {% for session in recent_sessions %}
+                <tr>
+                  <td>
+                    <a href="{% url 'session_details' session.id %}">
+                      {{session.date | date:'D d M y'}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'session_details' session.id %}">
+                      {{session.headline}}
+                    </a>
+                  </td>
+                </tr>
+                {% empty %}
+                <p>This is where your logged practices will appear!</p>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+
         </div>
       </div>
     </div>
