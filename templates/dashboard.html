@@ -45,7 +45,10 @@ Rescala | Dasboard
                   </td>
                   <td>
                     <a href="{% url 'session_details' session.id %}">
-                      {{session.headline}}
+                      <span class="fw-bold">
+                        {{session.headline}}
+                      </span>
+
                     </a>
                   </td>
                 </tr>
@@ -178,27 +181,23 @@ Rescala | Dasboard
         <h3>Total Practice</h3>
       </div>
       <div class="dashboard-content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="tally-container">
-              <div class="accent-header">7 Days</div>
-              {{practice_totals.weekly}} mins
-            </div>
-          </div>
-          <div class="col-md-6 mt-2 mt-md-0">
-            <div class="tally-container">
-              <div class="accent-header">30 Days</div>
-              {{practice_totals.monthly}} mins
-            </div>
-          </div>
-          <div class="col-md-6 mt-2">
-            <div class="tally-container">
-              <div class="accent-header">Total</div>
-              {{practice_totals.total}} mins
-            </div>
-          </div>
-        </div>
 
+        <table>
+          <tbody>
+            <tr>
+              <td class="accent-header"> In the last 7 days</td>
+              <td class="fw-bold">{{practice_totals.weekly}} minutes</td>
+            </tr>
+            <tr>
+              <td class="accent-header"> In the last 30 days</td>
+              <td class="fw-bold">{{practice_totals.monthly}} minutes</td>
+            </tr>
+            <tr>
+              <td class="accent-header"> Total Practice</td>
+              <td class="fw-bold">{{practice_totals.total}} minutes</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -214,7 +213,7 @@ Rescala | Dasboard
           {% for resource in resources%}
           <li class="resource-list-item">
             <a href="{% url 'resource_details' resource.id %}">
-              <span>{{resource.title}}</span>
+              <span class="fw-bold">{{resource.title}}</span><br/>
             </a>
           </li>
           {% empty %}

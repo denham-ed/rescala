@@ -46,6 +46,10 @@ a {
 	color: black;
 }
 
+.fw-bold{
+	font-weight: 400;
+}
+
 /* .light-text {
 	color:#DCDCDC !important;
 } */
@@ -122,6 +126,11 @@ footer p i {
 }
 
 /* ------------------------------- Buttons */
+
+/* .btn{
+	text-transform:uppercase;
+} */
+
 .btn-logout {
 	height: 3rem;
 }
