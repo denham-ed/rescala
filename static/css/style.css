@@ -203,6 +203,8 @@ footer p i {
 }
 
 /* ------------------------------- Dashboard */
+
+
 .tally-container {
 	border: 2px solid #14281D;
 	padding: 1.5rem;
@@ -210,7 +212,7 @@ footer p i {
 
 .dashboard-item {
 	border: 2px solid #DCDCDC;
-	padding: 1.5rem;
+	padding: 1.5rem 0.5rem;
 }
 
 .dashboard-card {
@@ -226,12 +228,44 @@ footer p i {
 	top: 0;
 	left: 0;
 	margin-bottom: 2rem;
+	padding-top: 0.2rem;
+	padding-left: 0.5rem;
 	
+}
+
+.dashboard-content {
+	padding-top: 2rem;
 }
 
 /* .dashboard-item:hover {
 	border: 2px solid #14281D;
 } */
+
+.date-cell{
+	width: 30%;
+}
+
+.practice-row{
+	border-bottom: rgba(184, 12, 9, 0.2) 1px solid;
+}
+
+.practice-row:hover{
+	color: #B80C09;
+	border-bottom: rgba(184, 12, 9, 1) 1px solid;
+	
+}
+
+.resource-list-item{
+	border-bottom: rgba(184, 12, 9, 0.2) 1px solid;
+
+}
+
+.resource-list-item:hover{
+	border-bottom: rgba(184, 12, 9, 1) 1px solid;
+	box-sizing: border-box;
+	
+}
+
 
 /* ------------------------------- Progress Bars */
 .progress {
@@ -263,6 +297,7 @@ footer p i {
 .practiced {
 	background-color: #355834;
 }
+
 
 /* ------------------------------- Forms */
 .asteriskField {
@@ -321,9 +356,9 @@ footer p i {
 	border: 2px solid #14281D;
 }
 
-.card:hover{
+/* .card:hover{
 	background-color: #DCDCDC;
-}
+} */
 
 /* Listing */
 
