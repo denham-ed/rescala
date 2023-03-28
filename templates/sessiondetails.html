@@ -13,13 +13,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
-      <h3>
-        {{session.date}} |
-        {{session.duration}} mins
-      </h3>
+    <div class="col-md-12">
+
+        <h3>
+          {{session.date}} |
+          {{session.duration}} mins
+        </h3>
+  
+
 
     </div>
+  </div>
     <!-- Messages -->
     <div class="row">
       <div class="col-md-8 offset-md-2">
@@ -32,62 +36,79 @@
       </div>
   </div>
     <div class="row">
-      <div class="col-md-6">
-        <div>Summary</div>
-        <p>
-          {{session.summary}}
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div>I focused on:</div>
-        <p>
-        <ul>
-          {% for focus in session.focus%}
-          <li>{{focus | title }}</li>
-          {% endfor %}
-        </ul>
-        </p>
-      </div>
-      <div class="col-md-6">
-        <div>How I felt:</div>
-        <p>
-        <ul>
-          {% for mood in session.moods%}
-          <li>{{mood | title }}</li>
-          {% endfor %}
-        </ul>
-        </p>
-      </div>
-    </div>
+      <div class="col-md-8 mb-2">
+        <div class="card dashboard-card">
+          <div class="card-body">
+            <div class="dashboard-title">
+              <h3>Summary</h3>
+            </div>
+            <div class="dashboard-content">
+              <p>
+                {{session.summary}}
+              </p>
+            </div>
+          </div>
+        </div>
+        
 
+      </div>
+      <div class="col-md-4">
+        <div class="card dashboard-card mb-2">
+          <div class="card-body">
+            <div class="dashboard-title">
+              <h3>Focus</h3>
+            </div>
+            <div class="dashboard-content">
+              <p>
+                <ul>
+                  {% for focus in session.focus%}
+                  <li>{{focus | title }}</li>
+                  {% endfor %}
+                </ul>
+                </p>
+            </div>
+          </div>
+        </div>
 
-
+        <div class="card dashboard-card">
+          <div class="card-body">
+            <div class="dashboard-title">
+              <h3>Mood</h3>
+            </div>
+            <div class="dashboard-content">
+              <p>
+                <ul>
+                  {% for mood in session.moods%}
+                  <li>{{mood | title }}</li>
+                  {% endfor %}
+                </ul>
+                </p>
+            </div>
+          </div>
+        </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <a class="btn btn-sm btn-very-dark" href="{% url 'edit_session' session.id %}">Edit Session</a>
+  <div class="row pt-5">
+    <div class="col-md-12 d-flex justify-content-md-end justify-content-center">
+      <a class="btn btn-sm btn-very-dark me-1" href="{% url 'edit_session' session.id %}">Edit Session</a>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-dark btn-sm ms-1" data-toggle="modal" data-target="deleteSessionModal">
         Delete Sesion
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div class="modal fade" id="deleteSessionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSesionModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Delete Session</h5>
+              <h5 class="modal-title" id="deleteSesionModalLabel">Delete Session</h5>
             </div>
             <div class="modal-body">
               <p>Are you sure you want to delete this session?</p>
               <p>This cannot be undone.</p>
             </div>
             <div class="modal-footer">
-   
               <button type="button" class="btn btn-very-dark btn-sm" data-dismiss="modal">Close</button>
               <form method="post" action="{% url 'delete_session' session.id %}">
                 {% csrf_token %}
