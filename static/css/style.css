@@ -36,7 +36,7 @@ a {
 }
 
 .black-text {
-	color: black !important;
+	color: black;
 }
 
 /* .light-text {
@@ -47,6 +47,9 @@ a {
 	color: #B80C09;
 }
 
+.active {
+	border-bottom: #14281D 1px solid;
+}
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;
