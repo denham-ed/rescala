@@ -106,15 +106,12 @@ Rescala | Dasboard
                 </button>
                 </form>
             </div>
-
-          </div>
-          
-
-        </div>
-        {% endfor %}
-        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add
-          Goal
-        </button>
+            {% empty %}
+            <div>It's time to set yourself some long term goals. <br/> Click the <em>Add Goal</em> button to get started.</div>
+            {% endfor %}
+            <button type="button" class="btn btn-sm btn-very-dark mt-2" data-toggle="modal" data-target="#goalModal"> Add
+              Goal
+            </button>
       </div>
     </div>
   </div>
@@ -220,7 +217,7 @@ Rescala | Dasboard
             </a>
           </li>
           {% empty %}
-          <div>Here you can see all your favourite articles, tips and interviews.</br> Head over to Resources to get
+          <div>Here you can see all your favourite articles, tips and interviews.</br> Head over to <em>Resources</em> to get
             started.
           </div>
           {%endfor%}
