@@ -34,6 +34,23 @@ $(document).ready(function () {
         $(this).toggle()
     })
 
+    $(".delete-goal-button").click(function (){
+        const goalId = $(this).data('goal-id');
+        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.revert-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle()
+        $(this).toggle()
+    })
+
+    $(".revert-goal-button").click(function (){
+        const goalId = $(this).data('goal-id');
+        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
+        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle()
+        $(this).toggle()
+    })
+
+
 
     // $('#submit-id-submit').html(
     //     "<div id='login-spinner' class='spinner-border spinner-border-sm' role='status'><span class='sr-only'>Loading...</span></div></div>"
