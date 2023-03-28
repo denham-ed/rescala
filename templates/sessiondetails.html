@@ -60,11 +60,15 @@
             </div>
             <div class="dashboard-content">
               <p>
+                {% if session.focus %}
                 <ul>
                   {% for focus in session.focus%}
                   <li>{{focus | title }}</li>
                   {% endfor %}
                 </ul>
+                {% else %}
+                <div>No focus was logged for this session</div>
+                {% endif %}
                 </p>
             </div>
           </div>
@@ -77,11 +81,16 @@
             </div>
             <div class="dashboard-content">
               <p>
+                {% if session.moods %}
                 <ul>
                   {% for mood in session.moods%}
                   <li>{{mood | title }}</li>
+                
                   {% endfor %}
                 </ul>
+                {% else %}
+                <div>No moods were logged for this session</div>
+                {% endif %}
                 </p>
             </div>
           </div>
@@ -92,8 +101,8 @@
     <div class="col-md-12 d-flex justify-content-md-end justify-content-center">
       <a class="btn btn-sm btn-very-dark me-1" href="{% url 'edit_session' session.id %}">Edit Session</a>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-dark btn-sm ms-1" data-toggle="modal" data-target="deleteSessionModal">
-        Delete Sesion
+      <button type="button" class="btn btn-dark btn-sm ms-1" data-toggle="modal" data-target="#deleteSessionModal">
+        Delete Session
       </button>
 
       <!-- Modal -->

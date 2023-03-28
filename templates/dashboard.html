@@ -25,6 +25,7 @@ Rescala | Dasboard
       {% endfor %}
     </div>
   </div>
+  {% if sessions %}
   <div class="row" data-masonry='{"percentPosition": true }'>
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="card dashboard-card">
@@ -32,7 +33,7 @@ Rescala | Dasboard
           <div class="dashboard-title">
             <h3>Recent Practice</h3>
           </div>
-          {% if sessions %}
+
           <div class="dashboard-content">
             <table>
               <tbody>
@@ -105,13 +106,12 @@ Rescala | Dasboard
                 </button>
                 </form>
             </div>
-          </div>
-
-        </div>
-        {% endfor %}
-        <button type="button" class="btn btn-sm btn-very-dark" data-toggle="modal" data-target="#goalModal"> Add
-          Goal
-        </button>
+            {% empty %}
+            <div>It's time to set yourself some long term goals. <br/> Click the <em>Add Goal</em> button to get started.</div>
+            {% endfor %}
+            <button type="button" class="btn btn-sm btn-very-dark mt-2" data-toggle="modal" data-target="#goalModal"> Add
+              Goal
+            </button>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@ Rescala | Dasboard
         <span class="wordcloud-xs">{{word.mood}} </span>
         {% endif %}
         {% empty %}
-        <p>Log a session to start learning more about how you feel about your practice sessions.</p>
+        <p><em>Log a practice</em> to start learning more about how you feel about your practice sessions.</p>
         {% endfor %}
       </div>
     </div>
@@ -217,7 +217,7 @@ Rescala | Dasboard
             </a>
           </li>
           {% empty %}
-          <div>Here you can see all your favourite articles, tips and interviews. Head over to Resources to get
+          <div>Here you can see all your favourite articles, tips and interviews.</br> Head over to <em>Resources</em> to get
             started.
           </div>
           {%endfor%}
@@ -228,14 +228,20 @@ Rescala | Dasboard
 </div>
 </div>
 {% else %}
-<!-- CHECK STYLING?? -->
 <div class="row">
   <div class="col-md-12">
-    <div class="dashboard-item">
-      <h3>Welcome to Rescala, {{user.first_name}}</h3>
-      <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
-        feeling and start to move towards your musical goals.</div>
-      <div>You've done the hard work! Just log your first practice to get started.</div>
+    <div class="dashboard-card card">
+      <div class="card-body">
+        <div class="dashboard-title">
+          <h3>Welcome to Rescala, {{user.first_name}}</h3>
+        </div>
+        <div class="dashboard-content">
+          <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
+            feeling and start to move towards your musical goals.</div>
+          <div>You've done the hard work! <em>Just log your first practice to get started.</em></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
