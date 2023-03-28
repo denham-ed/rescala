@@ -25,6 +25,7 @@ Rescala | Dasboard
       {% endfor %}
     </div>
   </div>
+  {% if sessions %}
   <div class="row" data-masonry='{"percentPosition": true }'>
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="card dashboard-card">
@@ -32,7 +33,7 @@ Rescala | Dasboard
           <div class="dashboard-title">
             <h3>Recent Practice</h3>
           </div>
-          {% if sessions %}
+
           <div class="dashboard-content">
             <table>
               <tbody>
@@ -105,7 +106,9 @@ Rescala | Dasboard
                 </button>
                 </form>
             </div>
+
           </div>
+          
 
         </div>
         {% endfor %}
@@ -228,14 +231,20 @@ Rescala | Dasboard
 </div>
 </div>
 {% else %}
-<!-- CHECK STYLING?? -->
 <div class="row">
   <div class="col-md-12">
-    <div class="dashboard-item">
-      <h3>Welcome to Rescala, {{user.first_name}}</h3>
-      <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
-        feeling and start to move towards your musical goals.</div>
-      <div>You've done the hard work! Just log your first practice to get started.</div>
+    <div class="dashboard-card card">
+      <div class="card-body">
+        <div class="dashboard-title">
+          <h3>Welcome to Rescala, {{user.first_name}}</h3>
+        </div>
+        <div class="dashboard-content">
+          <div>This is your Dashboard; from here you will be able to track your practices, learn more about how you are
+            feeling and start to move towards your musical goals.</div>
+          <div>You've done the hard work! Just log your first practice to get started.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
