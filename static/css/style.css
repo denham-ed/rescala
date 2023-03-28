@@ -126,6 +126,11 @@ footer p i {
 }
 
 /* ------------------------------- Buttons */
+
+/* .btn{
+	text-transform:uppercase;
+} */
+
 .btn-logout {
 	height: 3rem;
 }
