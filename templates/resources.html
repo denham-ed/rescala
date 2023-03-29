@@ -59,6 +59,8 @@
             <li class="page-item page-link">
               {{ resources.number }} of {{ resources.paginator.num_pages }}
             </li>
+            {%if resources.has_next %}
+            <li>
               <a class="page-link" href="?page={{ resources.next_page_number }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
