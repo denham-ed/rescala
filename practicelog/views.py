@@ -1,16 +1,13 @@
-from django.shortcuts import render, reverse, get_object_or_404, redirect
-from django.views import View
-from .forms import CreateSessionForm, EditSessionForm
-from django.http import HttpResponseRedirect
-from .models import Session
-from users.forms import GoalForm
-from datetime import datetime, timedelta, date
-from django.contrib import messages
 import random
-# Contenxt
+from datetime import datetime, timedelta, date
+from django.shortcuts import render, reverse, get_object_or_404, redirect
+from django.contrib import messages
 from django.template import context
-# Auth
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
+from users.forms import GoalForm
+from .forms import CreateSessionForm, EditSessionForm
+from .models import Session
 
 
 class Dashboard(LoginRequiredMixin, View):
@@ -25,20 +22,28 @@ class Dashboard(LoginRequiredMixin, View):
                     'complete': 0
                 })
                 current_user.save()
-                messages.add_message(request, messages.SUCCESS, 'You have added a long term goal!')
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'You have added a long term goal!')
                 return redirect(reverse('dashboard'))
             else:
-                messages.add_message(request, messages.WARNING, 'Oops - you need to enter a goal. Please try again.')
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    'Oops - you need to enter a goal. Please try again.')
                 return redirect(reverse('dashboard'))
-
 
     def update_goal(request, goal_id):
         if request.method == 'POST':
             current_user = request.user
             goal_complete = request.POST['goal-complete']
-            current_user.goals[goal_id]['complete']=goal_complete
+            current_user.goals[goal_id]['complete'] = goal_complete
             current_user.save()
-            messages.add_message(request, messages.SUCCESS, 'You have updated a long term goal.')
+            messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'You have updated a long term goal.')
             return redirect('dashboard')
 
     def delete_goal(request, goal_id):
@@ -46,7 +51,10 @@ class Dashboard(LoginRequiredMixin, View):
             current_user = request.user
             current_user.goals.remove(current_user.goals[goal_id])
             current_user.save()
-            messages.add_message(request, messages.SUCCESS, 'You have removed a long term goal.')
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'You have removed a long term goal.')
         return redirect('dashboard')
 
     def create_mood_cloud(self, sessions):
@@ -60,10 +68,10 @@ class Dashboard(LoginRequiredMixin, View):
             else:
                 mood_dict[mood] += 1
         total_moods = sum(mood_dict.values())
-        aggregated_as_list = [{"mood": x, "count": round(y/total_moods,2)*100} for x, y in mood_dict.items()]
+        aggregated_as_list = [{"mood": x, "count": round(y/total_moods, 2)
+                              * 100} for x, y in mood_dict.items()]
         random.shuffle(aggregated_as_list)
         return aggregated_as_list
-        
 
     def create_calendar(self, sessions):
         start_date = date.today() - timedelta(days=29)
@@ -71,7 +79,8 @@ class Dashboard(LoginRequiredMixin, View):
         mapped_dates = [{'date': date, 'practice': False} for date in dates]
         for d in mapped_dates:
             for session in sessions:
-                if any(session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d') for session in sessions):
+                if any(session.date.strftime('%Y-%m-%d') ==
+                       d['date'].strftime('%Y-%m-%d') for session in sessions):
                     d['practice'] = True
         return mapped_dates
 
@@ -86,23 +95,32 @@ class Dashboard(LoginRequiredMixin, View):
             else:
                 aggregated_focus[focus] += 1
 
-        aggregated_as_list = [{"focus": x, "count": y} for x, y in aggregated_focus.items()]
+        aggregated_as_list = [{"focus": x, "count": y}
+                              for x, y in aggregated_focus.items()]
         return aggregated_as_list
 
     def get_mins_practiced(self, sessions):
         start_date = date.today()
         weekly_dates = [start_date - timedelta(days=i) for i in range(6)]
-        weekly_minutes = sum(session.duration for session in sessions if session.date in weekly_dates)
+        weekly_minutes = sum(session.duration
+                             for session in sessions
+                             if session.date in weekly_dates)
         monthly_dates = [start_date - timedelta(days=i) for i in range(30)]
-        monthly_minutes = sum(session.duration for session in sessions if session.date in monthly_dates)
+        monthly_minutes = sum(session.duration
+                              for session in sessions
+                              if session.date in monthly_dates)
         total_minutes = sum(session.duration for session in sessions)
-        return { "weekly": weekly_minutes, "monthly": monthly_minutes, "total": total_minutes}
+        return {
+            "weekly": weekly_minutes,
+            "monthly": monthly_minutes,
+            "total": total_minutes
+        }
 
     def get(self, request):
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         user = request.user
         resources = user.resources.all()
-        
+
         return render(
                 request, 'dashboard.html',
                 {
@@ -118,6 +136,7 @@ class Dashboard(LoginRequiredMixin, View):
                     "resources": resources
                 }
             )
+
 
 class CreateLog(LoginRequiredMixin, View):
     def get(self, request):
@@ -136,7 +155,10 @@ class CreateLog(LoginRequiredMixin, View):
             session = create_session_form.save(commit=False)
             session.user = request.user
             session.save()
-            messages.add_message(request, messages.SUCCESS, 'Your practice has been logged successfully.')
+            messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Your practice has been logged successfully.')
             return redirect('dashboard')
         else:
             context = {"form": create_session_form}
@@ -145,6 +167,7 @@ class CreateLog(LoginRequiredMixin, View):
                 'createlog.html',
                 context=context
             )
+
 
 class SessionDetails(LoginRequiredMixin, View):
     def get(self, request, session_id, *args, **kwargs):
@@ -160,7 +183,10 @@ class SessionDetails(LoginRequiredMixin, View):
     def delete_session(request, session_id):
         session = get_object_or_404(Session, id=session_id)
         session.delete()
-        messages.add_message(request, messages.SUCCESS, 'Your practice session has been deleted.')
+        messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Your practice session has been deleted.')
         return redirect('dashboard')
 
 
@@ -171,19 +197,21 @@ class EditLog(LoginRequiredMixin, View):
         session = get_object_or_404(Session, id=session_id)
         user = request.user
         initial_values = {
-            'headline':session.headline,
-            'date':session.date.strftime("%Y-%m-%d"),
-            'duration':session.duration,
+            'headline': session.headline,
+            'date': session.date.strftime("%Y-%m-%d"),
+            'duration': session.duration,
             'focus': session.focus,
-            'summary':session.summary,
-            'moods':session.moods
+            'summary': session.summary,
+            'moods': session.moods
         }
         return render(
             request, 'editlog.html',
             {
-                "form": EditSessionForm(session=session, initial=initial_values),
+                "form": EditSessionForm(
+                    session=session,
+                    initial=initial_values),
                 "user": user,
-                "session":session
+                "session": session
             }
         )
 
@@ -199,7 +227,10 @@ class EditLog(LoginRequiredMixin, View):
             session.summary = form.cleaned_data['summary']
             session.moods = form.cleaned_data['moods']
             session.save()
-            messages.add_message(request, messages.SUCCESS, 'You have successfully updated your practice session.')
+            messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'You have successfully updated your practice session.')
             return redirect(f"/practice/{session_id}")
         else:
             return render(
