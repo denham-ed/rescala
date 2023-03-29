@@ -54,7 +54,7 @@ MOOD_CHOICES = [
 
 class CreateSessionForm(forms.ModelForm):
     """
-    Initiates a new instance of the Create Sesion Form
+    Represensts an instance of the Create Sesion Form
     Inherits Django's Model Form and uses the Session model
     The Crispy Forms library is used to customise the
     layout and error handling of the form.
@@ -156,7 +156,7 @@ What went well? What will you work on next time?"
 
 class EditSessionForm(CreateSessionForm):
     """
-    Initiates a new instance of the Edit Sesion Form
+    Represents an instance of the Edit Sesion Form
     This is a subclass of the Create Session Form
     The Crispy Forms library is used to customise the
     layout and error handling of the form.
