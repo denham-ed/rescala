@@ -196,6 +196,12 @@ class Dashboard(LoginRequiredMixin, View):
 
 
 class CreateLog(LoginRequiredMixin, View):
+    """
+    A class-based view representing the Create Session Log view.
+    It is viewable by authorized users.
+    It renders an instance of the Create Session Form, allowing
+    users to log a practice session.
+    """
     def get(self, request):
         """
         Handles the GET request for the Create Session log view.
@@ -241,9 +247,9 @@ class CreateLog(LoginRequiredMixin, View):
 
 class SessionDetails(LoginRequiredMixin, View):
     """
-    A class-based view that represents a Read-Only view of the session's 
+    A class-based view that represents a Read-Only view of the session's
     Details for an authorised user.
-    The view displays the summary, duration, date, moods and foci of 
+    The view displays the summary, duration, date, moods and foci of
     the session.
     The user can delete the session using a button.
     """
@@ -281,9 +287,20 @@ class SessionDetails(LoginRequiredMixin, View):
 
 
 class EditLog(LoginRequiredMixin, View):
-    template_name = "editlog.html"
-
+    """
+    A class-based view representing the Edit Session view
+    It is viewable by authorized users.
+    It contains an instnace of the Edit Session form, allowing
+    users to edit an existing session.
+    """
     def get(self, request, session_id):
+        """
+        Handles the GET request for the Edit Session view.
+        Retrieves the session by it's ID from the database and
+        prepopulates an instance of the Edit Session form
+        before rendering.
+        Renders the 'editlog' template.
+        """
         session = get_object_or_404(Session, id=session_id)
         user = request.user
         initial_values = {
@@ -306,6 +323,16 @@ class EditLog(LoginRequiredMixin, View):
         )
 
     def post(self, request, *args, **kwargs):
+        """
+        Handles the POST request for the Edit Session view.
+        Retrieves the session by it's ID from the database.
+        If the form is valid, the session will be updated with
+        the new form data.
+        The user is redirected to the session details page.
+        A message is rendered confirming the update.
+
+        If invalid, the form is rerendered with errors.
+        """
         session_id = kwargs.get('session_id')
         session = Session.objects.get(id=session_id)
         form = EditSessionForm(session=session, data=request.POST)
