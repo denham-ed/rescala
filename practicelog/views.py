@@ -106,7 +106,7 @@ class Dashboard(LoginRequiredMixin, View):
         return aggregated_as_list
 
     def create_calendar(self, sessions):
-        """ 
+        """
         Prepares an list of dates for the calendar widget
         on the dashboard
         Creates a list of dates from the last 30 days.
@@ -197,6 +197,11 @@ class Dashboard(LoginRequiredMixin, View):
 
 class CreateLog(LoginRequiredMixin, View):
     def get(self, request):
+        """
+        Handles the GET request for the Create Session log view.
+        Renders the 'createlog' template with an instance of the
+        Create Sesion Form as context.
+        """
         context = {
             "form": CreateSessionForm(),
         }
@@ -205,6 +210,15 @@ class CreateLog(LoginRequiredMixin, View):
         )
 
     def post(self, request, *args, **kwargs):
+        """
+        Handles the submission of an instnace of the Create Session form.
+        If the form is valid, a new session is created.
+        The current user is attached to the session as a FK.
+        The user is then redirected to the dashboard and a message
+        confirming the successful creation is rendered.
+
+        If invalid, the form is rerendered with errors.
+        """
         create_session_form = CreateSessionForm(data=request.POST)
         if create_session_form.is_valid():
             user = request.user
@@ -226,7 +240,20 @@ class CreateLog(LoginRequiredMixin, View):
 
 
 class SessionDetails(LoginRequiredMixin, View):
+    """
+    A class-based view that represents a Read-Only view of the session's 
+    Details for an authorised user.
+    The view displays the summary, duration, date, moods and foci of 
+    the session.
+    The user can delete the session using a button.
+    """
     def get(self, request, session_id, *args, **kwargs):
+        """
+        Handles the GET request for the Session Details view.
+        Retrieves the session by it's ID from the database and provides
+        it as context.
+        Renders the 'sessiondetails' template.
+        """
         session = get_object_or_404(Session, id=session_id)
 
         return render(
@@ -237,6 +264,13 @@ class SessionDetails(LoginRequiredMixin, View):
         )
 
     def delete_session(request, session_id):
+        """
+        Handles a delete request by the user.
+        The session is identified form the database by its ID.
+        The session is then removed from the database.
+        A message, confirming deletion, is rendered to the user
+        after redirecting them to the dashboard.
+        """
         session = get_object_or_404(Session, id=session_id)
         session.delete()
         messages.add_message(
