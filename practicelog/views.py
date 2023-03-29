@@ -11,7 +11,19 @@ from .models import Session
 
 
 class Dashboard(LoginRequiredMixin, View):
+    """
+    A class-based view that represents Dashboard for an authorised user.
+    The dashboard displays a number of widgets including a calendar,
+    a list of recent practice sessions, a graph of focus areas,
+    and a word cloud representing the user's logged moods.
+    """
     def add_goal(request):
+        """
+        Handles a submitted Add Goal form from the dashboard.
+        If the form is valid, the goal is added to the user's Profile.
+        The user is then redirected to the dashboard.
+        A message confirms the added goal.
+        """
         if request.method == 'POST':
             current_user = request.user
             form = GoalForm(request.POST)
@@ -35,6 +47,13 @@ class Dashboard(LoginRequiredMixin, View):
                 return redirect(reverse('dashboard'))
 
     def update_goal(request, goal_id):
+        """
+        Handles a submitted Update Goal request from the dashboard.
+        The goal is identified by it's index in the User's goal list.
+        The goal's 'complete' attribute is updated.
+        The user is then redirected to the dashboard.
+        A message confirms the updated goal.
+        """
         if request.method == 'POST':
             current_user = request.user
             goal_complete = request.POST['goal-complete']
@@ -47,6 +66,13 @@ class Dashboard(LoginRequiredMixin, View):
             return redirect('dashboard')
 
     def delete_goal(request, goal_id):
+        """
+        Handles a submitted Delete Goal request from the dashboard.
+        The goal is identified by it's index in the User's goal list.
+        The goal is removed from the user's goals list.
+        The user is then redirected to the dashboard.
+        A message confirms the delete goal.
+        """
         if request.method == 'POST':
             current_user = request.user
             current_user.goals.remove(current_user.goals[goal_id])
@@ -58,6 +84,12 @@ class Dashboard(LoginRequiredMixin, View):
         return redirect('dashboard')
 
     def create_mood_cloud(self, sessions):
+        """
+        Aggregates the mood list from each logged session.
+        Returns the aggregated list as a list of dictionaries
+        with the mood and a count to represent how often they appear.
+        This list is shuffled to create a random order.
+        """
         aggregated_moods = []
         for session in sessions:
             aggregated_moods = aggregated_moods + session.moods
@@ -74,6 +106,15 @@ class Dashboard(LoginRequiredMixin, View):
         return aggregated_as_list
 
     def create_calendar(self, sessions):
+        """ 
+        Prepares an list of dates for the calendar widget
+        on the dashboard
+        Creates a list of dates from the last 30 days.
+        Loops through the list to identify dates where
+        practice has been logged.
+        Returns an list of dictionaries with a date and practice
+        (boolean) attribute.
+        """
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
         mapped_dates = [{'date': date, 'practice': False} for date in dates]
@@ -85,6 +126,13 @@ class Dashboard(LoginRequiredMixin, View):
         return mapped_dates
 
     def aggregate_focus(self, sessions):
+        """
+        Prepares a list of displaying a chart on the dashboard.
+        Function takes a list of sessions and aggregates the recorded
+        foci of each.
+        Returns a lsit of dictionaries that contains the mood itself and a
+        count to represent how often they appear in the sessions.
+        """
         focus_list = []
         for session in sessions:
             focus_list = focus_list + session.focus
@@ -94,12 +142,18 @@ class Dashboard(LoginRequiredMixin, View):
                 aggregated_focus[focus] = 1
             else:
                 aggregated_focus[focus] += 1
-
         aggregated_as_list = [{"focus": x, "count": y}
                               for x, y in aggregated_focus.items()]
         return aggregated_as_list
 
     def get_mins_practiced(self, sessions):
+        """
+        Prepares a dictionary for rendering the minutes practiced
+        widget on the dashboard.
+        Calculates the number of minutes of logged pracitce
+        for the last 7 days, 30 days and all sessions.
+        Returns a dictionary with these totals.
+        """
         start_date = date.today()
         weekly_dates = [start_date - timedelta(days=i) for i in range(6)]
         weekly_minutes = sum(session.duration
@@ -117,10 +171,13 @@ class Dashboard(LoginRequiredMixin, View):
         }
 
     def get(self, request):
+        """
+        Handles the GET request for the app's dashboard.
+        Renders the 'dashboard' template with context for each widget.
+        """
         sessions = Session.objects.filter(user=request.user).order_by('-date')
         user = request.user
         resources = user.resources.all()
-
         return render(
                 request, 'dashboard.html',
                 {
@@ -140,7 +197,6 @@ class Dashboard(LoginRequiredMixin, View):
 
 class CreateLog(LoginRequiredMixin, View):
     def get(self, request):
-        # user = request.user
         context = {
             "form": CreateSessionForm(),
         }
