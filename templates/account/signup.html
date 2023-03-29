@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-
 {% load crispy_forms_tags%}
 {% crispy form form.helper %}
 
 {% block title%}
 Rescala | Register
 {% endblock%}
+
 {% block header%}
 <header>
   <nav class="navbar navbar-expand-lg bg-dark-green h-100">
@@ -14,6 +14,7 @@ Rescala | Register
   </nav>
 </header>
 {%endblock header%}
+
 {% block content %}
 <div class="container-fluid bg-dark-green h-100">
     <div class="row h-100">
@@ -26,13 +27,7 @@ Rescala | Register
                     </p>
                 </div>
             </div>
-            <!-- Form -->
-    
-                  {% crispy form %}
-         
-
-
-
+            {% crispy form %}
         </div>
     </div>
 </div>

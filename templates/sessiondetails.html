@@ -14,17 +14,12 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-
         <h3>
           {{session.date}} |
           {{session.duration}} mins
         </h3>
-  
-
-
     </div>
   </div>
-    <!-- Messages -->
     <div class="row">
       <div class="col-md-8 offset-md-2">
           {% for message in messages %}
@@ -49,8 +44,6 @@
             </div>
           </div>
         </div>
-        
-
       </div>
       <div class="col-md-4">
         <div class="card dashboard-card mb-2">
@@ -73,7 +66,6 @@
             </div>
           </div>
         </div>
-
         <div class="card dashboard-card">
           <div class="card-body">
             <div class="dashboard-title">
@@ -85,7 +77,6 @@
                 <ul>
                   {% for mood in session.moods%}
                   <li>{{mood | title }}</li>
-                
                   {% endfor %}
                 </ul>
                 {% else %}
@@ -96,16 +87,12 @@
           </div>
         </div>
   </div>
-
   <div class="row pt-5">
     <div class="col-md-12 d-flex justify-content-md-end justify-content-center">
       <a class="btn btn-sm btn-very-dark me-1" href="{% url 'edit_session' session.id %}">Edit Session</a>
-      <!-- Button trigger modal -->
       <button type="button" class="btn btn-dark btn-sm ms-1" data-toggle="modal" data-target="#deleteSessionModal">
         Delete Session
       </button>
-
-      <!-- Modal -->
       <div class="modal fade" id="deleteSessionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSesionModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -130,7 +117,4 @@
     </div>
   </div>
 </div>
-
-
-
 {% endblock %}
