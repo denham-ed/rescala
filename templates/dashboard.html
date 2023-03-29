@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title%}
 Rescala | Dasboard
 {% endblock%}
@@ -169,6 +171,7 @@ Rescala | Dasboard
         <h3>Focus</h3>
       </div>
       <div class="dashboard-content">
+        <div id='no-chart'></div>
         <canvas id="focus-chart"></canvas>
       </div>
     </div>
@@ -268,54 +271,7 @@ Rescala | Dasboard
 {%block scripts%}
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
   integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
-
+{{focus_list|json_script:"focus"}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // jquery function
-  // https://www.section.io/engineering-education/integrating-chart-js-in-django/
-  $(document).ready(function () {
-    try {
-      var ctx = document.getElementById('focus-chart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: [{%for focus in focus_list %}'{{focus.focus | capfirst }}',{% endfor %}],
-    datasets: [{
-      label: '# of practice sessions',
-      data: [{%for focus in focus_list %}{{ focus.count }}, {% endfor %}],
-    backgroundColor: [
-    'rgba(53, 88, 52, 0.2)',
-    'rgba(184, 12, 9, 0.2)',
-    'rgba(255, 255, 255, 1)',
-    'rgba(20, 40, 29, 0.2)',
-    'rgba(119, 119, 119, 0.2)',
-    'rgba(232, 241, 242, 0.2)'
-  ],
-    borderColor: [
-    'rgba(53, 88, 52, 1)',
-    'rgba(184, 12, 9, 1)',
-    'rgba(0,0,0,1)',
-    'rgba(20, 40, 29, 1)',
-    'rgba(119, 119, 119, 1)',
-    'rgba(0,0,0,1)'
-  ],
-    borderWidth: 1
-                    }]
-                },
-    options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'right',
-      },
-    }
-  },
-    });
-      } catch (e) {
-
-  }
-
-        });
-</script>
+<script src="{% static 'js/dashboardScripts.js' %}"></script>
 {%endblock scripts%}
