@@ -39,6 +39,8 @@ class TestDashboardView(TestCase):
             summary="Testing Session2",
         )
 
+    
+
     def test_user_can_view_dashboard(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.get(self.url)
@@ -95,6 +97,31 @@ class TestDashboardView(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'You have added a long term goal!')
 
+    def test_add_goal_form_is_invalid(self):
+        form_data = {
+            "goal_name": ""
+        }
+        form = GoalForm(data=form_data)
+        self.assertEqual(form.is_valid(), False)
+
+    def test_invalid_add_goal_form_redirects(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('add_goal'),
+            {'goal_name': ""}
+            )
+        self.assertEqual(response.status_code, 302)
+
+    def test_add_goal_displays_message_on_invalid_form(self):
+        self.client.login(username='testuser', password='testpass')
+        response = self.client.post(
+            reverse('add_goal'),
+            {'goal_name': ""}
+            )
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Oops - you need to enter a goal. Please try again.')        
+
     # Update Goal
     def test_updated_goal_is_saved(self):
         self.client.login(username='testuser', password='testpass')
@@ -117,12 +144,31 @@ class TestDashboardView(TestCase):
             str(messages[0]),
             'You have updated a long term goal.')
 
-    def test_add_goal_redirects_to_dashboard(self):
+    def test_update_goal_redirects_to_dashboard(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.post(
             reverse('update_goal', args=[0]),
             {'goal_id': '0', 'goal-complete': 100})
         self.assertEqual(response.status_code, 302)
+
+
+    # Delete Goal
+    def test_delete_goal_removes_goal_from_user(self):
+        self.client.login(username='testuser', password='testpass')
+        self.client.post(
+            reverse('add_goal'),
+            {'goal_name': "Goal for deleting"}
+            )
+        self.user.refresh_from_db()
+        response = self.client.post(reverse('delete_goal', args=[1]))
+        self.user.refresh_from_db()
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(self.user.goals), 1)
+        self.assertEqual(len(messages), 2)
+        self.assertEqual(str(messages[1]), 'You have removed a long term goal.')    
+
+
+
 
     # Authentication
     def test_anonymous_user_is_redirected(self):
