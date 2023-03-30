@@ -258,7 +258,7 @@ footer p i {
 
 /* ------------------------------- Backgrounds */
 .repeat-text-container {
-	background-image: url('../images/rrr_background.png');
+	/* background-image: url('https://res.cloudinary.com/dlnanftlf/image/upload/v1680133917/rrr_background_jtbala.png'); */
 	background-size: cover;
 	background-position: center;
 }
