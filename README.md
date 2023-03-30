@@ -16,7 +16,7 @@ Key features:
  - Read and save articles focused on intentional practice, habit building and personal development
 
  ## Live Project
-[Rescala is available to view here](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
+[The deployed site is available here.](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
 
 ## User Stories
 The User Stories for this project were planned and tracked  using [GitHub's Projects Tool.](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects "Link to information on GitHub Projects")
@@ -30,6 +30,7 @@ Inspired by the Agile methodology and utlising the MoSCoW prioritization, these 
 The layout for Rescala was developed using [Balsamiq](https://balsamiq.com/ "Link to Balsamiq")
 
 The wireframes for Rescala can be found [here.](documentation/diagrams/wireframes.pdf)
+
 ### Colour Scheme
 Rescala usess the following colours throughout.
 
@@ -51,22 +52,23 @@ Two fonts are used in the application.
 
 ## Database Model
 
-Link to database model drawing
+### Requirements 
+- Each user needs a list of goals. These are unique to the user.
+- Each user needs a list of resources. This is a many-to-many relationship.
+
+Therefore, the profile model for this application extends the Django User model.
+
+### Models
+![Database Models](documentation/diagrams/rescala_db.png)
 
 ## Current Features	
 
-### Landing Page
-
-![Landing Page](documentation/images/landing.png)
-
-- Displays the brands slogan
-- Features a large Call-To-Action button
-
+### Layout Features
 
 **Header**
 
 - Appears on every page
-- Features the Brand logo in the top left
+- Features the Brand logo in the top left. This acts as link to the Landing Page / Dashboard.
 
 ![Logo](documentation/images/logo.png)
 
@@ -89,25 +91,86 @@ Link to database model drawing
 
 ![Socials in Footer](documentation/images/socials.png)
 
+### Landing Page
+
+![Landing Page](documentation/images/landing.png)
+
+- Displays the brands slogan
+- Features a large Call-To-Action button
+- Authenticated users are redirected to the Dashboard page
+
+
 ### Authentication
+The authentication for Rescala is handled by [Django AllAuth.](https://django-allauth.readthedocs.io/en/latest/)
 
-The authentication 
+Anonymous (unauthenticated users) can view the landing, sign in and register pages, as well as accessing the Resources section of the site.
 
+The following pages extend and modify the AllAuth templates, adding custom formatting and error messages.
 **Register Page**
+
+![Register Page](documentation/images/register.png)
+
+- New users can register for a Rescala account
+- Floating labels provide clear instruction to the user
+![Errors on Registration Form](documentation/images/register_error.png)
+
+- Registered users are guided to the sign in page
+- Invalid form submissions are indiciated with custom error messages
 
 **Sign In Page**
 
-**Log Out Page**
+![Sign In](documentation/images/sign_in.png)
+- Users with accounts can sign in to Rescala
+- Floating labels provide clear instruction to the user
+- New users are guided to the Register page
+- Valid submission redirects to the Dashboard
+- Invalid form submissions are indiciated with custom error messages
+- Users can opt for the Remember Me option to by pass this stage next time
+
+**Sign Out Page**
+
+![Sign Out](documentation/images/log_out.png)
+
+ - Users are asked to confirm that they are logging out
+ - The confirmation options are in-keeping with the tone for the target user
 
 ### Dashboard
 
+
+The dashboard allows a logged-in user to view aggregated statistics about their logged practices. It also serves as the landing page for authenticated users.
+
+![Dashboard Page](documentation/images/dashboard.png)
+
 **Recent Practices**
+- The most recent 5 logged practice sessions are rendered with the date and the headline.
+- Each session is clickable and redirects to the Session Details page. !!!! MAKE THIS A HYPERLINK!!!!
+
 **Goals**
+- Users can add long term goals, which can be updated and tracked.
+- Progress for each goal can be updated with the Edit button.
+- Goals can be removed with the Delete button.
+- A spinner is used to show the User that the goal is being updated.
+
 **Moods**
+ - Renders a wordcloud from the aggregated Moods from each recorded session. Conditional formatting is applied, reflecting the prevalence of each word.
+ - Allows user to identify trends and patterns in their emotions whilst practicing.
+
 **Calendar**
+- Renders 30 circles to represent the last 30 days.
+- Days where practice has occured are coloured green.
+- Allows users to visualise a practice streak, a key factor in habit building.
+- Tool-tips allow users to see which date each object represents.
+
 **Focus**
+- Displays a Dougnut Chart (Part-To-Whole Relationship) to represent the number of sessions where each focus has occurred.
+- Allows the user to track how they are spending their time and areas of focus that may be underserved.
+
 **Total Practice**
+- Displays the sum of practice duration for each recorded session for the last 7 days, 30 days and for all sessions.
+
 **User Resources**
+- Displays a list of 'favourited' articles by the user
+- Each item in the list is a link to the resource.
 
 ## Planned Features
 
@@ -137,6 +200,7 @@ The authentication
  - **Bootstrap**
  - **Django Crispy Forms**
  - **Summernote**
+ - **ChartJS**
 
 ### Hosting and Storage
  - **Cloudinary**
@@ -148,6 +212,8 @@ The authentication
 - **GitHub** 
 
 ### Design & Media
+- Database people
+Balsamiq
 - **Coolors**
 - **Google Fonts**
 - **Font Awesome**
@@ -159,6 +225,8 @@ The authentication
  - **SQLite** was used for the development database and during unit testing
  - **PostgreSQL**, via Elephant SQL, is used for the production database.
 ### Credits
-### Chat GPT
+**Code**
+
+**Chat GPT**
 
 ## Acknowledgements
