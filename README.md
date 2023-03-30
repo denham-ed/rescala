@@ -48,6 +48,8 @@ Two fonts are used in the application.
 
 ## Database Model
 
+Link to database model drawing
+
 ## Current Features	
 
 ### Landing Page
@@ -88,7 +90,41 @@ Two fonts are used in the application.
 ## Technologies
 
 ### Languages
+
+ - **Python**
+ - **Javascript**
+ - **HTML5**
+ - **CSS3**
+
 ### Libraries and Frameworks
+
+ - **Django**
+ - **Django AllAuth**
+ - **jQuery**
+ - **Bootstrap**
+ - **Django Crispy Forms**
+ - **Summernote**
+
+### Hosting and Storage
+ - **Cloudinary**
+ - **Heroku**
+ - **ElephantSQL**
+
+### Version Control
+- **Git**
+- **GitHub** 
+
+### Design & Media
+- **Coolors**
+- **Google Fonts**
+- **Font Awesome**
+- **Unsplash**
+- **Canva**
+
+
+### Databases
+ - **SQLite** was used for the development database and during unit testing
+ - **PostgreSQL**, via Elephant SQL, is used for the production database.
 ### Credits
 ### Chat GPT
 
