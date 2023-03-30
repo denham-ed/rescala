@@ -334,6 +334,7 @@ footer p i {
 .progress {
 	background-color: #fff;
 	border: 1px solid #355834;
+	width: 80%;
 }
 
 .progress-bar {
