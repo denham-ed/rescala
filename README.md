@@ -16,7 +16,7 @@ Key features:
  - Read and save articles focused on intentional practice, habit building and personal development
 
  ## Live Project
-[Rescala is available to view here](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
+[The deployed site is available here.](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
 
 ## User Stories
 The User Stories for this project were planned and tracked  using [GitHub's Projects Tool.](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects "Link to information on GitHub Projects")
@@ -52,17 +52,18 @@ Two fonts are used in the application.
 
 ## Database Model
 
-Link to database model drawing
+### Requirements 
+- Each user needs a list of goals. These are unique to the user.
+- Each user needs a list of resources. This is a many-to-many relationship.
+
+Therefore, the profile model for this application extends the Django User model.
+
+### Models
+![Database Models](documentation/diagrams/rescala_db.png)
 
 ## Current Features	
 
-### Landing Page
-
-![Landing Page](documentation/images/landing.png)
-
-- Displays the brands slogan
-- Features a large Call-To-Action button
-
+### Layout Features
 
 **Header**
 
@@ -90,15 +91,45 @@ Link to database model drawing
 
 ![Socials in Footer](documentation/images/socials.png)
 
+### Landing Page
+
+![Landing Page](documentation/images/landing.png)
+
+- Displays the brands slogan
+- Features a large Call-To-Action button
+
+
 ### Authentication
+The authentication for Rescala is handled by [Django AllAuth.](https://django-allauth.readthedocs.io/en/latest/)
 
-The authentication for Rescala is handled by Django AllAuth..
+Anonymous (unauthenticated users) can view the landing, sign in and register pages, as well as accessing the Resources section of the site.
 
+The following pages extend and modify the AllAuth templates, adding custom formatting and error messages.
 **Register Page**
 
-**Sign In Page**
+![Register Page](documentation/images/register.png)
 
-**Log Out Page**
+- New users can register for a Rescala account
+- Floating labels provide clear instruction to the user
+![Errors on Registration Form](documentation/images/register_error.png)
+
+- Registered users are guided to the sign in page
+- Invalid form submissions are indiciated with custom error messages
+
+**Sign In Page**
+- Users with accounts can sign in to Rescala
+- Floating labels provide clear instruction to the user
+- New users are guided to the Register page
+- Valid submission redirects to the Dashboard
+- Invalid form submissions are indiciated with custom error messages
+- Users can opt for the Remember Me option to by pass this stage next time
+
+**Sign Out Page**
+
+![Sign Out](documentation/images/log_out.png)
+
+ - Users are asked to confirm that they are logging out
+ - The confirmation options are in-keeping with the tone for the target user
 
 ### Dashboard
 
