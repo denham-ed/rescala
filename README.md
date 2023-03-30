@@ -101,6 +101,7 @@ Therefore, the profile model for this application extends the Django User model.
 
 
 ### Authentication
+
 The authentication for Rescala is handled by [Django AllAuth.](https://django-allauth.readthedocs.io/en/latest/)
 
 Anonymous (unauthenticated users) can view the landing, sign in and register pages, as well as accessing the Resources section of the site.
@@ -171,6 +172,37 @@ The dashboard allows a logged-in user to view aggregated statistics about their 
 **User Resources**
 - Displays a list of 'favourited' articles by the user
 - Each item in the list is a link to the resource.
+
+
+### Resources
+
+The resources page allows all users to view Rescala's collection of artices on practice, habit-building and self-improvement.
+
+![Resources](documentation/images/resources.png)
+
+**Resource List**
+- Resources are ordered by date, so most recent articles are presented to the user first.
+- Asymmetric design provides an alternative to the standard list view for blogs.
+- Each resource tile is a link to the resource itself.
+
+**Pagination**
+- Pagination is handled by Django and renders a maximum of six resources to each page.
+- Users can navigate between pages using the Pagination controls underneath the listed resources.
+
+**Excerpt**
+- Hovering over the image for each resource displays a summary excerpt as an overlay.
+
+### Individual Resource
+
+![Resource](documentation/images/resource.png)
+
+**Recommendations**
+- Users are recommended three additional resources. This will keep users engaged on the site.
+
+![Recommendation](documentation/images/might_like.png)
+
+**Add to Favourites**
+- Authenticated users can use the Star icon to mark the resource as a favourite. Favourite articles can be accessed directly from the Dashboard.
 
 ## Planned Features
 
