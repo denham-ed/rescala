@@ -68,7 +68,7 @@ Therefore, the profile model for this application extends the Django User model.
 **Header**
 
 - Appears on every page
-- Features the Brand logo in the top left
+- Features the Brand logo in the top left. This acts as link to the Landing Page / Dashboard.
 
 ![Logo](documentation/images/logo.png)
 
@@ -97,6 +97,7 @@ Therefore, the profile model for this application extends the Django User model.
 
 - Displays the brands slogan
 - Features a large Call-To-Action button
+- Authenticated users are redirected to the Dashboard page
 
 
 ### Authentication
@@ -117,6 +118,8 @@ The following pages extend and modify the AllAuth templates, adding custom forma
 - Invalid form submissions are indiciated with custom error messages
 
 **Sign In Page**
+
+![Sign In](documentation/images/sign_in.png)
 - Users with accounts can sign in to Rescala
 - Floating labels provide clear instruction to the user
 - New users are guided to the Register page
@@ -133,13 +136,41 @@ The following pages extend and modify the AllAuth templates, adding custom forma
 
 ### Dashboard
 
+
+The dashboard allows a logged-in user to view aggregated statistics about their logged practices. It also serves as the landing page for authenticated users.
+
+![Dashboard Page](documentation/images/dashboard.png)
+
 **Recent Practices**
+- The most recent 5 logged practice sessions are rendered with the date and the headline.
+- Each session is clickable and redirects to the Session Details page. !!!! MAKE THIS A HYPERLINK!!!!
+
 **Goals**
+- Users can add long term goals, which can be updated and tracked.
+- Progress for each goal can be updated with the Edit button.
+- Goals can be removed with the Delete button.
+- A spinner is used to show the User that the goal is being updated.
+
 **Moods**
+ - Renders a wordcloud from the aggregated Moods from each recorded session. Conditional formatting is applied, reflecting the prevalence of each word.
+ - Allows user to identify trends and patterns in their emotions whilst practicing.
+
 **Calendar**
+- Renders 30 circles to represent the last 30 days.
+- Days where practice has occured are coloured green.
+- Allows users to visualise a practice streak, a key factor in habit building.
+- Tool-tips allow users to see which date each object represents.
+
 **Focus**
+- Displays a Dougnut Chart (Part-To-Whole Relationship) to represent the number of sessions where each focus has occurred.
+- Allows the user to track how they are spending their time and areas of focus that may be underserved.
+
 **Total Practice**
+- Displays the sum of practice duration for each recorded session for the last 7 days, 30 days and for all sessions.
+
 **User Resources**
+- Displays a list of 'favourited' articles by the user
+- Each item in the list is a link to the resource.
 
 ## Planned Features
 
@@ -169,6 +200,7 @@ The following pages extend and modify the AllAuth templates, adding custom forma
  - **Bootstrap**
  - **Django Crispy Forms**
  - **Summernote**
+ - **ChartJS**
 
 ### Hosting and Storage
  - **Cloudinary**
@@ -180,6 +212,8 @@ The following pages extend and modify the AllAuth templates, adding custom forma
 - **GitHub** 
 
 ### Design & Media
+- Database people
+Balsamiq
 - **Coolors**
 - **Google Fonts**
 - **Font Awesome**
@@ -191,6 +225,8 @@ The following pages extend and modify the AllAuth templates, adding custom forma
  - **SQLite** was used for the development database and during unit testing
  - **PostgreSQL**, via Elephant SQL, is used for the production database.
 ### Credits
-### Chat GPT
+**Code**
+
+**Chat GPT**
 
 ## Acknowledgements
