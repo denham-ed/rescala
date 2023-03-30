@@ -40,6 +40,7 @@ All four colours are used with varying degrees of opacity to support text/image 
 Two fonts are used in the application.
 
 **Fraunces** is used for headings and the brand logo in the header. It is used with a font weight of 300.
+
 ![Fraunces Font](documentation/images/fraunces.png)
 
 **Work Sans** is used with a font weight of 300 for the majority of text in the body. Occassionally it appears at 400, to add emphasis for subtitles and for headers.
@@ -54,11 +55,41 @@ Link to database model drawing
 
 ### Landing Page
 
+![Landing Page](documentation/images/landing.png)
+
+- Displays the brands slogan
+- Features a large Call-To-Action button
+
+
 **Header**
+
+- Appears on every page
+- Features the Brand logo in the top left
+
+![Logo](documentation/images/logo.png)
+
+- Includes a navigation bar with links to key areas
+
+![Navigation](documentation/images/navigation.png)
+
+- Authenticated users can access the Dashboard, Log Practice and Log Out areas
+- Current page is shown to the user
+- Anonymous users will only have access to the Resources link
 
 **Footer**
 
-### Authorisation
+- Appears on every page
+- Includes the brand name and slogan
+
+![Branding in Footer](documentation/images/footer_brand.png)
+
+- Includes links the developer's GitHub and LinkedIn page. These open in a new browser tab.
+
+![Socials in Footer](documentation/images/socials.png)
+
+### Authentication
+
+The authentication 
 
 **Register Page**
 
