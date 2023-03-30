@@ -93,7 +93,7 @@ class CreateSessionForm(forms.ModelForm):
                         Submit(
                             "submit",
                             "Add Session",
-                            css_class="btn-very-dark btn-md btn",
+                            css_class="btn-very-dark btn-md btn mb-2 mb-md-0",
                         )
                     ),
                     css_class=self.center),
@@ -191,7 +191,7 @@ class EditSessionForm(CreateSessionForm):
                         Submit(
                             "submit",
                             "Update Session",
-                            css_class="btn-very-dark btn-md btn",
+                            css_class="btn-very-dark btn-md btn mb-2 mb-md-0",
                         )
                     ),
                     css_class=self.center,

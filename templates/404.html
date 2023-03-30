@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title%}
+Rescala | 404
+{% endblock%}
+
+{% load crispy_forms_tags%}
+{% crispy form form.helper %}
+
+{% block content %}
+<div class="container d-flex flex-column h-100">
+    <div class="row h-50 ">
+        <div class="col d-flex justify-content-center align-items-center">
+            <h1 style="font-size: 750%;">404</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <h1 class='text-center'>An empty practice room? Great! An empty page? Less good.</h1>
+        </div>
+        <div class="row">
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+                <p class='text-center'>Sorry, we can't find what you're looking for. 
+                    Let's get you back on track:
+                </p>
+                <div>
+                    <a href="{% url 'dashboard' %}" class="btn btn-lg btn-very-dark">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

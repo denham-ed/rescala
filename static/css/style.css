@@ -15,7 +15,6 @@ body {
 
 main {
 	flex-grow: 1;
-	padding-bottom: 2rem;
 }
 
 hr {
@@ -82,6 +81,7 @@ textarea {
 
 .edit-goal-range{
 	display: none;
+	width: 75%;
 }
 
 .textinput{
@@ -258,7 +258,7 @@ footer p i {
 
 /* ------------------------------- Backgrounds */
 .repeat-text-container {
-	background-image: url('../images/rrr_background.png');
+	/* background-image: url('https://res.cloudinary.com/dlnanftlf/image/upload/v1680133917/rrr_background_jtbala.png'); */
 	background-size: cover;
 	background-position: center;
 }
@@ -334,6 +334,7 @@ footer p i {
 .progress {
 	background-color: #fff;
 	border: 1px solid #355834;
+	width: 80%;
 }
 
 .progress-bar {

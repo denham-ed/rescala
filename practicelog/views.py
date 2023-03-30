@@ -55,6 +55,7 @@ class Dashboard(LoginRequiredMixin, View):
         A message confirms the updated goal.
         """
         if request.method == 'POST':
+            print("POSTING")
             current_user = request.user
             goal_complete = request.POST['goal-complete']
             current_user.goals[goal_id]['complete'] = goal_complete
