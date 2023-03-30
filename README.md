@@ -30,6 +30,7 @@ Inspired by the Agile methodology and utlising the MoSCoW prioritization, these 
 The layout for Rescala was developed using [Balsamiq](https://balsamiq.com/ "Link to Balsamiq")
 
 The wireframes for Rescala can be found [here.](documentation/diagrams/wireframes.pdf)
+
 ### Colour Scheme
 Rescala usess the following colours throughout.
 
@@ -91,7 +92,7 @@ Link to database model drawing
 
 ### Authentication
 
-The authentication 
+The authentication for Rescala is handled by Django AllAuth..
 
 **Register Page**
 
