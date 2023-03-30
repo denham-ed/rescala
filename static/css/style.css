@@ -82,6 +82,7 @@ textarea {
 
 .edit-goal-range{
 	display: none;
+	width: 75%;
 }
 
 .textinput{

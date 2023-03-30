@@ -90,12 +90,12 @@ Rescala | Dasboard
                           <span class="sr-only">Loading...</span>
                         </div>
                       </div>
-                      <input type="range" data-goal-id="{{forloop.counter}}" class="w-100 edit-goal-range"
+                      <input type="range" data-goal-id="{{forloop.counter}}" class="w-75 edit-goal-range"
                         value="{{goal.complete}}" name="goal-complete">
 
                       {% csrf_token %}
                       <button type='button' data-goal-id="{{forloop.counter}}"
-                        class=" edit-goal-button btn btn-sm btn-dark"><i class="fa-solid fa-pen"></i></button>
+                        class=" edit-goal-button btn btn-sm btn-dark ms-2"><i class="fa-solid fa-pen"></i></button>
                       <button type='submit' data-goal-id="{{forloop.counter}}"
                         class="save-goal-button btn btn-sm btn-dark"><i class="fa-regular fa-circle-check"></i></button>
                   </form>
