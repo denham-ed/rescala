@@ -1,5 +1,5 @@
 # Rescala
-An online practice diary for classical musicians built with Django.
+An online practice diary for classical musicians, built with Django.
 > Get closer to your musical goals with Rescala.
 >
 > Rehearse. Record. Repeat.
@@ -45,3 +45,51 @@ Two fonts are used in the application.
 **Work Sans** is used with a font weight of 300 for the majority of text in the body. Occassionally it appears at 400, to add emphasis for subtitles and for headers.
 
 ![Fraunces Font](documentation/images/work_sans.png)
+
+## Database Model
+
+## Current Features	
+
+### Landing Page
+
+**Header**
+
+**Footer**
+
+### Authorisation
+
+**Register Page**
+
+**Sign In Page**
+
+**Log Out Page**
+
+### Dashboard
+
+**Recent Practices**
+**Goals**
+**Moods**
+**Calendar**
+**Focus**
+**Total Practice**
+**User Resources**
+
+## Planned Features
+
+## Testing
+### Accessibility 
+### Validators
+### Manual Testing
+### Automated Testing
+### Responsiveness
+
+## Deployment
+
+## Technologies
+
+### Languages
+### Libraries and Frameworks
+### Credits
+### Chat GPT
+
+## Acknowledgements
