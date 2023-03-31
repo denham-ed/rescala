@@ -92,8 +92,8 @@ class CreateSessionForm(forms.ModelForm):
                     (
                         Submit(
                             "submit",
-                            "Add Session",
-                            css_class="btn-very-dark btn-md btn mb-2 mb-md-0",
+                            "Log Practice",
+                            css_class="btn-very-dark btn-md btn mb-2",
                         )
                     ),
                     css_class=self.center),
@@ -103,7 +103,7 @@ class CreateSessionForm(forms.ModelForm):
 
         self.fields["headline"].label = "Headline"
         self.fields["headline"].error_messages = {
-            "required": "Whoops - you must enter a headline for this session."
+            "required": "Whoops - you must enter a headline for this practice."
         }
         self.fields["headline"].widget = forms.TextInput(
             attrs={
@@ -150,7 +150,7 @@ What went well? What will you work on next time?"
             }
         )
         self.fields["summary"].error_messages = {
-            "required": "You must add some reflections for this session"
+            "required": "You must add some reflections for this practice"
         }
 
 
@@ -190,8 +190,8 @@ class EditSessionForm(CreateSessionForm):
                     (
                         Submit(
                             "submit",
-                            "Update Session",
-                            css_class="btn-very-dark btn-md btn mb-2 mb-md-0",
+                            "Update Practice",
+                            css_class="btn-very-dark btn-md btn mb-2",
                         )
                     ),
                     css_class=self.center,
