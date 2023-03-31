@@ -8,8 +8,6 @@ Unittest
 
 No testing on AllAuth Forms
 
-
-
 ## Manual Testing
 
 ### General
