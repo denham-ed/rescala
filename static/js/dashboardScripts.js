@@ -6,7 +6,7 @@ const addChart = () => {
      */
     const focus_list = JSON.parse(document.getElementById('focus').textContent);
     if (!focus_list.length) {
-        $("#no-chart").html("<p><em>Log a practice</em> to start tracking where you are putting your focus.</p>")
+        $("#no-chart").html("<p><em>Log a practice</em> to start tracking where you are putting your focus.</p>");
     } else {
         try {
             let ctx = document.getElementById('focus-chart').getContext('2d');
@@ -47,48 +47,49 @@ const addChart = () => {
                 },
             });
         } catch (e) {
-            $("#no-chart").html("<p>Sorry - something has gone wrong loading your focus chart</p>")
+            $("#no-chart").html("<p>Sorry - something has gone wrong loading your focus chart</p>");
         }
     }
-}
+};
 
 
 
 $(document).ready(function () {
 
-    addChart()
+    addChart();
+
 
     // Prepare My Goals Buttons for Toggling
     $(".edit-goal-button").click(function () {
         const goalId = $(this).data('goal-id');
-        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
-        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle()
-        $(`.save-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(this).toggle()
-    })
+        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle();
+        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle();
+        $(`.save-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(this).toggle();
+    });
 
     $(".save-goal-button").click(function () {
         const goalId = $(this).data('goal-id');
-        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle()
-        $(`.spinner-border[data-goal-id="${goalId}"]`).show()
-        $(this).toggle()
-    })
+        $(`.edit-goal-range[data-goal-id="${goalId}"]`).toggle();
+        $(`.spinner-border[data-goal-id="${goalId}"]`).show();
+        $(this).toggle();
+    });
 
     $(".delete-goal-button").click(function () {
         const goalId = $(this).data('goal-id');
-        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.revert-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle()
-        $(this).toggle()
-    })
+        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(`.revert-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle();
+        $(this).toggle();
+    });
 
     $(".revert-goal-button").click(function () {
         const goalId = $(this).data('goal-id');
-        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle()
-        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle()
-        $(this).toggle()
-    })
+        $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(`.delete-goal-button[data-goal-id="${goalId}"]`).toggle();
+        $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle();
+        $(this).toggle();
+    });
 
 });
