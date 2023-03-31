@@ -2,7 +2,7 @@
 # Rescala - Testing
 ## Automated Testing
 
-## Python Testing
+### Python Testing
 
 Unittest
 
@@ -70,3 +70,16 @@ No testing on AllAuth Forms
 |Click 'X' Button, then Check Button  | Return to unchanged Dashboard  | Pass |
 |Click 'Pencil' Button  | Hide 'X' Button, Reveal 'Check Button', Reveal Range Input| Pass |
 | Click 'Pencil' Button then Check '  |Reveals Spinner, Updates Goal progress, rerenders Dashboard with updated Goal. Renders confirmation message.  |Pass |
+
+
+
+## Bugs
+
+## Validators
+
+## Accessibility
+
+## Lighthouse
+
+## Responsiveness
+
