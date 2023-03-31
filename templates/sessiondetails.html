@@ -35,7 +35,7 @@
         <div class="card dashboard-card">
           <div class="card-body">
             <div class="dashboard-title">
-              <h3>Summary</h3>
+              <h3>Reflections</h3>
             </div>
             <div class="dashboard-content">
               <p>
@@ -89,26 +89,26 @@
   </div>
   <div class="row pt-5">
     <div class="col-md-12 d-flex justify-content-md-end justify-content-center">
-      <a class="btn btn-sm btn-very-dark me-1" href="{% url 'edit_session' session.id %}">Edit Session</a>
+      <a class="btn btn-sm btn-very-dark me-1" href="{% url 'edit_session' session.id %}">Update Practice</a>
       <button type="button" class="btn btn-dark btn-sm ms-1" data-toggle="modal" data-target="#deleteSessionModal">
-        Delete Session
+        Delete Practice
       </button>
       <div class="modal fade" id="deleteSessionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSesionModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="deleteSesionModalLabel">Delete Session</h5>
+              <h5 class="modal-title" id="deleteSesionModalLabel">Delete Practice</h5>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to delete this session?</p>
+              <p>Are you sure you want to delete this practice?</p>
               <p>This cannot be undone.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-very-dark btn-sm" data-dismiss="modal">Close</button>
               <form method="post" action="{% url 'delete_session' session.id %}">
                 {% csrf_token %}
-                <button type="submit" class='btn btn-dark btn-sm'>Yes, delete this session.</button>
+                <button type="submit" class='btn btn-dark btn-sm'>Yes, delete this practice.</button>
             </form>
             </div>
           </div>
