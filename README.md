@@ -137,14 +137,15 @@ The following pages extend and modify the AllAuth templates, adding custom forma
 
 ### Dashboard
 
-
 The dashboard allows a logged-in user to view aggregated statistics about their logged practices. It also serves as the landing page for authenticated users.
 
 ![Dashboard Page](documentation/images/dashboard.png)
 
+The responsive layout of the Dashboard widgets is achieved using [MasonryJS](https://masonry.desandro.com/ 'Link to MasonryJS')
+
 **Recent Practices**
 - The most recent 5 logged practice sessions are rendered with the date and the headline.
-- Each session is clickable and redirects to the Session Details page. !!!! MAKE THIS A HYPERLINK!!!!
+- Each session is clickable and redirects to the [Session Details ](#session-details) page.
 
 **Goals**
 - Users can add long term goals, which can be updated and tracked.
@@ -204,6 +205,30 @@ The resources page allows all users to view Rescala's collection of artices on p
 **Add to Favourites**
 - Authenticated users can use the Star icon to mark the resource as a favourite. Favourite articles can be accessed directly from the Dashboard.
 
+
+### Session Details
+
+Users can view details from a logged a practice including the Reflection, Focus and Moods.
+
+![Session Details](documentation/images/session.png)
+
+- Users can delete a session by clicking the **Delete Practice** button. A modal is used to confirm the request before removing the session and redirecting the user to the dashboard.
+
+![Delete Session](documentation/images/delete_modal.png)
+
+- Users can edit a session by clicking the **Edit Practice** button which redirects them to the [Edit Practice](#edit-practice) page.
+
+### Edit Practice
+
+Users can edit a recorded practice using a prepopulated form.
+
+![Delete Session](documentation/images/edit-practice.png)
+
+- Changes to the practice are saved by clicking the **Update Practice** button.
+- Users are redirected to the [Session Details ](#session-details)  page.
+- If the form is invalid, custom error messages are rendered for the user.
+
+
 ## Planned Features
 
 ## Testing
@@ -233,6 +258,7 @@ The resources page allows all users to view Rescala's collection of artices on p
  - **Django Crispy Forms**
  - **Summernote**
  - **ChartJS**
+ - **MasonryJS**
 
 ### Hosting and Storage
  - **Cloudinary**
