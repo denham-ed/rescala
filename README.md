@@ -256,11 +256,10 @@ This replaces the template provided by Django. A button returns the user to the 
 ## Planned Features
 
 ## Testing
-### Accessibility 
-### Validators
-### Manual Testing
-### Automated Testing
-### Responsiveness
+
+Rescala has been extensively tested. You can view more about testing, including automated and manual testing, accessibility, validators and more, [here.](documentation/docs/TESTING.md)
+
+
 
 ## Deployment
 
