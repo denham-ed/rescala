@@ -12,6 +12,11 @@ No testing on AllAuth Forms
 
 ## Manual Testing
 
+### General
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+|Navigate to page that doesn't exists  | 404 page is rendered  | Pass |
+
 ### Header
 
 |User Action  | Expected Result  | Pass / Fail |
@@ -71,6 +76,55 @@ No testing on AllAuth Forms
 |Click 'Pencil' Button  | Hide 'X' Button, Reveal 'Check Button', Reveal Range Input| Pass |
 | Click 'Pencil' Button then Check '  |Reveals Spinner, Updates Goal progress, rerenders Dashboard with updated Goal. Renders confirmation message.  |Pass |
 
+### Log Practice
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+| Submit form with missing required field (Headline, Date, Duration, Reflections)  | Error messages rendered to form  | Pass |
+| Submit form with required fields  | Redirects to Dashboard - logged practice is visible on Dashboard. Widgets update with new minute tally and adjusted focus and moods.  | Pass |
+|Submit form with no Focus and/or Mood  | Form submits  | Pass |
+
+
+### View Practice
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+| User loads page | Correct session is rendered. Moods and Focus, if present, are displayed  | Pass |
+|Click Edit Practice Button  | Redirects to Edit Practice Page  | Pass |
+|Click Delete Practice Button  | Opens Delete Practice Modal  | Pass |
+|Click Close Button in Modal  | Closes Modal  | Pass |
+|Confirm Delete Pracitce  | Redirects to Dashboard. Practice is no longer visible on Dashboard  | Pass |
+
+### Edit Practice
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+| User loads page | Edit Practice form is populated with session  | Pass |
+| Submit form with missing required field (Headline, Date, Duration, Reflections)  | Error messages rendered to form  | Pass |
+| Submit valid form  | Redirects to View Practice Page. Success message renderes  | Pass |
+
+### Resources
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+|Hovers on image  | Excerpt overlay displays  | Pass |
+|Clicks card  | Redirects to Resource page  | Pass |
+| Clicks pagination control  | Redirects forwards or backwards  | Pass |
+
+### Resource
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+| Authenticated user clicks empty star  | Resource is added to Profile, success message renders  | Pass |
+| Authenticated user clicks empty star  | Resource is removed from Profile, success message renders  | Pass |
+| Click card recommended card | Redirects to Resource page  | Pass |
+
+### Logout
+
+|User Action  | Expected Result  | Pass / Fail |
+|--|--|--|
+|Click 'No' Button  |Redirects to Dashboard  | Pass |
+|Click 'Yes' button  |Logs user out, redirects to Landing Page  | Pass |
 
 
 ## Bugs
