@@ -79,7 +79,7 @@ class CustomLoginForm(LoginForm):
             Div(FloatingField("password")),
             Div("remember", css_class='light-text'),
             Div(Submit(
-                "submit","Log In", css_class="btn btn-md btn-light"
+                "submit","Sign In", css_class="btn btn-md btn-light"
             ), css_class='d-flex justify-content-center')
         )
 
