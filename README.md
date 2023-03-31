@@ -205,6 +205,13 @@ The resources page allows all users to view Rescala's collection of artices on p
 **Add to Favourites**
 - Authenticated users can use the Star icon to mark the resource as a favourite. Favourite articles can be accessed directly from the Dashboard.
 
+### Log Practice
+Authenticated Users can log a practice session using the form on this page
+![Delete Session](documentation/images/log_practice.png)
+
+- Custom error messages are rendered if the form is not valid when submitted
+- After a successful submission, the user is returned to the Dashboard.
+
 
 ### Session Details
 
@@ -227,6 +234,23 @@ Users can edit a recorded practice using a prepopulated form.
 - Changes to the practice are saved by clicking the **Update Practice** button.
 - Users are redirected to the [Session Details ](#session-details)  page.
 - If the form is invalid, custom error messages are rendered for the user.
+
+### Resource Admin
+
+The administration for the Resources is handled by Django's built-in [Admin Interface.](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/ 'Link to Django Admin Docs') 
+- This allows administrators to create, update and delete Resources.
+- Resources can be drafted first and published at a later date.
+- A placeholder image is provided but uploaded images can be added to each resource.
+- The slug is automatically provided from the Resource title.
+
+### 404 Page
+
+If any action triggers a 404 error, the User will be shown a custom 404 page.
+
+![Delete Session](documentation/images/404.png)
+
+This replaces the template provided by Django. A button returns the user to the Dashboard.
+
 
 
 ## Planned Features
