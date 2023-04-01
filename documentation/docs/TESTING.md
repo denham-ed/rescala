@@ -237,15 +237,28 @@ NB. There are 5 contrast errors flagged on the register page. These refer to htm
 **Sign In**  
 
 ![Sign In WAVE Report](../testing_images/accessibility/sign_in.png) 
+
 **Dashboard**  
+
+![Dashboard WAVE Report](../testing_images/accessibility/dashboard.png) 
 **Log Practice**  
-**Update Practice**  
+
+![Log Practice WAVE Report](../testing_images/accessibility/log_practice.png) 
+**Update Practice**
+
+![Update Practice WAVE Report](../testing_images/accessibility/update_practice.png) 
+
 **Practice Details**  
+
+![Practice Details WAVE Report](../testing_images/accessibility/details.png) 
+
 **Resources**  
+
+![Resources WAVE Report](../testing_images/accessibility/resources.png) 
+
 **Resource**
 
-
-
+![Resource WAVE Report](../testing_images/accessibility/resource.png) 
 
 ## Responsiveness
 ## Bugs
