@@ -10,6 +10,13 @@ from .models import Profile
 
 
 class CustomSignupForm(SignupForm):
+    """
+    Represents an instance of the Sign Up (Register)
+    Form.
+    Inherits Django AllAuth's SignUp Form
+    The Crispy Forms library is used to customise the
+    layout and error handling of the form.
+    """
     first_name = forms.CharField(
         max_length=30,
         label=mark_safe('<i class="fa-solid fa-user"></i> First Name '),
@@ -66,6 +73,14 @@ class CustomSignupForm(SignupForm):
 
 
 class CustomLoginForm(LoginForm):
+    """
+    Represents an instance of the Login (Sign In)
+    Form.
+    Inherits Django AllAuth's Login Form
+    The Crispy Forms library is used to customise the
+    layout and error handling of the form.
+    """
+
     error_messages = {
         "username_password_mismatch": (
             "Sorry! Your username or password isn't quite right. "
