@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .models import Resource
 
 
+# ----------------------------------------------- Resource Model
 class TestResourceModel(TestCase):
     def setUp(self):
         self.resource = Resource.objects.create(
