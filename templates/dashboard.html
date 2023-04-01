@@ -72,14 +72,16 @@ Rescala | Dasboard
           <div class="dashboard-content">
             {%for goal in goals%}
             <div>
-              {{goal.goal}}
+              <span id="goal-label-{{forloop.counter}}">{{goal.goal}}</span>
               <div class="row">
-                <div class="col-md-10">
-                  <form method="POST" action="{% url 'update_goal' forloop.counter0 %}">
+                <div class="col-md-12 d-flex">
+                  <form method="POST" action="{% url 'update_goal' forloop.counter0 %}" class="w-75">
+                    {% csrf_token %}
                     <div class="d-flex justify-content-between">
                       <div class="progress goal-progress" data-goal-id="{{forloop.counter}}">
-                        <div class="progress-bar" role="progressbar" style="width: {{goal.complete}}%"
-                          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div aria-labelledby="goal-label-{{forloop.counter}}" class="progress-bar" role="progressbar"
+                          style="width: {{goal.complete}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
                       </div>
                       <div class="d-flex justify-content-center">
                         <div class="spinner-border" role="status" data-goal-id="{{forloop.counter}}">
@@ -89,28 +91,32 @@ Rescala | Dasboard
                       <input type="range" data-goal-id="{{forloop.counter}}" class="w-75 edit-goal-range"
                         value="{{goal.complete}}" name="goal-complete">
 
-                      {% csrf_token %}
+
                       <button type='button' data-goal-id="{{forloop.counter}}"
-                        class=" edit-goal-button btn btn-sm btn-dark ms-2"><i class="fa-solid fa-pen"></i></button>
+                        class=" edit-goal-button btn btn-sm btn-dark ms-2" aria-label="Update Goal Button"><i
+                          class="fa-solid fa-pen"></i></button>
                       <button type='submit' data-goal-id="{{forloop.counter}}"
-                        class="save-goal-button btn btn-sm btn-dark"><i class="fa-regular fa-circle-check"></i></button>
+                        class="save-goal-button btn btn-sm btn-dark" aria-label="Confirm Update Goal Button"><i
+                          class="fa-regular fa-circle-check"></i></button>
+                    </div>
                   </form>
 
                   <form method="POST" action="{% url 'delete_goal' forloop.counter0 %}" class="d-flex ">
                     {% csrf_token %}
                     <button type='button' data-goal-id="{{forloop.counter}}"
-                      class="delete-goal-button btn btn-sm btn-very-dark ms-2"><i
+                      class="delete-goal-button btn btn-sm btn-very-dark ms-2" aria-label="Delete Goal Button"><i
                         class="fa-solid fa-xmark"></i></button>
                     <button type='button' data-goal-id="{{forloop.counter}}"
-                      class="revert-goal-button btn btn-sm btn-dark"><i class="fa-regular fa-circle-check"></i></button>
+                      class="revert-goal-button btn btn-sm btn-dark" aria-label="Cancel Delete Goal Button"><i
+                        class="fa-regular fa-circle-check"></i></button>
                     <button type='submit' data-goal-id="{{forloop.counter}}"
-                      class="confirm-delete-button btn btn-sm btn-red ms-2">
+                      class="confirm-delete-button btn btn-sm btn-red ms-2" aria-label="Confirm Delete Goal Button">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </form>
                 </div>
-              </div>
-            </div>
+                </div>
+
           </div>
           {% empty %}
           <div>It's time to set yourself some long term goals. <br /> Click the <em>Add Goal</em> button to get

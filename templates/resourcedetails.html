@@ -16,7 +16,7 @@
                     <div class="star-container">
                         <form action="{% url 'favourite_resource' resource.id %}" method="POST" name="favourite_form">
                             {% csrf_token %}
-                            <span type="submit" value="{{resource.id}}" onclick="favourite_form.submit()">
+                            <span onclick="favourite_form.submit()">
                                 {%if favourite %}
                                 <i class="fa-solid fa-star rescala-red"></i>
                                 {% else %}
