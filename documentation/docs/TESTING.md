@@ -59,10 +59,9 @@ All tests pass successfuly, as shown below.
 |--|--|--|
 |Click on Session in Recent Practice  | Redirects to Session Details Page  | Pass |
 |Click on Resource in My Resources  | Redirects to Resource Page | Pass |
-|Resize Browser Window  | Widgets optimize masonry layout  | Pass** |
+|Resize Browser Window  | Widgets optimize masonry layout  | Pass |
 |Hover on circle in Last 30 Days widget | Tool tip shows date | Pass |
 
-** Occassionally on the initial load the Focus chart is overlapping. This is due to the image loading after the layout is complete and needs further investigation.
 
 ### My Goals
 
@@ -275,7 +274,7 @@ The Responsive View extension allows for simultaneous testing on the following d
 
 On Google Chrome, Rescala has been tested down to a width of 320px.
 
-## Unresolved Bugs
+## Resolved Bugs
 **Focus Chart Overlap** 
-Occasionally the widget containing the Focus chart on the Dashboard overlaps other widgets. 
-I believe this is caused by MasonryJS calculating the position before the image is fully loaded and is resolved when the rescreen is resized. Future updates will solve this by using the 
+Previously, the widget containing the Focus chart on the Dashboard overlaps other widgets. 
+This was solved using MasonryJS's imagesLoaded property, which waits until all images are loaded until calculating the layout.
