@@ -58,6 +58,16 @@ $(document).ready(function () {
 
     addChart();
 
+    // Credit: https://tinyurl.com/2p8npant
+    // init Masonry
+    var $grid = $('.grid').masonry({
+        // options...
+    });
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress(function () {
+        $grid.masonry('layout');
+    });
+
 
     // Prepare My Goals Buttons for Toggling
     $(".edit-goal-button").click(function () {

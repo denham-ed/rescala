@@ -275,5 +275,7 @@ The Responsive View extension allows for simultaneous testing on the following d
 
 On Google Chrome, Rescala has been tested down to a width of 320px.
 
-## Bugs
-
+## Unresolved Bugs
+**Focus Chart Overlap** 
+Occasionally the widget containing the Focus chart on the Dashboard overlaps other widgets. 
+I believe this is caused by MasonryJS calculating the position before the image is fully loaded and is resolved when the rescreen is resized. Future updates will solve this by using the 
