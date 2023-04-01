@@ -353,7 +353,7 @@ class EditLog(LoginRequiredMixin, View):
             return render(
                 request,
                 'editlog.html',
-                {"form": form,
-                "session": session
-                }
+                {
+                    "form": form,
+                    "session": session}
             )

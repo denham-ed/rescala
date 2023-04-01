@@ -1,12 +1,15 @@
 
 # Rescala - Testing
+
 ## Automated Testing
+Rescala includes a suite of 61 automated tests using Django's unittest library.
+These cover all aspects of views, models and forms. Tests can be found in the relevant app's folders in the format *tests-*.*py*
 
-### Python Testing
+The functionality provided by AllAuth has not been tested in this way, but has undergone manual testing. However, the custom Register and Sign In forms have been tested in this suite.
 
-Unittest
+All tests pass successfuly, as shown below.
 
-No testing on AllAuth Forms
+![UnitTesting Results](../testing_images/unittesting.png)
 
 ## Manual Testing
 
@@ -211,4 +214,5 @@ On the whole, high scores were obtained; see below for more information and plan
 
 ## Accessibility
 ## Responsiveness
+## Bugs
 
