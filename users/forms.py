@@ -40,9 +40,7 @@ class CustomSignupForm(SignupForm):
         self.fields["username"] = forms.CharField(
             label=mark_safe('<i class="fa-solid fa-user-secret"></i> Enter A Username '),
             error_messages={'required': 'You must select a username for Rescala'},
-            widget=forms.TextInput(
-                attrs={"autocomplete": ""}
-            ),
+            widget=forms.TextInput(),
         )
         self.fields["password1"].label=mark_safe('<i class="fa-solid fa-key"></i> Enter A Password ')
         self.fields["password1"].error_messages={'required': 'You must enter a password'}
