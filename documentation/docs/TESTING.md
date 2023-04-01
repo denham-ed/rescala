@@ -156,7 +156,7 @@ No errors or warnings were raised during this testing.
 [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/ 'Link to W3C CSS') was used to validate the CSS3 in this project. **No errors were found**.
 
 
-## Accessibility
+
 
 ## Lighthouse
 
@@ -207,6 +207,6 @@ On the whole, high scores were obtained; see below for more information and plan
 ![Resource Page Lighthouse](../testing_images/resource_lighthouse.png)
 
 
-
+## Accessibility
 ## Responsiveness
 
