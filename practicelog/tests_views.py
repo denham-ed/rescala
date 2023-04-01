@@ -303,15 +303,6 @@ class TestEditSessionView(TestCase):
             username="testuser",
             password="testpass")
         cls.url = reverse("create_log")
-        cls.session = Session.objects.create(
-            user=cls.user,
-            headline="Session for Edit Session",
-            date=datetime.strptime("2023-03-25", "%Y-%m-%d"),
-            duration=60,
-            focus=["performing", "technique"],
-            moods=["anxious", "ambitious"],
-            summary="Session with Session Details Summary",
-        )
         cls.edit_form_data = {
             "headline": "Edited  Session",
             "date": "2023-01-01",
@@ -320,6 +311,18 @@ class TestEditSessionView(TestCase):
             "moods": ["inspired", "determined"],
             "summary": "Edited Summary",
         }
+
+    def setUp(self):
+        self.session = Session.objects.create(
+            user=self.user,
+            headline="Session for Edit Session",
+            date=datetime.strptime("2023-03-25", "%Y-%m-%d"),
+            duration=60,
+            focus=["performing", "technique"],
+            moods=["anxious", "ambitious"],
+            summary="Session with Session Details Summary",
+        )
+
 
     def test_user_can_view_edit_session_page(self):
         self.client.login(username="testuser", password="testpass")
@@ -385,6 +388,9 @@ class TestEditSessionView(TestCase):
     def test_anonymous_user_is_redirected(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 302)
+
+    def tearDown(self):
+        self.session.delete()
 
     @classmethod
     def tearDownClass(cls):

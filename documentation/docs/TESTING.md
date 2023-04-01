@@ -155,7 +155,9 @@ No errors or warnings were raised during this testing.
 
 [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/ 'Link to W3C CSS') was used to validate the CSS3 in this project. **No errors were found**.
 
-
+### Python / PEP8 
+The Python in this project is written to PEP8 standards to ensure readability and maintainability.
+All code written by the developer was checked [Code Institute Python Linter ](https://pep8ci.herokuapp.com/ 'Link to Code Institute Python Linter'). **No errors or warnings were found.**
 
 
 ## Lighthouse
