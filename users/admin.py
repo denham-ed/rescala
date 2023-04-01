@@ -1,11 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import Profile
 from .forms import CustomSignupForm
-from django.contrib.auth.admin import UserAdmin
 
 
-# https://www.youtube.com/watch?v=1BeZxMbSZNI
+# Credit: https://tinyurl.com/ykxsa4pw
 class CustomUserAdmin(UserAdmin):
+    """
+    Adds Goals and Resources to User in
+    to Django Admin panel
+    """
     model = Profile()
     add_form = CustomSignupForm
     fieldsets = (
