@@ -151,6 +151,9 @@ No errors or warnings were raised during this testing.
 |--|--|
 | 'Chart' is not defined | Chart is defined in a preceding script as it is part of the ChartJS package  |
 
+### CSS3
+
+[W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/ 'Link to W3C CSS') was used to validate the CSS3 in this project. **No errors were found**.
 
 
 ## Accessibility
