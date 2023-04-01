@@ -137,6 +137,20 @@ No errors or warnings were raised during this testing.
 
 ![W3C No Errors](../testing_images/dashboard_html.png)
 
+### Javascript
+
+[ESLint](https://eslint.org/ 'Link to ESLint') was used to validate the Javascript in this project, with the following results.
+
+**script.js** - Generic JS for the whole site
+|Flagged Issue| Notes  |
+|--|--|
+|'bootstrap' is not defined  |bootstrap is defined in a preceding script  |
+
+**dashboard-scripts.js** - JS for Dashboard features
+|Flagged Issue| Notes  |
+|--|--|
+| 'Chart' is not defined | Chart is defined in a preceding script as it is part of the ChartJS package  |
+
 
 
 ## Accessibility
