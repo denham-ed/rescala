@@ -1,7 +1,3 @@
-/* * {
-	outline: #B80C09 1px dashed;
-} */
-
 /* ------------------------------- Base HTML Elements */
 body {
 	font-family: 'Work Sans', Courier, monospace;
@@ -49,17 +45,24 @@ a {
 	font-weight: 400;
 }
 
-/* .light-text {
-	color:#DCDCDC !important;
-} */
-
 .rescala-red{
 	color: #B80C09;
 }
 
+/* ------------------------------- Navigation  */
 .active {
 	border-bottom: #14281D 1px solid;
 }
+
+/* ------------------------------- Footer */
+footer {
+	border-top: 1px solid #14281D;
+}
+
+footer p i {
+	font-size: 140%;
+}
+
 /* ------------------------------- Inputs */
 textarea {
 	resize: none;
@@ -100,15 +103,6 @@ textarea {
 	font-weight: 400;
 }
 
-/* ------------------------------- Footer */
-footer {
-	border-top: 1px solid #14281D;
-}
-
-footer p i {
-	font-size: 140%;
-}
-
 /* ------------------------------- Colours */
 .bg-dark-green {
 	background-color: #14281D;
@@ -126,10 +120,6 @@ footer p i {
 }
 
 /* ------------------------------- Buttons */
-
-/* .btn{
-	text-transform:uppercase;
-} */
 
 .btn-logout {
 	height: 3rem;
@@ -193,13 +183,8 @@ footer p i {
 	display: none;
 }
 
-
 /* ------------------------------- Layout & Sizing */
 .two-col {
-	-webkit-column-count: 2;
-   /* Chrome, Safari, Opera */
-	-moz-column-count: 2;
-   /* Firefox */
 	column-count: 2;
 }
 
@@ -251,33 +236,23 @@ footer p i {
 	font-size: 120%;
 }
 
-/* Adapted from https://tinyurl.com/5yss685y */
 .input-icons i {
 	padding-right: 0.5rem;
 }
 
 /* ------------------------------- Backgrounds */
 .repeat-text-container {
-	/* background-image: url('https://res.cloudinary.com/dlnanftlf/image/upload/v1680133917/rrr_background_jtbala.png'); */
 	background-size: cover;
 	background-position: center;
 }
 
 /* ------------------------------- Dashboard */
-
-
-.tally-container {
-	border: 2px solid #14281D;
-	padding: 1.5rem;
-}
-
 .dashboard-item {
 	border: 2px solid #DCDCDC;
 	padding: 1.5rem 0.5rem;
 }
 
 .dashboard-card {
-	/* color: red; */
 	position: relative;
 }
 
@@ -291,7 +266,6 @@ footer p i {
 	margin-bottom: 2rem;
 	padding-top: 0.2rem;
 	padding-left: 0.5rem;
-	
 }
 
 .dashboard-content {
@@ -301,9 +275,7 @@ footer p i {
 .dashboard-content > table {
 	width: 100%;
 }
-/* .dashboard-item:hover {
-	border: 2px solid #14281D;
-} */
+
 .date-cell{
 	width: 40%;
 }
@@ -315,20 +287,45 @@ footer p i {
 .practice-row:hover{
 	color: #B80C09;
 	border-bottom: rgba(184, 12, 9, 1) 1px solid;
-	
 }
 
 .resource-list-item{
 	border-bottom: rgba(184, 12, 9, 0.2) 1px solid;
-
 }
 
 .resource-list-item:hover{
 	border-bottom: rgba(184, 12, 9, 1) 1px solid;
 	box-sizing: border-box;
-	
 }
 
+.spinner-border{
+	display: none;
+	color: #B80C09;
+}
+
+.wordcloud-lg{
+	font-size: 180%;
+	color: #B80C09;
+	font-weight: 700;
+}
+
+.wordcloud-md{
+	font-size: 150%;
+	color:#355834;
+	font-weight: 400;
+}
+
+.wordcloud-sm{
+	font-size: 150%;
+	color:#14281D;
+	font-weight: 400;
+}
+
+.wordcloud-xs{
+	font-size: 90%;
+	color:#B80C09;
+	font-weight: 300;
+}
 
 /* ------------------------------- Progress Bars */
 .progress {
@@ -383,7 +380,7 @@ footer p i {
 	padding-inline-start: 0;
 }
 
-/* Auth Forms */
+/* ------------------------------- Authentication Forms */
 #id-custom-login-form , #id-custom-signup-form {
 	width: 75%;
 }
@@ -406,12 +403,11 @@ footer p i {
     border-color: #B80C09;
 }
 
-/* Resources */
+/* ------------------------------- Resources */
 .card-img-top{
 	height: 12rem;
 	width: 100%;
 	object-fit: cover;
-	/* background-position: center; */
 	user-select: none;
 }
 
@@ -419,19 +415,11 @@ footer p i {
 	border: 2px solid #14281D;
 }
 
-/* .card:hover{
-	background-color: #DCDCDC;
-} */
-
-/* Listing */
-
 .resource-listing{
 	height: 20rem;
-	/* width: 100%; */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-		/* background-position: center; */
 	user-select: none;
 	position: relative;
 	margin: 0.5rem 0;
@@ -460,8 +448,6 @@ footer p i {
 	display: none;
 }
 
-
-
 .resource-title{
 	position: absolute;
 	bottom: 0;
@@ -477,23 +463,15 @@ footer p i {
 	color: #14281D;
 }
 
-
-
-
-
-
-/* Individual Resource */
 .resource-img{
 	height: 40rem;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom center;
-		/* background-position: center; */
 	user-select: none;
 	position: relative;
 }
-
 
 .resource-img h2 {
 	position: absolute;
@@ -531,44 +509,4 @@ footer p i {
 .star-container i:hover {
 	color: #B80C09;
 	cursor: pointer;
-}
-
-/* SPINNER */
-
-.spinner-border{
-	display: none;
-	color: #B80C09;
-}
-/* 
-#login-spinner{
-	display: block;
-}
- */
-
-
-/* WORDCLOUD */
-
-.wordcloud-lg{
-	font-size: 180%;
-	color: #B80C09;
-
-	font-weight: 700;
-}
-
-.wordcloud-md{
-	font-size: 150%;
-	color:#355834;
-	font-weight: 400;
-}
-
-.wordcloud-sm{
-	font-size: 150%;
-	color:#14281D;
-	font-weight: 400;
-}
-
-.wordcloud-xs{
-	font-size: 90%;
-	color:#B80C09;
-	font-weight: 300;
 }
