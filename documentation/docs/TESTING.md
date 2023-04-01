@@ -261,5 +261,19 @@ NB. There are 5 contrast errors flagged on the register page. These refer to htm
 ![Resource WAVE Report](../testing_images/accessibility/resource.png) 
 
 ## Responsiveness
+
+Rescala was designed for use on all devices so responsiveness was a key consideration during development.
+Responsivity tests were carried out using the [Responsive Viewew Chrome Extension](https://responsiveviewer.org/ 'Link to Responsive Viewew Chrome Extension page') as well as Chrome's own developer tools.
+
+The Responsive View extension allows for simultaneous testing on the following devices:
+- iPhone XR, XS Max
+- iPhone XS
+- Galaxy S8 and S9 Plus
+- Pixel 3, 3XL
+- Medium Screen (1024x800)
+- Large Screen (688x1031)
+
+On Google Chrome, Rescala has been tested down to a width of 320px.
+
 ## Bugs
 
