@@ -1,4 +1,3 @@
-//   Adapted from https://tinyurl.com/3yhmp5n6
 const addChart = () => {
     /**
      * Generates a chart to display the distribution of foci in recorded practice sessions

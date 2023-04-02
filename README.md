@@ -269,7 +269,7 @@ If any action triggers a 404 error, the User will be shown a custom 404 page.
 
 ![Delete Session](documentation/images/404.png)
 
-This replaces the template provided by Django. A button returns the user to the Dashboard.
+This replaces the template provided by Django. A button returns the user to the Dashboard. Similar templates have been added to handle 400 and 500 errors.
 
 ## Planned Features and Improvements
 
