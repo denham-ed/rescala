@@ -19,6 +19,26 @@ Key features:
 [The deployed site is available here.](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
 
 ## User Stories
+
+Rescala is designed for serious music students and young professionals who want to make their practice more focussed and intentional, and gain greater insights about their progress and development. The three imagined profiles, below, were useful in developing the project's design, functionality and scope.
+
+**User 1**
+- 17 years old
+- Studying music at A-level and preparing for auditions for the universities and conservatoires.
+- Studies most days, for an hour
+
+**User 2**
+- 21 years old
+- Studying at a Conservatoire or other specialist performing arts institution
+- Practices everyday, for up to 3 hours
+
+**User 3**
+- 25 years old
+- Young professional, preparing for multiple performances and projects
+- Practices everyday, for up to 4 hours
+
+For all users, the key benefits of using Rescala would be to encourage meaningful self-reflection and to  aggregate and visualize insights from recorded practice.
+
 The User Stories for this project were planned and tracked  using [GitHub's Projects Tool.](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects "Link to information on GitHub Projects")
 
 User Stories were categories into Epics and broken down into tasks with clear acceptance criteria. The user stories can be viewd, in full, [here.](https://github.com/users/denham-ed/projects/6 "Link to Rescala User Stories")
