@@ -251,7 +251,31 @@ If any action triggers a 404 error, the User will be shown a custom 404 page.
 
 This replaces the template provided by Django. A button returns the user to the Dashboard.
 
-## Planned Features
+## Planned Features and Improvements
+
+**Errors in Add Goal Modal**
+
+Currently, if a user submits an invalid form to add a goal, they are redirected to the dashboard, where an error message is rendered. In future, the modal will remain open and the error message will be displayed in the modal itself. 
+
+**Alt Text for Cloudinary Images**
+
+The Alt text for images rendered for Resources is often inconsistent. More work is required to ensure that these are used consistently to improve accessibility.
+
+**Spinners and Loaders**
+
+Spinners are used to show that an update to a user Goal is in progress. Additional spinners will be added to user actions that can occasionally be slow, resulting in double-clicks including adding a goal and deleting a goal.
+
+**Links to Practice Details from Calendar Widget**
+
+User will be able to access a practice session directly from the 'Last 30 Days' widget on the Dashboard.
+
+**Streak Building**
+
+Users will be able to build a streak of consecutive practice days which will be recorded. This is an import aspect of gamifying habit-building.
+
+**Handling Multiple Goals and User Resources**
+
+Currently, if users favourite a large number of resources or add a lot of goals, it will result in an unattractive list on the Dashboard UI. In future, the number of goals will be limited and the My Resources tab will utilise a 'See More' button to hide resources.
 
 ## Testing
 
