@@ -23,8 +23,8 @@ if os.path.isfile('env.py'):
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = False
-# DEBUG = os.environ.get("DEVELOPMENT")
+# DEBUG = False
+DEBUG = os.environ.get("DEVELOPMENT")
 
 ALLOWED_HOSTS = ['denham-rescala.herokuapp.com', 'localhost']
 
