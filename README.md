@@ -251,8 +251,6 @@ If any action triggers a 404 error, the User will be shown a custom 404 page.
 
 This replaces the template provided by Django. A button returns the user to the Dashboard.
 
-
-
 ## Planned Features
 
 ## Testing
@@ -261,47 +259,54 @@ Rescala has been extensively tested. You can view more about testing, including 
 
 ## Deployment
 
+
 ## Technologies
 
 ### Languages
 
- - **Python**
- - **Javascript**
- - **HTML5**
- - **CSS3**
+-  **Python**
+-   **HTML5**
+-  **CSS3**
+-  **Javascript**
 
 ### Libraries and Frameworks
+The following libraries and frameworks were used in the development of this project. The documentation for all libraries and frameworks were used extensively.
 
- - **Django**
- - **Django AllAuth**
- - **jQuery**
- - **Bootstrap**
- - **Django Crispy Forms**
- - **Summernote**
- - **ChartJS**
- - **MasonryJS**
+- [**Bootstrap**](https://getbootstrap.com/). Various Bootstrap components are used in Rescala including the Cards, Alerts, Navbar, Pagination and, importantly, the Row & Col layout components. Various utility classes are used to add custom styling.
+- [**ChartJS**](https://www.chartjs.org/) was used to create the Doughnut chart to represent aggregated Foci on the Dashboard.
+- [**Django**](https://django-book.readthedocs.io/en/latest/). This project is built with Django, utilising its many out-of-the box functions.
+- [**Django AllAuth**](https://django-allauth.readthedocs.io/en/latest/) was used to handle the authentication, registration and account management.
+- [**Django Cloudinary Storage**](https://pypi.org/project/django-cloudinary-storage/) was used to facilitate integration with Cloundinary.
+- [**Django Crispy Forms**](https://django-crispy-forms.readthedocs.io/en/latest/) is used to reinforce DRY principles in the rendering and handling of forms. It is used in this project in-conjunction with Bootstrap5 styling.
+- [**jQuery**](https://jquery.com/) was used to add interactivity and handle manipulation of the DOM.
+- [**Masonry**](https://masonry.desandro.com/) is used to handle the dynamic rendering of the Dashboard widgets which improves the responsiveness of the UI.
+- [**Summernote**](https://github.com/summernote/django-summernote) is used to add WYSIWYG functionality to the Resource model in the Admin panel.
 
 ### Hosting and Storage
- - **Cloudinary**
- - **Heroku**
- - **ElephantSQL**
+
+- [**Cloudinary**](https://cloudinary.com/) is used to store the static files, including Admin-uploaded images.
+- [**Heroku**](https://www.heroku.com/) provides the hosting for Rescala.
+- [**ElephantSQL**](https://www.elephantsql.com/) is used as the database hosting service for the production version of this project.
 
 ### Version Control
-- **Git**
-- **GitHub** 
+
+-  **Git & GitHub** 
+Git and GitHub were used throughout this project to assist with version control and deployment. Please see the [Deployment](#deployment) for more information. !!!CHECK THIS LINKK!!!
 
 ### Design & Media
-Balsamiq
-- **Coolors**
-- **Google Fonts**
-- **Font Awesome**
-- **Unsplash**
-- **Canva**
 
+
+- [**Balsamiq**](https://balsamiq.com/) was used to create the wireframes.
+- [**Coolors**](https://coolors.co/) colour palette generator was used to choose the colour scheme for Rescala.
+- [**Google Fonts**](https://fonts.google.com/) As described above, both fonts for this project (Fraunces & Work Sans) are supplied by Google Fonts.
+- [**Font Awesome**](https://fontawesome.com/)'s easily recognisable icons are used to make buttons and forms more intuitive.
+- [**Unsplash**](https://unsplash.com/) Royalty-free photos were used for the images in the Resources app, including the placeholder image.
 
 ### Databases
- - **SQLite** was used for the development database and during unit testing
- - **PostgreSQL**, via Elephant SQL, is used for the production database.
+
+-  [**SQLite**](https://sqlite.org/index.html) was used for the development database and during unit testing.
+-  [**PostgreSQL**](https://www.postgresql.org/), via Elephant SQL, is used for the production database.
+
 
 ## Credits
 ### Code
