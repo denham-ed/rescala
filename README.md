@@ -259,8 +259,6 @@ This replaces the template provided by Django. A button returns the user to the 
 
 Rescala has been extensively tested. You can view more about testing, including automated and manual testing, accessibility, validators and more, [here.](documentation/docs/TESTING.md)
 
-
-
 ## Deployment
 
 ## Technologies
@@ -293,7 +291,6 @@ Rescala has been extensively tested. You can view more about testing, including 
 - **GitHub** 
 
 ### Design & Media
-- Database people
 Balsamiq
 - **Coolors**
 - **Google Fonts**
@@ -305,9 +302,33 @@ Balsamiq
 ### Databases
  - **SQLite** was used for the development database and during unit testing
  - **PostgreSQL**, via Elephant SQL, is used for the production database.
-### Credits
-**Code**
 
-**Chat GPT**
+## Credits
+### Code
+The resources below are were significantly used in the development and deployment of this project. 
+Where code has been used verbatim, it is also credited in the code itself.
+
+- [Highlighting Active Page in Django](https://valerymelou.com/blog/2020-05-04-how-to-highlight-active-links-in-your-django-website)
+- [Testing Forms in Django](https://adamj.eu/tech/2020/06/15/how-to-unit-test-a-django-form/)
+- [Removing Browser Validation from Crispy Forms](https://stackoverflow.com/questions/63539170/how-to-add-action-and-novalidate-attribute-to-form-tag-using-crispy-form)
+- [Integrating Crispy Forms in Django](https://www.youtube.com/watch?v=MZwKoi0wu2Q&t=521s)
+- [Integrating Summernote in Django](https://djangocentral.com/integrating-summernote-in-django/)
+- [Add ChartJS to Django](https://www.section.io/engineering-education/integrating-chart-js-in-django/)
+- [Customizing AllAuth Forms pt.1](https://dev.to/danielfeldroy/customizing-django-allauth-signup-forms-2o1m)
+- [Customizing AllAuth Forms pt.2](https://gavinwiener.medium.com/modifying-django-allauth-forms-6eb19e77ef56)
+- [Extending the Base User Model](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
+- [W3Schools](https://www.w3schools.com/) was referenced for Python syntax including list comprehension and built-in functions eg. any()
+### ChatGPT
+
+[Open AI's ChatGPT ](https://openai.com/blog/chatgpt) was used to accomplish various tasks during this project including:
+
+- writing the practice logs and the the resources for this version of Rescala.
+- explaining obscure or verbose error messages, particularly during the the unit testing phase.
+- formatting headings and text used in this ReadMe.
+
+### Music Resources
+[The Musician's Union Practice Diary](https://musiciansunion.org.uk/working-performing/music-teaching/working-as-a-music-teacher/practice-diaries-and-workbooks) provided inspiration for Rescala
 
 ## Acknowledgements
+- The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
+- The Code Institute example read me was used as a template for this document. This includes the instructions for deployment on GitHub Pages which are used in full, above. !!!! CheCK THIS!!!!
