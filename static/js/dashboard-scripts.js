@@ -68,7 +68,6 @@ $(document).ready(function () {
         $grid.masonry('layout');
     });
 
-
     // Prepare My Goals Buttons for Toggling
     $(".edit-goal-button").click(function () {
         const goalId = $(this).data('goal-id');

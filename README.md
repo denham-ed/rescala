@@ -251,63 +251,89 @@ If any action triggers a 404 error, the User will be shown a custom 404 page.
 
 This replaces the template provided by Django. A button returns the user to the Dashboard.
 
-
-
 ## Planned Features
 
 ## Testing
 
 Rescala has been extensively tested. You can view more about testing, including automated and manual testing, accessibility, validators and more, [here.](documentation/docs/TESTING.md)
 
-
-
 ## Deployment
+
 
 ## Technologies
 
 ### Languages
 
- - **Python**
- - **Javascript**
- - **HTML5**
- - **CSS3**
+-  **Python**
+-   **HTML5**
+-  **CSS3**
+-  **Javascript**
 
 ### Libraries and Frameworks
+The following libraries and frameworks were used in the development of this project. The documentation for all libraries and frameworks were used extensively.
 
- - **Django**
- - **Django AllAuth**
- - **jQuery**
- - **Bootstrap**
- - **Django Crispy Forms**
- - **Summernote**
- - **ChartJS**
- - **MasonryJS**
+- [**Bootstrap**](https://getbootstrap.com/). Various Bootstrap components are used in Rescala including the Cards, Alerts, Navbar, Pagination and, importantly, the Row & Col layout components. Various utility classes are used to add custom styling.
+- [**ChartJS**](https://www.chartjs.org/) was used to create the Doughnut chart to represent aggregated Foci on the Dashboard.
+- [**Django**](https://django-book.readthedocs.io/en/latest/). This project is built with Django, utilising its many out-of-the box functions.
+- [**Django AllAuth**](https://django-allauth.readthedocs.io/en/latest/) was used to handle the authentication, registration and account management.
+- [**Django Cloudinary Storage**](https://pypi.org/project/django-cloudinary-storage/) was used to facilitate integration with Cloundinary.
+- [**Django Crispy Forms**](https://django-crispy-forms.readthedocs.io/en/latest/) is used to reinforce DRY principles in the rendering and handling of forms. It is used in this project in-conjunction with Bootstrap5 styling.
+- [**jQuery**](https://jquery.com/) was used to add interactivity and handle manipulation of the DOM.
+- [**Masonry**](https://masonry.desandro.com/) is used to handle the dynamic rendering of the Dashboard widgets which improves the responsiveness of the UI.
+- [**Summernote**](https://github.com/summernote/django-summernote) is used to add WYSIWYG functionality to the Resource model in the Admin panel.
 
 ### Hosting and Storage
- - **Cloudinary**
- - **Heroku**
- - **ElephantSQL**
+
+- [**Cloudinary**](https://cloudinary.com/) is used to store the static files, including Admin-uploaded images.
+- [**Heroku**](https://www.heroku.com/) provides the hosting for Rescala.
+- [**ElephantSQL**](https://www.elephantsql.com/) is used as the database hosting service for the production version of this project.
 
 ### Version Control
-- **Git**
-- **GitHub** 
+
+-  **Git & GitHub** 
+Git and GitHub were used throughout this project to assist with version control and deployment. Please see the [Deployment](#deployment) for more information. !!!CHECK THIS LINKK!!!
 
 ### Design & Media
-- Database people
-Balsamiq
-- **Coolors**
-- **Google Fonts**
-- **Font Awesome**
-- **Unsplash**
-- **Canva**
 
+
+- [**Balsamiq**](https://balsamiq.com/) was used to create the wireframes.
+- [**Coolors**](https://coolors.co/) colour palette generator was used to choose the colour scheme for Rescala.
+- [**Google Fonts**](https://fonts.google.com/) As described above, both fonts for this project (Fraunces & Work Sans) are supplied by Google Fonts.
+- [**Font Awesome**](https://fontawesome.com/)'s easily recognisable icons are used to make buttons and forms more intuitive.
+- [**Unsplash**](https://unsplash.com/) Royalty-free photos were used for the images in the Resources app, including the placeholder image.
 
 ### Databases
- - **SQLite** was used for the development database and during unit testing
- - **PostgreSQL**, via Elephant SQL, is used for the production database.
-### Credits
-**Code**
 
-**Chat GPT**
+-  [**SQLite**](https://sqlite.org/index.html) was used for the development database and during unit testing.
+-  [**PostgreSQL**](https://www.postgresql.org/), via Elephant SQL, is used for the production database.
+
+
+## Credits
+### Code
+The resources below are were significantly used in the development and deployment of this project. 
+Where code has been used verbatim, it is also credited in the code itself.
+
+- [Highlighting Active Page in Django](https://valerymelou.com/blog/2020-05-04-how-to-highlight-active-links-in-your-django-website)
+- [Testing Forms in Django](https://adamj.eu/tech/2020/06/15/how-to-unit-test-a-django-form/)
+- [Removing Browser Validation from Crispy Forms](https://stackoverflow.com/questions/63539170/how-to-add-action-and-novalidate-attribute-to-form-tag-using-crispy-form)
+- [Integrating Crispy Forms in Django](https://www.youtube.com/watch?v=MZwKoi0wu2Q&t=521s)
+- [Integrating Summernote in Django](https://djangocentral.com/integrating-summernote-in-django/)
+- [Add ChartJS to Django](https://www.section.io/engineering-education/integrating-chart-js-in-django/)
+- [Customizing AllAuth Forms pt.1](https://dev.to/danielfeldroy/customizing-django-allauth-signup-forms-2o1m)
+- [Customizing AllAuth Forms pt.2](https://gavinwiener.medium.com/modifying-django-allauth-forms-6eb19e77ef56)
+- [Extending the Base User Model](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
+- [W3Schools](https://www.w3schools.com/) was referenced for Python syntax including list comprehension and built-in functions eg. any()
+### ChatGPT
+
+[Open AI's ChatGPT ](https://openai.com/blog/chatgpt) was used to accomplish various tasks during this project including:
+
+- writing the practice logs and the the resources for this version of Rescala.
+- explaining obscure or verbose error messages, particularly during the the unit testing phase.
+- formatting headings and text used in this ReadMe.
+
+### Music Resources
+[The Musician's Union Practice Diary](https://musiciansunion.org.uk/working-performing/music-teaching/working-as-a-music-teacher/practice-diaries-and-workbooks) provided inspiration for Rescala
 
 ## Acknowledgements
+- The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
+- The Code Institute example read me was used as a template for this document. This includes the instructions for deployment on GitHub Pages which are used in full, above. !!!! CheCK THIS!!!!
