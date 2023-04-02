@@ -1,4 +1,3 @@
-//   Adapted from https://tinyurl.com/3yhmp5n6
 const addChart = () => {
     /**
      * Generates a chart to display the distribution of foci in recorded practice sessions
@@ -56,6 +55,8 @@ const addChart = () => {
 
 $(document).ready(function () {
 
+    console.log('ready')
+
     addChart();
 
     // Credit: https://tinyurl.com/2p8npant
@@ -90,6 +91,14 @@ $(document).ready(function () {
         $(`.edit-goal-button[data-goal-id="${goalId}"]`).toggle();
         $(`.revert-goal-button[data-goal-id="${goalId}"]`).toggle();
         $(`.confirm-delete-button[data-goal-id="${goalId}"]`).toggle();
+        $(this).toggle();
+    });
+
+    $(".confirm-delete-button").click(function () {
+        const goalId = $(this).data('goal-id');
+        $(`.goal-progress[data-goal-id="${goalId}"]`).toggle();
+        $(`.spinner-border[data-goal-id="${goalId}"]`).show();
+        $(`.revert-goal-button[data-goal-id="${goalId}"]`).toggle();
         $(this).toggle();
     });
 

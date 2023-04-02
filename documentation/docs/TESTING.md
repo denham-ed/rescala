@@ -281,3 +281,6 @@ On Google Chrome, Rescala has been tested down to a width of 320px.
 **Focus Chart Overlap** 
 Previously, the widget containing the Focus chart on the Dashboard overlaps other widgets. 
 This was solved using MasonryJS's imagesLoaded property, which waits until all images are loaded until calculating the layout.
+
+**Deleting Goals**
+It was possible for the user to trigger an error by repeatedly click the 'Confirm Delete Goal' button on the dashboard. This was resolved by removing the button after clicking and displaying a spinner to show the action was in progress.

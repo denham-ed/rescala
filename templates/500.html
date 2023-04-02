@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title%}
-Rescala | 404
+Rescala | 500
 {% endblock%}
 
 {% load crispy_forms_tags%}
@@ -11,19 +11,18 @@ Rescala | 404
 
 {% block content %}
 <div class="container d-flex flex-column h-100">
-    <div class="row h-50 ">
+    <div class="row mt-md-5">
         <div class="col d-flex justify-content-center align-items-center">
-            <h1 style="font-size: 750%;">404</h1>
+            <h1  class='text-center' style="font-size: 750%;">We've lost the beat.</h1>
         </div>
     </div>
     <div class="row">
         <div class="col d-flex justify-content-center">
-            <h1 class='text-center'>An empty practice room? Great! An empty page? Less good.</h1>
+            <h1 class='text-center'>We're not sure what's happened, but something's gone wrong.</h1>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col d-flex flex-column align-items-center justify-content-center">
-                <p class='text-center'>Sorry, we can't find what you're looking for. 
-                    Let's get you back on track:
+                <p class='text-center'>We're working to fix it but for now let's get you back on track:
                 </p>
                 <div>
                     <a href="{% url 'landing_page' %}" class="btn btn-lg btn-very-dark">Back to Rescala</a>

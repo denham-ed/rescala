@@ -269,7 +269,7 @@ If any action triggers a 404 error, the User will be shown a custom 404 page.
 
 ![Delete Session](documentation/images/404.png)
 
-This replaces the template provided by Django. A button returns the user to the Dashboard.
+This replaces the template provided by Django. A button returns the user to the Dashboard. Similar templates have been added to handle 400 and 500 errors.
 
 ## Planned Features and Improvements
 
@@ -283,7 +283,7 @@ The Alt text for images rendered for Resources is often inconsistent. More work 
 
 **Spinners and Loaders**
 
-Spinners are used to show that an update to a user Goal is in progress. Additional spinners will be added to user actions that can occasionally be slow, resulting in double-clicks including adding a goal and deleting a goal.
+Spinners are used to show that an update or delete request to a user Goal is in progress. Additional spinners will be added to user actions that can occasionally be slow, resulting in double-clicks including adding a goal, signing in, registering etc.
 
 **Links to Practice Details from Calendar Widget**
 
