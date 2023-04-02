@@ -13,6 +13,9 @@ All tests pass successfuly, as shown below.
 
 ## Manual Testing
 
+In addition to the automated test suits, Rescala has been extensively tested manually.
+This includes the small elements of Javascript that add interactivity to the UI.
+
 ### General
 |User Action  | Expected Result  | Pass / Fail |
 |--|--|--|
