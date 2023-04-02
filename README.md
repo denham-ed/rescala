@@ -330,6 +330,7 @@ Where code has been used verbatim, it is also credited in the code itself.
 - writing the practice logs and the the resources for this version of Rescala.
 - explaining obscure or verbose error messages, particularly during the the unit testing phase.
 - formatting headings and text used in this ReadMe.
+- formatting long lists of tuples for options constants in forms.
 
 ### Music Resources
 [The Musician's Union Practice Diary](https://musiciansunion.org.uk/working-performing/music-teaching/working-as-a-music-teacher/practice-diaries-and-workbooks) provided inspiration for Rescala

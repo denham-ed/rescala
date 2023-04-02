@@ -10,7 +10,7 @@ class Profile(AbstractUser):
     Extends Django's User class to include details
     such as Goals and Resources.
     """
-    goals = models.JSONField(default=list)
+    goals = models.JSONField(default=list, blank=True)
     resources = models.ManyToManyField(
         Resource, related_name="user_resources", blank=True
     )
