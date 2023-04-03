@@ -303,6 +303,7 @@ Rescala has been extensively tested. You can view more about testing, including 
 
 ## Deployment
 
+The live version of Rescala is deployd on Heroku. Full details and steps to replicate the deployment can be found [here.](documentation/docs/DEPLOYMENT.md)
 
 ## Technologies
 
