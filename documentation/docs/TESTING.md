@@ -11,6 +11,11 @@ All tests pass successfuly, as shown below.
 
 ![UnitTesting Results](../testing_images/unittesting.png)
 
+[Coverage.py](https://coverage.readthedocs.io/en/7.2.2/) was used to assess the coverage of these tests. The result was 98% coverage, with the largest areas of uncovered code being `manage.py` and Django's migration files.
+
+
+
+
 ## Manual Testing
 
 In addition to the automated test suits, Rescala has been extensively tested manually.
