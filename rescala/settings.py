@@ -28,7 +28,8 @@ DEBUG = os.environ.get("DEVELOPMENT")
 
 ALLOWED_HOSTS = ['denham-rescala.herokuapp.com', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'https://denham-rescala.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 
+'https://denham-rescala.herokuapp.com']
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 

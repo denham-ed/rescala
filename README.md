@@ -336,7 +336,7 @@ The following libraries and frameworks were used in the development of this proj
 ### Version Control
 
 -  **Git & GitHub** 
-Git and GitHub were used throughout this project to assist with version control and deployment. Please see the [Deployment](#deployment) for more information. !!!CHECK THIS LINKK!!!
+Git and GitHub were used throughout this project to assist with version control and deployment. Please see the [Deployment](#deployment) for more information.
 
 ### Design & Media
 
@@ -381,5 +381,6 @@ Where code has been used verbatim, it is also credited in the code itself.
 [The Musician's Union Practice Diary](https://musiciansunion.org.uk/working-performing/music-teaching/working-as-a-music-teacher/practice-diaries-and-workbooks) provided inspiration for Rescala
 
 ## Acknowledgements
-- The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
-- The Code Institute example read me was used as a template for this document. This includes the instructions for deployment on GitHub Pages which are used in full, above. !!!! CheCK THIS!!!!
+- The Code Institute example read me was used as a template for this document.
+- The Code Institue Walkthrough *I Think Therefore I Blog* was used as inspiration for the Resource app. Large sections of the walkthrough were also used to inform the deployment section of this document.
+ The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
