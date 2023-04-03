@@ -18,6 +18,44 @@ Key features:
  ## Live Project
 [The deployed site is available here.](https://denham-rescala.herokuapp.com/ "Link to open deployed website")
 
+## Contents
+
+  * [User Stories](#user-stories)
+  * [Design](#design)
+    + [Wireframes](#wireframes)
+    + [Colour Scheme](#colour-scheme)
+    + [Typography](#typography)
+  * [Database Model](#database-model)
+    + [Requirements](#requirements)
+    + [Models](#models)
+  * [Current Features](#current-features)
+    + [Layout Features](#layout-features)
+    + [Landing Page](#landing-page)
+    + [Authentication](#authentication)
+    + [Dashboard](#dashboard)
+    + [Resources](#resources)
+    + [Individual Resource](#individual-resource)
+    + [Log Practice](#log-practice)
+    + [Session Details](#session-details)
+    + [Edit Practice](#edit-practice)
+    + [Resource Admin](#resource-admin)
+    + [404 Page](#404-page)
+  * [Planned Features and Improvements](#planned-features-and-improvements)
+  * [Testing](#testing)
+  * [Deployment](#deployment)
+  * [Technologies](#technologies)
+    + [Languages](#languages)
+    + [Libraries and Frameworks](#libraries-and-frameworks)
+    + [Hosting and Storage](#hosting-and-storage)
+    + [Version Control](#version-control)
+    + [Design & Media](#design---media)
+    + [Databases](#databases)
+  * [Credits](#credits)
+    + [Code](#code)
+    + [ChatGPT](#chatgpt)
+    + [Music Resources](#music-resources)
+  * [Acknowledgements](#acknowledgements)
+
 ## User Stories
 
 Rescala is designed for serious music students and young professionals who want to make their practice more focussed and intentional, and gain greater insights about their progress and development. The three imagined profiles, below, were useful in developing the project's design, functionality and scope.
@@ -351,6 +389,10 @@ Git and GitHub were used throughout this project to assist with version control 
 
 -  [**SQLite**](https://sqlite.org/index.html) was used for the development database and during unit testing.
 -  [**PostgreSQL**](https://www.postgresql.org/), via Elephant SQL, is used for the production database.
+
+### Other
+- [**GitHub Wiki TOC Generator**](https://ecotrust-canada.github.io/markdown-toc/) was used to create the table of contents in this document
+- [**Quick DBD**](https://www.quickdatabasediagrams.com/) was used to design the database diagrams
 
 
 ## Credits

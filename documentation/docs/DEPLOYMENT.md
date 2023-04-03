@@ -1,5 +1,14 @@
 # Rescala - Deployment
 
+## Contents
+  * [Create a Gitpod Workspace Using a Template](#create-a-gitpod-workspace-using-a-template)
+  * [Create a Local Clone](#create-a-local-clone)
+  * [Create a Cloudinary Account](#create-a-cloudinary-account)
+  * [Connect to Cloudinary](#connect-to-cloudinary)
+  * [Create a Database](#create-a-database)
+  * [Connect To Database](#connect-to-database)
+  * [Host on Heroku](#host-on-heroku)
+
 ## Create a Gitpod Workspace Using a Template
 1. Navigate to [Code Institute Gitpod Full Template](https://github.com/Code-Institute-Org/gitpod-full-template)
 2. Click 'Use this template' and create a new repository.

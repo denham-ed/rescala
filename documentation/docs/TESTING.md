@@ -1,6 +1,37 @@
 
 # Rescala - Testing
 
+## Contents
+
+- [Rescala - Testing](#rescala---testing)
+  * [Automated Testing](#automated-testing)
+  * [Manual Testing](#manual-testing)
+    + [General](#general)
+    + [Header](#header)
+    + [Footer](#footer)
+    + [Landing Page](#landing-page)
+    + [Sign In Page](#sign-in-page)
+    + [Dashboard](#dashboard)
+    + [My Goals](#my-goals)
+    + [Log Practice](#log-practice)
+    + [View Practice](#view-practice)
+    + [Edit Practice](#edit-practice)
+    + [Resources](#resources)
+    + [Resource](#resource)
+    + [Logout](#logout)
+  * [Bugs](#bugs)
+  * [Validators](#validators)
+    + [HTML](#html)
+    + [Javascript](#javascript)
+    + [CSS3](#css3)
+    + [Python / PEP8](#python---pep8)
+  * [Lighthouse](#lighthouse)
+  * [Accessibility](#accessibility)
+    + [WAVE Reports](#wave-reports)
+  * [Responsiveness](#responsiveness)
+  * [Resolved Bugs](#resolved-bugs)
+  * [Unresolved Bugs](#unresolved-bugs)
+
 ## Automated Testing
 Rescala includes a suite of 61 automated tests using Django's unittest library.
 These cover all aspects of views, models and forms. Tests can be found in the relevant app's folders in the format *tests-*.*py*
@@ -221,8 +252,6 @@ On the whole, high scores were obtained; see below for more information and plan
 
 ## Accessibility
 
-## Accessibility
-
 Accessibility was tested using the [WAVE Web Accessibility Evalutation Tools](https://wave.webaim.org/) Chrome extension. Overall the results were very positive, as shown by the screenshots, below. However, the following feedback has been noted for future updates to improve accessibility for all users:
 
 - Update forms (Log and Update Practice) to include fieldsets to bind the checkboxes more closely with the labels
@@ -289,3 +318,6 @@ This was solved using MasonryJS's imagesLoaded property, which waits until all i
 
 **Deleting Goals**
 It was possible for the user to trigger an error by repeatedly click the 'Confirm Delete Goal' button on the dashboard. This was resolved by removing the button after clicking and displaying a spinner to show the action was in progress.
+
+## Unresolved Bugs
+There are currently no known unresolved bugs.
