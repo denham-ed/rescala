@@ -429,4 +429,4 @@ Where code has been used verbatim, it is also credited in the code itself.
 ## Acknowledgements
 - The Code Institute example read me was used as a template for this document.
 - The Code Institute Walkthrough *I Think Therefore I Blog* was used as inspiration for the Resource app. Large sections of the walkthrough were also used to inform the deployment section of this document.
- The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
+- The support of my mentor Spencer Barriball for his advice, guidance and directions to resources is gratefully acknowledged.
