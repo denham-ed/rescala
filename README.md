@@ -353,7 +353,7 @@ The live version of Rescala is deployed on Heroku. Full details and steps to rep
 ### Languages
 
 -  **Python**
--   **HTML5**
+-  **HTML5**
 -  **CSS3**
 -  **Javascript**
 
