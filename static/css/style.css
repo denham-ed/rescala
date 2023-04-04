@@ -51,7 +51,8 @@ a {
 
 /* ------------------------------- Navigation  */
 .active {
-	border-bottom: #14281D 1px solid;
+	text-decoration: underline;
+	text-underline-offset: 0.4rem;
 }
 
 /* ------------------------------- Footer */
