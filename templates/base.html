@@ -44,27 +44,27 @@
           {% with request.resolver_match.url_name as url_name %}
           <ul class="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
             {% if user.is_authenticated %}
-            <li class="nav-item {% if url_name == 'dashboard' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'dashboard' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link " href="{% url 'dashboard' %}">Dashboard</a>
             </li>
-            <li class="nav-item {% if url_name == 'create_log' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'create_log' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link" href="{% url 'create_log' %}">Log Practice</a>
             </li>
-            <li class="nav-item {% if url_name == 'resources' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'resources' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link" href="{% url 'resources' %}">Resources</a>
             </li>
-            <li class="nav-item {% if url_name == 'account_logout' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'account_logout' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
             </li>
             {% else %}
-            <li class="nav-item {% if url_name == 'resources' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'resources' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link" href="{% url 'resources' %}">Resources</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+              <a class="nav-link" href="{% url 'account_login' %} ms-3 ms-lg-0">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-dark" href="{% url 'account_signup' %}">Register</a>
+              <a class="btn btn-dark" href="{% url 'account_signup' %} ms-3 ms-lg-0">Register</a>
             </li>
             {% endif %}
           </ul>

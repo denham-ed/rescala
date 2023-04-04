@@ -55,8 +55,6 @@ const addChart = () => {
 
 $(document).ready(function () {
 
-    console.log('ready')
-
     addChart();
 
     // Credit: https://tinyurl.com/2p8npant
