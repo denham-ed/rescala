@@ -363,7 +363,7 @@ The following libraries and frameworks were used in the development of this proj
 - [**ChartJS**](https://www.chartjs.org/) was used to create the Doughnut chart to represent aggregated Foci on the Dashboard.
 - [**Django**](https://django-book.readthedocs.io/en/latest/). This project is built with Django, utilising its many out-of-the-box functions.
 - [**Django AllAuth**](https://django-allauth.readthedocs.io/en/latest/) was used to handle the authentication, registration and account management.
-- [**Django Cloudinary Storage**](https://pypi.org/project/django-cloudinary-storage/) was used to facilitate integration with Cloundinary.
+- [**Django Cloudinary Storage**](https://pypi.org/project/django-cloudinary-storage/) was used to facilitate integration with Cloudinary.
 - [**Django Crispy Forms**](https://django-crispy-forms.readthedocs.io/en/latest/) is used to reinforce DRY principles in the rendering and handling of forms. It is used in this project in conjunction with Bootstrap5 styling.
 - [**jQuery**](https://jquery.com/) was used to add interactivity and handle the manipulation of the DOM.
 - [**Masonry**](https://masonry.desandro.com/) is used to handle the dynamic rendering of the Dashboard widgets which improves the responsiveness of the UI.
