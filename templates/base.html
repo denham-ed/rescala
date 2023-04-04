@@ -60,11 +60,11 @@
             <li class="nav-item {% if url_name == 'resources' %}active{% endif %} ms-3 ms-lg-0">
               <a class="nav-link" href="{% url 'resources' %}">Resources</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %} ms-3 ms-lg-0">Sign In</a>
+            <li class="nav-item ms-3 ms-lg-0">
+              <a class="nav-link" href="{% url 'account_login' %} ">Sign In</a>
             </li>
-            <li class="nav-item">
-              <a class="btn btn-dark" href="{% url 'account_signup' %} ms-3 ms-lg-0">Register</a>
+            <li class="nav-item ms-3 ms-lg-0">
+              <a class="btn btn-dark" href="{% url 'account_signup' %}">Register</a>
             </li>
             {% endif %}
           </ul>
