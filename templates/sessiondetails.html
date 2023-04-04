@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title%}
- Rescala | Session Details
+ Rescala | Practice Details
 {% endblock%}
 
 {% block content %}
@@ -39,7 +39,7 @@
             </div>
             <div class="dashboard-content">
               <p>
-                {{session.summary}}
+                {{session.summary|linebreaksbr }}
               </p>
             </div>
           </div>

@@ -117,12 +117,13 @@ class Dashboard(LoginRequiredMixin, View):
         """
         start_date = date.today() - timedelta(days=29)
         dates = [start_date + timedelta(days=i) for i in range(30)]
-        mapped_dates = [{'date': date, 'practice': False} for date in dates]
+        mapped_dates = [{'date': date, 'practice': False, 'id': None, 'headline': None} for date in dates]
         for d in mapped_dates:
             for session in sessions:
-                if any(session.date.strftime('%Y-%m-%d') ==
-                       d['date'].strftime('%Y-%m-%d') for session in sessions):
+                if session.date.strftime('%Y-%m-%d') == d['date'].strftime('%Y-%m-%d'):
                     d['practice'] = True
+                    d['id'] = session.id
+                    d['headline'] = session.headline
         return mapped_dates
 
     def aggregate_focus(self, sessions):
@@ -130,7 +131,7 @@ class Dashboard(LoginRequiredMixin, View):
         Prepares a list of displaying a chart on the dashboard.
         Function takes a list of sessions and aggregates the recorded
         foci of each.
-        Returns a lsit of dictionaries that contains the mood itself and a
+        Returns a list of dictionaries that contains the mood itself and a
         count to represent how often they appear in the sessions.
         """
         focus_list = []

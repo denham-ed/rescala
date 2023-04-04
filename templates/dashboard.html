@@ -164,8 +164,11 @@ Rescala | Dashboard
           <div class="calendar-container d-flex flex-wrap">
             {% for day in dates %}
             {% if day.practice%}
-            <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top"
-              title="{{ day.date | date:'D d M y' }}"></div>
+            <a href="{% url 'session_details' day.id %}">
+              <div class="calendar-day practiced" data-toggle="tooltip" data-placement="top"
+              title="{{ day.date | date:'D d M y' }} | {{day.headline}}"></div>
+            </a>
+
             {% else %}
             <div class="calendar-day" data-toggle="tooltip" data-placement="top" data-html="true"
               title="{{ day.date | date:'D d M y' }}"></div>
