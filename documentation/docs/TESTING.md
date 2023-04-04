@@ -320,4 +320,4 @@ This was solved using MasonryJS's imagesLoaded property, which waits until all i
 It was possible for the user to trigger an error by repeatedly clicking the 'Confirm Delete Goal' button on the dashboard. This was resolved by removing the button after clicking and displaying a spinner to show the action was in progress.
 
 ## Unresolved Bugs
-There are currently no known unresolved bugs.
+**Heroku Build** Occassionally an error will be thrown when deploying to Heroku. This appears to be caused by a something in the Cloudinary configuration, but resolves with no developer action, when retried. There is no impact on the User Experience.
