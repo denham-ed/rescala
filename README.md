@@ -323,10 +323,6 @@ The Alt text for images rendered for Resources is often inconsistent. More work 
 
 Spinners are used to show that an update or delete request to a user Goal is in progress. Additional spinners will be added to user actions that can occasionally be slow, resulting in double clicks including adding a goal, signing in, registering etc.
 
-**Links to Practice Details from Calendar Widget**
-
-Users will be able to access a practice session directly from the 'Last 30 Days' widget on the Dashboard.
-
 **Reflections Rendering**
 
 Currently the practice sessions 'Reflections' render without formatting. In future, a WYSIWYG editor will be used to allow users to add formatting to these entries.
