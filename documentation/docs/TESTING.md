@@ -166,8 +166,6 @@ This includes the small elements of Javascript that add interactivity to the UI.
 |Click 'Yes' button  |Logs user out, redirects to Landing Page  | Pass |
 
 
-## Bugs
-
 ## Validators
 
 ### HTML
@@ -324,4 +322,8 @@ It was possible for the user to trigger an error by repeatedly clicking the 'Con
 ## Unresolved Bugs
 **Heroku Build** 
 
-Occassionally an error will be thrown when deploying to Heroku. This appears to be caused by a something in the Cloudinary configuration, but resolves with no developer action, when retried. There is no impact on the User Experience.
+Occasionally an error will be thrown when deploying to Heroku. This appears to be caused by a something in the Cloudinary configuration, but resolves with no developer action, when retried. There is no impact on the User Experience.
+
+**Error Formatting**
+Validation errors on the Log Practice and Update Practice form can cause unsightly formatting on the input boxes. This is particularly evident with the Date and Duration inputs. This will be fixed in future updates.
+

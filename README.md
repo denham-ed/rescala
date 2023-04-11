@@ -335,6 +335,9 @@ Users will be able to build a streak of consecutive practice days which will be 
 
 Currently, if users favourite a large number of resources or add a lot of goals, it will result in an unattractive list on the Dashboard UI. In future, the number of goals will be limited and the My Resources tab will utilise a 'See More' button to hide resources.
 
+**Validation Error Formatting**
+The validation errors that cause layout issues, as described in the Testing section, will be fixed in future updates with more explicit style declarations.
+
 ## Testing
 
 Rescala has been extensively tested. You can view more about testing, including automated and manual testing, accessibility, validators and more, [here.](documentation/docs/TESTING.md)
